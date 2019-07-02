@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+      label: Name
+      type: text
+      required: true
+      span: left
+
+    image:
+      label: Partner logo
+      type: mediafinder
+      mode: image
+      span: right
+      required: true
+
+    url:
+      label: Website
+      type: text
+      span: left
+      comment: Place here the link to the partners website.
+
+    weight:
+      label: Weight
+      type: number
+      span: left

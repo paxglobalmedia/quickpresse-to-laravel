@@ -1,0 +1,20 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Description
+        searchable: true
+    language:
+        label: Language
+        searchable: true
+    sort:
+        label: Priority
+        searchable: true
+    published:
+        label: Published
+        type: switch
+    created_at:
+        label: Created at
+        type: datetime

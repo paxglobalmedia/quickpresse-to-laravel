@@ -1,0 +1,37 @@
+<form data-parsley-validate class="mt-3">
+    <div class="form-group">
+        <label for="userSigninLogin">{{ 'Email'|_ }}</label>
+        <input required
+                name="login"
+                type="text"
+                class="form-control"
+                id="userSigninLogin"/>
+
+
+    </div>
+
+    <div class="form-group">
+        <label for="userSigninPassword">{{ 'Password'|_ }}</label>
+        <input required
+                name="password"
+                type="password"
+                class="form-control"
+                id="userSigninPassword"/>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="p-t-1">
+                {{ 'Forgot your password?'|_ }}&nbsp;
+                <a href="{{ 'account/password-reset'|page }}">{{ 'Click here'|_ }}</a>
+            </div>
+        </div>
+        <div class="col-md-4 text-right">
+            <button type="button"
+                    class="btn btn-primary"
+                    data-activate1="{{ 'The user'|_ }}"
+                    data-activate2="{{ 'has not been activated yet'|_ }}"
+                    onclick="loginUser(this)">{{ 'Sign in'|_ }}</button>
+        </div>
+    </div>
+
+</form>

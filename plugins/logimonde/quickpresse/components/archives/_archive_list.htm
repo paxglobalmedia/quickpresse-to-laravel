@@ -1,0 +1,166 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm" style="display: table">
+                <thead>
+                <tr>
+                    <th style="width: 9%;">
+                        {{ 'Send date'|_ }}&nbsp;&nbsp;
+                    </th>
+                    <th style="width: 27%">{{ 'Subject line'|_ }}</th>
+                    {% if user.role_id != '3' %}
+                        <th>{{ 'Status'|_ }}</th>
+                        <th class="text-center">{{ 'Delivery time'|_ }}</th>
+                        <th style="width: 19%">{{ 'Company'|_ }}</th>
+                        <th>{{ 'User'|_ }}</th>
+                    {% endif %}
+                    <th>{{ 'Destination'|_ }}</th>
+                    <th colspan="{% if user.role_id != '3' %}3{% else %}2{% endif %}"
+                        class="text-center"
+                        style="width: {% if user.role_id != '3' %}11{% else %}8{% endif %}%">{{ 'Actions'|_ }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for qp in qps %}
+                    <tr style="font-size: 0.875rem;">
+                        <td>
+                            {% if not qp.active %}
+                                <span class="badge purple white-text">{{ 'Draft'|_ }}</span>&nbsp;
+                            {% else %}
+                                {% if not qp.displayed %}
+                                    <span class="badge bg-highlight white-text new-qp">N&nbsp;</span>&nbsp;
+                                {% endif %}
+                            {% endif %}
+                            {% if user.role_id != '3' %}
+                                <span data-toggle="tooltip" data-placement="right"
+                                      data-html="true"
+                                      title="<p>{{ 'Start'|_ }}: {{ qp.date_send|mydate }}&nbsp;{{ qp.date_send|mytime }}<p><p>{{ 'Finish'|_ }}: {% if qp.sent_final_at %}{{ qp.sent_final_at|mydate }}&nbsp;{{ qp.sent_final_at|mytime }}{% else %}{{ 'In progress'|_ }}{% endif %}<p>">
+                                    {{ qp.date_required|mydate }}
+                                </span>
+                            {% else %}
+                                {{ qp.date_required|mydate }}
+                            {% endif %}
+                            {% if qp.time_required != '00:00:00' %}
+                                <p class="grey-text text-darken-2 m-0">
+                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;
+                                    {{ qp.time_required|mytime }}
+                                </p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ qp.eblast.title }}
+                            {% if user.role_id != '3' %}
+                                {% if qp.eblast.notes %}
+                                    &nbsp;&nbsp;
+                                    <a tabindex="0" role="button"
+                                       data-toggle="popover"
+                                       data-placement="right"
+                                       data-trigger="focus"
+                                       title="{{ 'Client notes'|_ }}"
+                                       data-content="{{ qp.eblast.notes }}">
+                                        <i class="fa fa-commenting text-danger"></i>
+                                    </a>
+                                {% endif %}
+                                {% if qp.eblast.admin_notes %}
+                                    &nbsp;&nbsp;
+                                    <a tabindex="0" role="button"
+                                       data-toggle="popover"
+                                       data-placement="right"
+                                       data-trigger="focus"
+                                       title="{{ 'Admin notes'|_ }}"
+                                       data-content="{{ qp.eblast.admin_notes }}">
+                                        <i class="fa fa-sticky-note-o text-success"></i>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        {% if user.role_id != '3' %}
+                            <td class="text-center">
+                                {% if qp.sent_final_at %}
+                                    <i class="fa fa-check-circle-o text-success fa-2x"></i>
+                                {% else %}
+                                    {% set dangerStatus = __SELF__.getSentStatus(qp.id) %}
+                                    {% if dangerStatus %}
+                                        <a style="text-decoration: none;"
+                                           href="javascript:void(0)"
+                                           data-eblast="{{ qp.id }}"
+                                           data-message="{{ 'Resend this eblast. Are you sure'|_ }}?"
+                                           onclick="resendEblast(this)">
+                                            <i class="fa fa-warning text-danger fa-2x"></i>
+                                        </a>
+
+                                    {% else %}
+                                        <i class="fa fa-spinner fa-spin fa-2x" style="color: #d8a200;"></i>
+                                    {% endif %}
+
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if qp.sent_final_at %}
+                                    {% set difference = __SELF__.showDifferenceTime(qp.date_send, qp.sent_final_at) %}
+                                    {{ difference }} min.
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if qp.eblast.subaccount_id != '0' %}
+                                    {{ qp.eblast.subaccount.name }} - ({{ qp.eblast.company.Name }})
+                                {% else %}
+                                    {% if qp.eblast.sender_name != '' %}
+                                        {{ qp.eblast.sender_name }} - ({{ qp.eblast.company.Name }})
+                                    {% else %}
+                                        {{ qp.eblast.company.Name }}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>{{ qp.eblast.user.name }}</td>
+                        {% endif %}
+                        <td>
+                            {% if qp.eblast.list_name %}
+                                {{ qp.eblast.list_name }}
+                            {% else %}
+                                {{ lang == 'en' ? qp.eblast.product.name_en : qp.eblast.product.name_fr }}
+                            {% endif %}
+                            {% if qp.eblast.type_qp == 'custom' %}
+                                &nbsp;&nbsp;-&nbsp;&nbsp;({{ qp.eblast.custom_list.name }})
+                            {% endif %}
+                        </td>
+                        <!-- Actions -->
+                        <td>
+                            <a class="btn btn-info btn-sm "
+                               href="{{ 'app/show'|page({qp: qp.slug}) }}"
+                               data-toggle="tooltip" data-placement="top" title="{{ 'Quick Presse preview'|_ }}"
+                               target="_blank">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                        {% if user.role_id != '3' %}
+                            <td>
+                                <button class="btn btn-secondary deep-purple btn-sm text-white" type="button"
+                                        onclick="setQpSection(this)"
+                                        data-campaign-id="{{ qp.eblast.id }}"
+                                        data-qp-section="{{ qp.eblast.show_qp_section }}"
+                                        data-toggle="tooltip" data-placement="left"
+                                        title="Section Quick Presse">
+                                    {% if qp.eblast.show_qp_section == '1' %}
+                                        <i class="fa fa-check"></i>
+                                    {% else %}
+                                        <i class="fa fa-circle-o"></i>
+                                    {% endif %}
+                                </button>
+                            </td>
+                        {% endif %}
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               data-toggle="tooltip" data-placement="top" title="{{ 'Edit your eblast'|_ }}"
+                               href="{{ 'app/manage'|page({campaign: qp.eblast.id}) }}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

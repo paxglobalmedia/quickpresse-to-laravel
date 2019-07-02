@@ -1,0 +1,72 @@
+<div class="card">
+    <div class="card-body">
+        {% if user.role_id != '3' %}
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>{{ 'Company'|_ }}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control get-company"
+                                   name="name_company"
+                                   value="{{ customList.company.Name }}" required
+                                   data-toggle="tooltip" data-placement="left"
+                                   title="{{ 'Type company name & choose from list'|_ }}"
+                                   placeholder="{{ 'Type company name & choose from list'|_ }}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="company_id" value="{{ customList.company_id }}">
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <input type="hidden" name="company_id" value="{{ user.company_id }}">
+        {% endif %}
+        <div class="row mt-2">
+            <div class="col">
+                <div class="form-group">
+                    <label>{{ 'List Name'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="name" value="{{ customList.name }}">
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label>{{ 'Contact email'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="email" value="{{ customList.email }}">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <div class="form-group">
+                    <label for="txt-reminder">{{ 'Remind people how they signed up to your list'|_ }}</label>
+                    <textarea class="form-control" required
+                              data-parsley-trigger="keyup"
+                              data-parsley-minlength="20"
+                              data-parsley-validation-threshold="10"
+                              id="txt-reminder" rows="3"
+                              name="reminder">{{ customList.reminder }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="switch mt-2 pt-2">
+                    <label>
+                        {{ 'Inactive'|_ }}
+                        <input type="checkbox" name="active"
+                               value="1" {{ customList ? (customList.active ? 'checked' : '') : 'checked' }}>
+                        <span class="lever"></span>
+                        {{ 'Active'|_ }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

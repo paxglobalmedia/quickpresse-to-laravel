@@ -1,0 +1,23 @@
+<div class="row">
+    {% for template in templates %}
+        <div class="col-3 py-3" >
+            <div class="m-1 p-1 hoverable" style="border: 1px solid #dcdcdc;">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ template.preview.path }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        {% if lang== 'en' %}
+                            {{ template.name }}
+                        {% else %}
+                            {{ template.name_fr }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endfor %}
+</div>

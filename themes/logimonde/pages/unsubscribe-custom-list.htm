@@ -1,0 +1,23 @@
+title = "Unsubscribe Custom List"
+url = "/unsubscribe/custom-list/:list/:contact?"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/unsubscribe-custom-list"
+
+[Unsubscribe]
+==
+<section style="margin-top: 150px;">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col text-center">
+                <h1 class="display-2">{{ 'Unsubscribe'|_ }}</h1>
+                <h2 class="h2-responsive text-primary mt-5">
+                    {{ 'Custom list'|_ }}: {{ list.name }}
+                </h2>
+            </div>
+        </div>
+        {% component 'Unsubscribe' %}
+    </div>
+</section>

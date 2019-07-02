@@ -1,0 +1,23 @@
+<div class="row justify-content-center">
+    <div class="col-sm-10 col-md-8 mt-5">
+        <div class="card mt-5 "  style="background-color:rgba(255,255,255,0.9);">
+            <div class="card-body" id="partialUserResetForm">
+                {% if __SELF__.code == null %}
+                    {% partial __SELF__ ~ '::restore' %}
+                {% else %}
+                    {% partial __SELF__ ~ '::reset' %}
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted text-center">
+                <a href="{{ 'account/connection'|page }}">
+                    <i class="fa fa-arrow-left"></i>&nbsp;
+                    {{ 'Back to login'|_ }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

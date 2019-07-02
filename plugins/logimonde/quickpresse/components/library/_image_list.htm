@@ -1,0 +1,39 @@
+{% if pictures|length > 0 %}
+    <div class="row" id="list-view">
+        {% for picture in pictures %}
+            <div class="col-12 " >
+                <div class="hoverable py-3 border-bottom">
+                    <div class="row">
+                        <div class="col-3 col-sm-2">
+                            <img src="{{ picture.source|media }}" class="img-fluid pl-2" style="height: 80px;">
+                        </div>
+                        <div class="col-7 col-sm-8 pt-2 pt-sm-1 pt-lg-3 text-xs-custom">
+                            <strong>{{ picture.original_name }}</strong> - {{ picture.width ~ ' x ' ~ picture.height }}
+                            &nbsp;px<br>
+                            <i class="fa fa-clock-o grey-text"></i>&nbsp;{{ picture.created_at|mydate }}&nbsp;&nbsp;-&nbsp;&nbsp;
+                            <i class="fa fa-user grey-text"></i>&nbsp;{{ picture.user.first_name ~ ' ' ~ picture.user.last_name }}
+                            &nbsp;&nbsp;-&nbsp;&nbsp;
+                            <strong>{{ 'Size'|_ }}</strong>:&nbsp;{{ (picture.size/1000)|number }}&nbsp;{{ 'Kb'|_ }},&nbsp;&nbsp;&nbsp;
+                            <strong>{{ 'File type'|_ }}</strong>:&nbsp;{{ picture.mime }}
+                        </div>
+                        <div class="col-2">
+                            <p class="text-right align-middle mt-4 ">
+                                <button type="button" class="btn btn-outline-danger btn-sm mr-3"
+                                        data-id="{{ picture.id }}"
+                                        data-view-type="list-view"
+                                        data-confirm="{{ 'Are you sure'|_ }}?"
+                                        data-message="{{ 'The image has been delete'|_ }}"
+                                        onclick="deleteImage(this)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    {% partial __SELF__ ~ '::_empty' %}
+{% endif %}
+<input type="hidden" name="view_type" value="list-view">

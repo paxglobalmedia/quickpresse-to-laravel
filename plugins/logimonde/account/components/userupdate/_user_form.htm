@@ -1,0 +1,103 @@
+{{ form_open({"id":"form-update-user", 'files':'true' }) }}
+<div class="row my-5">
+    <div class="col">
+        <div class="alert alert-info" role="alert">
+            {{ 'Please fill in the fields if you wish to add your personal information'|_ }}
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ 'First name'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="first_name" value="{{ currentUser.first_name }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ 'Last name'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="last_name" value="{{ currentUser.last_name }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ 'Email'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="email" value="{{ currentUser.email }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ 'Title'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="title" value="{{ currentUser.title }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>{{ 'Address'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="street_addr" value="{{ currentUser.street_addr }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ 'Postal Code'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="zip" value="{{ currentUser.zip }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>{{ 'City (Type city name & choose from list)'|_ }}</label>
+                    <input type="text" class="form-control get-city"
+                           name="name_city"
+                           value="{{ currentUser.city ? currentUser.city.nom_en ~ ' (' ~ currentUser.state.nom_en ~ ' - ' ~ currentUser.country.nom_en ~ ')' : '' }}">
+                    <input type="hidden" name="city" value="{{ currentUser.city_id }}">
+                    <input type="hidden" name="state" value="{{ currentUser.state_id }}">
+                    <input type="hidden" name="country" value="{{ currentUser.country_id }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ 'Phone'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="phone" value="{{ currentUser.phone }}">
+                </div>
+            </div>
+        </div>
+        {% if user.role_id != '3' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>{{ 'Company'|_ }}</label>
+                    <input type="text" class="form-control" readonly
+                           name="company" value="{{ currentUser.company.Name }}">
+                </div>
+            </div>
+        </div>
+            <input type="hidden" name="user" value="{{ currentUser.id }}">
+        {% else %}
+            <input type="hidden" name="company" value="{{ currentUser.company_id }}">
+        {% endif %}
+
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                <span class="field-required"></span>&nbsp; {{ 'Required fields'|_ }}
+            </div>
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary" type="button"
+                        onclick="saveUserForm(this)">{{ 'Save'|_ }}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{ form_close() }}

@@ -1,0 +1,71 @@
+title = "help"
+url = "/help"
+layout = "app"
+is_hidden = 0
+==
+function onStart()
+{
+    $this->addJs('assets/js/video.js');
+}
+==
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col">
+            <h1 class="h1-responsive text-primary">
+                <i class="fa fa-info-circle"></i>&nbsp;
+                {{ 'Help & Specs'|_ }}</h1>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <h3 class="h3-responsive border-bottom text-primary">{{ 'Easy steps to create your eblast'|_ }}</h3>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {% content 'app/help-steps.htm' %}
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-lg-center">
+        <div class="col col-lg-9 mt-3">
+            <h4 class="h4-responsive text-primary">{{ 'Guided tour of Quick Presse'|_ }}</h4>
+            {% partial 'video' %}
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h3 class="h3-responsive border-bottom text-primary">{{ 'Technical Specifications'|_ }}</h3>
+            <div class="row mt-4">
+                <div class="col-12 col-sm-8">
+                    {% content 'app/spec_html.htm' %}
+                </div>
+                <div class="col-12 col-sm-4">
+                    {% content 'app/spec_image.htm' %}
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    {% content 'app/spec_pdf.htm' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h4 class="h4-responsive text-primary">{{ 'Need help with your Quick Presse eblast'|_ }}?</h4>
+                    <h4 class="h4-responsive grey-text text-darken-2">
+                        {{ 'Please contact us at'|_ }}&nbsp;
+                        <a class="text-primary" href="tel:14506895060">{{ '4506895060'|phone }}</a>&nbsp; {{ 'Extension'|_ }}&nbsp;221&nbsp;
+                        {{ 'or by email at'|_ }}
+                        <a class="text-primary" href="mailto:logimonde@logimonde.com">logimonde@logimonde.com</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col"></div>
+    </div>
+</div>

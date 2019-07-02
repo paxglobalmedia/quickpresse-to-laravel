@@ -1,0 +1,77 @@
+{% set sends = campaign.sends %}
+{% if sends|length %}
+
+    <div class="row mt-2">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-hover table-sm" style="display: table">
+                    <thead>
+                    <tr>
+                        <th>{{ 'Date'|_ }}</th>
+                        <th class="text-right">{{ 'Actions'|_ }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for send in sends %}
+                        <tr>
+                            <td>
+                                <span class="underline {% if send.status == '1' %}grey-text{% endif %}">
+                                {{ send.date_required }}
+                                    {% if send.time_required != '00:00:00' %}
+                                        &nbsp;-&nbsp;{{ send.time_required|mytime }}
+                                    {% endif %}
+                                </span>
+                                {% if send.status == '1' %}
+                                    &nbsp;&nbsp;<span class="badge badge-success">{{ 'Sent'|_ }}</span>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-right"
+                                data-request-data="id: {{ send.id }}, campaign_id: {{ campaign.id }}">
+                                {% if send.status == '0' %}
+                                    <button class="btn btn-info btn-sm mr-2"
+                                            type="button"
+                                            data-request="onEditDate"
+                                            data-request-complete="scheduleDatetimePicker();"
+                                            data-request-update="'CampaignSchedule::_form': '#schedule-form'">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm"
+                                            type="button"
+                                            data-request="onDeleteDate"
+                                            data-request-complete="scheduleDatetimePicker();$('#schedule-form').addClass('d-block')"
+                                            data-request-confirm="{{ 'Are you sure'|_ }}?"
+                                            data-request-update="'CampaignSchedule::_list': '#schedule-list','CampaignSchedule::_form': '#schedule-form'">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {% if campaign.type_qp == 'contract' %}
+                {{ 'Quick Presse Balance'|_ }}: {{ balance }}
+            {% endif %}
+        </div>
+        <div class="col text-right"
+             data-request-data="campaign_id: {{ campaign.id }}">
+            {% if balance > 0 %}
+                <button class="btn btn-outline-primary btn-sm "
+                        type="button"
+                        data-request="onEditDate"
+                        data-request-complete="scheduleDatetimePicker();"
+                        data-request-update="'CampaignSchedule::_form': '#schedule-form'">
+                    <i class="fa fa-plus-square-o"></i>&nbsp;
+                    {{ 'New date'|_ }}
+                </button>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

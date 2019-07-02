@@ -1,0 +1,26 @@
+{{ form_open({"id": "form-list", "data-redirect":redirect}) }}
+<div class="row mt-4">
+    <div class="col-12 col-lg-6 mb-4">
+        {% partial __SELF__ ~ '::_form' %}
+    </div>
+</div>
+<hr>
+<div class="row mt-4">
+    <div class="col-12 col-lg-7">
+        {% if customContact %}
+            <input type="hidden" name="contact_id" value="{{ customContact.id }}">
+        {% endif %}
+        <input type="hidden" name="custom_list_id" value="{{ customList.id }}">
+        <span class="field-required"> </span>&nbsp; {{ 'Required fields'|_ }}
+    </div>
+    <div class="col-12 col-lg-5 text-right">
+        <a href="{{ 'app/custom-contacts'|page({list: customList.id }) }}"
+           class="btn btn-link btn-cancel mr-3">{{ 'Cancel'|_ }}</a>
+        <button type="button"
+                class="btn btn-primary"
+                data-message="" onclick="saveContactForm(this)">
+            {{ 'Submit'|_ }}
+        </button>
+    </div>
+</div>
+{{ form_close }}

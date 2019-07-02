@@ -1,0 +1,8 @@
+{
+    "name": "logimonde/quickpresse",
+    "require": {
+        "maatwebsite/excel": "~2.1.0",
+        "yangqi/htmldom": "1.0.*",
+        "webklex/laravel-imap": "1.2.9"
+    }
+}

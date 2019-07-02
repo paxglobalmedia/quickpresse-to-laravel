@@ -1,0 +1,29 @@
+description = "Modal Confirmation"
+==
+<div class="modal modal-center" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            {{ form_open({"id":"form-confirm"}) }}
+            <div class="modal-header primary-color">
+                <h5 class="modal-title white-text">{{ 'Confirm'|_ }}</h5>
+                <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="h5-responsive confirm-message text-xs-center"></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        id="cancel-button"
+                        data-dismiss="modal">{{ 'Cancel'|_ }}</button>
+                <button type="button" class="btn btn-primary"
+                        id="okay-button"
+                        data-dismiss="modal"
+                        style="margin: 0 !important;">
+                    {{ 'OK'|_ }}</button>
+            </div>
+            {{ form_close() }}
+        </div>
+    </div>
+</div>

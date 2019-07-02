@@ -1,0 +1,49 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm" style="display: table;{% if print %}font-size: 10px;{% endif %}">
+                <thead>
+                <tr>
+                    <th style="width: 10%;">
+                        {{ 'Bounce date'|_ }}
+                    </th>
+                    <th style="width: 30%;">{{ 'Email'|_ }}</th>
+                    <th class="text-center">{{ 'Code'|_ }}</th>
+                    <th class="text-center">{{ 'Type'|_ }}</th>
+                    <th>{{ 'Error description'|_ }}</th>
+
+                    <th class="text-right">{{ 'Error count'|_ }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for bounce in bounces %}
+                    <tr>
+                        <td>
+                            {{ bounce.bounce_date|mydate }}
+                        </td>
+                        <td>{{ bounce.email }}</td>
+                        <td class="text-center">
+                            {{ bounce.code_id }}
+                        </td>
+                        <td class="text-center">
+                            {{ bounce.code.type }}
+                        </td>
+                        <td>
+                            {{ bounce.code.description }}
+                        </td>
+                        <td class="text-right">
+                            {{ bounce.error_count }}
+                        </td>
+                        <td class="text-center">
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+

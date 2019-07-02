@@ -1,0 +1,40 @@
+<div class="block-file-header text-right">
+    <i class="fa {% if contentData %}fa-edit{% else %}fa-plus-square-o{% endif %} pointer"
+       title="{% if contentData %}{{ 'Edit block properties'|_ }}{% else %}{{ 'Insert image'|_ }}{% endif %}"
+       onclick="getBlockContent(this)"></i>
+    {% if contentData.id %}
+        <div class="d-inline" style="border-left: 2px solid #ffffff;margin-right: 5px;"></div>
+        <i class="fa fa-trash pointer"
+           data-id="{{ contentData.id }}"
+           data-template-file="CampaignContent::{{ campaign.template.partial_file }}"
+           data-confirm="{{ 'Are you sure'|_ }}?"
+           onclick="removeFileContent(this)"></i>
+    {% endif %}
+</div>
+<div class="block-file"
+     onclick="getBlockContent(this)">
+    {% if contentData.block == block %}
+        <img src="{{ server ~ contentData.source_path }}"
+             class="block-file-item mx-auto d-block"
+             id="{{ contentData.id }}" style="z-index: 1;">
+    {% else %}
+        <div class="text-center my-5" style="z-index: 1;">
+            <i class="fa fa-picture-o fa-5x grey-text"></i>
+            <p class="text-center">
+                {{ 'Upload an image or select an image from library'|_ }}
+            </p>
+        </div>
+        <div class="text-center" style="z-index: 1;">
+            {% set flyer = block|truncate(11) %}
+            {% if flyer == 'block-flyer' %}
+                {% content 'app/spec_image.htm' %}
+            {% else %}
+                <small class="grey-text">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    {{ 'For best results, choose an image that is no larger than 750 pixels x 977 pixels and 500KB.'|_ }}<br>
+                    {{ 'Accepted image formats: JPG, PNG and GIF.'|_ }}
+                </small>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

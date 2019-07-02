@@ -1,0 +1,48 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        qp_footer_en:
+            label: Footer message - English:
+            type: richeditor
+            tab: Eblast Footer
+        qp_footer_fr:
+            label: Footer message - français:
+            type: richeditor
+            tab: Eblast Footer
+
+        company_details_section:
+             label: Company details
+             type: section
+             tab: Settings
+        logimonde_address:
+            label: Logimonde Address
+            tab: Settings
+        logimonde_email_fr:
+            label: Logimonde Email (Français)
+            span: left
+            tab: Settings
+        logimonde_email_en:
+            label: Logimonde Email (English)
+            span: right
+            tab: Settings
+        logimonde_phone:
+            label: Logimonde Phone
+            span: left
+            tab: Settings
+        email_section:
+             label: Email options
+             type: section
+             comment: Separate each email using a semi-colon (;)
+             tab: Settings
+        email_contact:
+            label: Contact email
+            tab: Settings
+        email_test:
+            label: Email Tests
+            tab: Settings
+        last_email_server:
+            label: Last email server
+            tab: Settings

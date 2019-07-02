@@ -1,0 +1,49 @@
+{% if campaign.contents|length > 0 %}
+    <div class="row">
+        <div class="col-4 col-lg-2">
+            <div class="px-3">
+                <img src="{{ campaign.template.preview.path }}">
+            </div>
+
+        </div>
+        <div class="col-8 col-lg-10">
+            <p class="mt-5">
+                {{ 'Template'|_ }}:&nbsp;
+                <strong>
+                    {% if lang== 'en' %}
+                        {{ campaign.template.name }}
+                    {% else %}
+                        {{ campaign.template.name_fr }}
+                    {% endif %}
+                </strong>
+            </p>
+            <p>{{ 'Eblast subject'|_ }}:&nbsp;<strong>{{ campaign.title }}</strong></p>
+            <p>{{ 'Page(s)'|_ }}:&nbsp;<strong>{{ pages }}</strong></p>
+
+        </div>
+    </div>
+    {% if __SELF__.kind == 'normal' %}
+        <div class="row">
+            <div class="col text-right">
+                {% if sentEblats|length == 0 %}
+                    <a class="btn btn-primary manage-edit {{ campaign.active ? 'disabled' : '' }}"
+                       href="{{ 'app/campaign-content'|page({campaign: campaign.id}) }}">{{ 'Edit content'|_ }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="row">
+        <div class="col pt-3">
+            {{ 'Once you’ve chosen between custom or list options, you can easily add text, photos, and links to your Quick Presse'|_ }}.&nbsp;
+            {{ 'Get started now'|_ }}!
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-right">
+            <a class="btn btn-primary {% if not campaign %}disabled{% endif %}"
+               href="{{ 'app/campaign-content'|page({campaign: campaign.id}) }}">{{ 'Create'|_ }}</a>
+        </div>
+    </div>
+{% endif %}

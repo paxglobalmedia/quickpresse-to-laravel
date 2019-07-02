@@ -1,0 +1,14 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: name
+
+    preview:
+        label: Preview
+        type: fileupload
+        mode: image
+        imageHeight: 360
+        imageWidth: 260

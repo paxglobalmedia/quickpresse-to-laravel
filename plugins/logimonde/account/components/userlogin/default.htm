@@ -1,0 +1,23 @@
+{% if not user %}
+    <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-8 mt-5">
+
+            <div class="card mt-5"  style="background-color:rgba(255,255,255,0.9);">
+                <div class="card-body">
+                    <h1 class="h1-responsive">{{ 'Login'|_ }}</h1>
+                    <p class="grey-text text-darken-2">
+                        <i class="fa fa-info-circle"></i>&nbsp;
+                        {{ 'Please note that your user and password of the old site does not work on this one. You must create a new account'|_ }}.&nbsp;
+                        <a href="{{ 'account/register'|page }}">{{ 'Click here to sign up'|_ }}</a>
+                    </p>
+
+                    {% partial __SELF__ ~ '::signin' %}
+                </div>
+                <div class="card-footer text-muted text-center">
+                    {{ "Don't have an account yet?"|_ }}&nbsp;
+                    <a href="{{ 'account/register'|page }}">{{ 'Sign up'|_ }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

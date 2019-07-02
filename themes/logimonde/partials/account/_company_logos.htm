@@ -1,0 +1,80 @@
+<div class="card mt-3">
+    <div class="card-header">
+        {{ 'Company Logos'|_ }}
+    </div>
+    <div class="card-block">
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <p class="text-xs-center">{{ 'English Logo'|_ }}</p>
+
+                <div class="row" id="preview-logo-en"
+                     {% if not company.logo_file_en %}style="display: none;"{% endif %}>
+                    <div class="col-xs-8 offset-xs-2 col-sm-8">
+                        <div class="p-a-2">
+                            <img src="{% if company.logo_file_en %}{{ ('logo/client/' ~ company.id ~ '/' ~company.logo_file_en)|media }}{% endif %}"
+                                 class="img-fluid hoverable" id="img-logo-en">
+                            <button type="button"
+                                    class="btn btn-danger btn-sm pull-right"
+                                    data-request="onDeleteCompanyLogo"
+                                    data-request-confirm="{{ 'Are you sure?'|_ }}"
+                                    data-request-data="logo_lang: 'en'"
+                                    data-request-redirect="{{ redirect }}">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="browser-logo-en"
+                     class="text-xs-center mt-3"
+                     {% if company.logo_file_en %}style="display: none;"{% endif %}>
+                        <span class="btn btn-secondary btn-file">
+                            <i class="fa fa-upload"></i>&nbsp;&nbsp;{{ 'Browse'|_ }}
+                            <input type="file" name="logo_file_en"
+                                   accept=".jpeg,.jpg,.png,.gif">
+                        </span>
+                    <div class="file-result" style="width: 100%;"></div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <p class="text-xs-center">{{ 'French Logo'|_ }}</p>
+
+                <div class="row" id="preview-logo-fr"
+                     {% if not company.logo_file_fr %}style="display: none;"{% endif %}>
+                    <div class="col-xs-8 offset-xs-2 col-sm-8">
+                        <div class="p-a-2">
+                            <img src="{{ ('logo/client/' ~ company.id ~ '/' ~company.logo_file_fr)|media }}"
+                                 class="img-fluid hoverable" id="img-logo-fr">
+                            <button type="button"
+                                    class="btn btn-danger btn-sm pull-right"
+                                    data-request="onDeleteCompanyLogo"
+                                    data-request-confirm="{{ 'Are you sure?'|_ }}"
+                                    data-request-data="logo_lang: 'fr'"
+                                    data-request-redirect="{{ redirect }}">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="browser-logo-fr"
+                     class="text-xs-center mt-3"
+                     {% if company.logo_file_fr %}style="display: none;"{% endif %}>
+                        <span class="btn btn-secondary btn-file">
+                            <i class="fa fa-upload"></i>&nbsp;&nbsp;{{ 'Browse'|_ }}
+                            <input type="file" name="logo_file_fr" accept=".jpeg,.jpg,.png,.gif">
+                        </span>
+                    <div class="file-result" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        <small>
+            <i class="fa fa-info-circle"></i>&nbsp;{{ 'For best results, choose an image that is no larger than 200x200 pixels and 100KB.'|_ }}
+            {{ 'Accepted image formats: JPG, PNG and GIF.'|_ }}
+        </small>
+    </div>
+</div>

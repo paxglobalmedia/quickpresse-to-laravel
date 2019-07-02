@@ -1,0 +1,148 @@
+<div class="card">
+
+    <div class="card-body">
+        <input type="hidden" name="type_qp" value="{{ qpType }}">
+        {% if campaign %}
+            <div class="alert alert-info mb-3" role="alert">
+                <small>
+                <i class="fa fa-info-circle"></i>&nbsp;
+                {{ 'Please note that you cannot change the distribution list. To do this, you must delete your eblast and start over.'|_ }}
+                </small>
+            </div>
+        {% endif %}
+        {% if qpType == 'custom' %}
+            <div class="form-row">
+                <div class="col form-group" id="custom-list">
+                    {% partial __SELF__ ~ '::_custom_lists' %}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group" id="account-list">
+                    {% partial __SELF__ ~ '::_subaccount_list' %}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <label>{{ 'Language'|_ }}</label>
+                    <select class="form-control" name="language" required>
+                        <option value="">{{ 'Select language'|_ }}</option>
+                        <option value="en" {{ campaign.language == 'en' ? 'selected': '' }}>{{ 'English'|_ }}</option>
+                        <option value="fr" {{ campaign.language == 'fr' ? 'selected': '' }}>{{ 'French'|_ }}</option>
+                    </select>
+                </div>
+            </div>
+        {% elseif qpType == 'contract' %}
+            <div class="row mt-2">
+                <div class="col">
+                    {% partial __SELF__ ~ '::_contract_list' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" id="contract-options">
+                    {% if campaign %}
+                        {% partial __SELF__ ~ '::_contract_options' %}
+                    {% endif %}
+                </div>
+            </div>
+        {% elseif qpType == 'qp_list' %}
+            {% if agreements|length %}
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="switch">
+                            <label>{{ 'Do you want to chose'|_ }}?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <label>
+                                {{ 'Special price agreement'|_ }}
+                                <input type="checkbox" name="approved"
+                                       value="1" {{ contract ? (contract.approved ? 'checked' : '') : '' }}
+                                       data-parsley-excluded="true"
+                                       onchange="selectDistributionList(this)">
+                                <span class="lever"></span>
+                                {{ 'Regular price'|_ }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="form-row ">
+                <div class="col form-group" id="qp_list">
+                    {% partial __SELF__ ~ '::_plans_list' %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col form-group" id="subaccount-list">
+                    {% partial __SELF__ ~ '::_subaccount_list' %}
+                </div>
+            </div>
+        {% endif %}
+
+
+        <div class="form-row">
+            <div class="col form-group">
+                <label>{{ 'Subject line'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="title" value="{{ campaign.title }}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 form-group">
+                <label>{{ 'Sender name of the Eblast'|_ }} ({{ 'if different from the account'|_ }})</label>
+                <input type="text" class="form-control"
+                       name="sender_name" value="{{ campaign.sender_name }}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col form-group">
+                <label for="txt-specifications">{{ 'Additional notes'|_ }}</label>
+                <textarea class="form-control"
+                          id="txt-specifications" rows="3"
+                          name="notes">{{ campaign.notes }}</textarea>
+                <small class="form-text text-muted">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    {{ 'Notes for the Quick Presse Coordinator '|_ }}
+                </small>
+            </div>
+        </div>
+        {% if user.role_id != '3' %}
+            <div class="card bg-light mt-2">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="txt-notes">{{ 'Admin notes'|_ }}</label>
+                            <textarea class="form-control"
+                                      id="txt-notes" rows="3"
+                                      name="admin_notes">{{ campaign.admin_notes }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row mt-4">
+            <div class="col-12 col-lg-7">
+                <span class="field-required"> </span>&nbsp; {{ 'Required fields'|_ }}
+            </div>
+            <div class="col-12 col-lg-5 text-right">
+                <a href="{{ 'app/manage'|page({campaign: campaign.id}) }}"
+                   class="btn btn-link btn-cancel mr-3">{{ 'Back'|_ }}</a>
+                {% if campaign %}
+                    <input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+                    <button type="button"
+                            id="btn-submit-campaign"
+                            class="btn btn-primary"
+                            onclick="updateFormCampaignSettings(this)">
+                        {{ 'Submit'|_ }}
+                    </button>
+                {% else %}
+                    <button type="button"
+                            id="btn-submit-campaign"
+                            class="btn btn-primary"
+                            {% if qpType == 'contract' %}disabled{% endif %}
+                            onclick="sendFormCampaignSettings(this)">
+                        {{ 'Submit'|_ }}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>

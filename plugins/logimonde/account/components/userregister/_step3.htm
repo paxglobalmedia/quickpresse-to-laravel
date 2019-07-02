@@ -1,0 +1,164 @@
+{{ form_open({"id":"form-register-user-3", 'files':'true' }) }}
+<div class="row mt-3 d-block d-lg-none">
+    <div class="col">
+        <strong>{{ 'Step'|_ }}&nbsp;3&nbsp; :</strong>
+        <span class="grey-text">{{ 'Your Company information'|_ }}</span>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <h5 class="h5-responsive">
+            {{ 'Email'|_ }}:
+            <span>{{ user.email }}</span>
+        </h5>
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <input type="hidden" name="user_pwd" value="{{ userPwd }}">
+    </div>
+
+</div>
+
+<div class="form-row mt-2">
+    <div class="col-12 col-sm-3">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            {% if lang == 'fr' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if lang == 'fr' %}active{% endif %}" id="fr-tab"
+                       style="padding: 0 1rem;"
+                       data-toggle="tab" href="#fr" role="tab"
+                       aria-controls="fr" aria-selected="false">{{ 'French'|_ }}</a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link {% if lang == 'en' %}active{% endif %}" id="en-tab"
+                   style="padding: 0 1rem;"
+                   data-toggle="tab" href="#en" role="tab"
+                   aria-controls="en" aria-selected="true">{{ 'English'|_ }}</a>
+            </li>
+            {% if lang == 'en' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if lang == 'fr' %}active{% endif %}" id="fr-tab"
+                       style="padding: 0 1rem;"
+                       data-toggle="tab" href="#fr" role="tab"
+                       aria-controls="fr" aria-selected="false">{{ 'French'|_ }}</a>
+                </li>
+            {% endif %}
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            {% if lang == 'fr' %}
+                <div class="tab-pane fade {% if lang == 'fr' %}show active{% endif %} pt-1"
+                     id="fr" role="tabpanel" aria-labelledby="fr-tab">
+                    <div class="btn-file text-center grey-text upload-box">
+                        <figure>
+                            <img src="" class="logo-fr d-none">
+                            <figcaption class="logo-fr m-4">
+                                <i class="fa fa-image fa-3x"></i><br>
+                                <span>{{ 'Click to upload your French logo'|_ }}</span>
+                            </figcaption>
+                        </figure>
+                        <input type="file"
+                               id="upload-logo-file-fr"
+                               name="file_upload"
+                               data-lang="fr"
+                               data-url="{{ 'account/register'|page }}"
+                               accept=".jpeg,.jpg,.png,.gif">
+                        <input type="hidden" name="logo_name_fr">
+                    </div>
+                </div>
+            {% endif %}
+            <div class="tab-pane fade {% if lang == 'en' %}show active{% endif %} pt-1"
+                 id="en" role="tabpanel" aria-labelledby="en-tab">
+                <div class="btn-file text-center grey-text upload-box">
+                    <figure>
+                        <img src="" class="logo-en d-none">
+                        <figcaption class="logo-en m-4">
+                            <i class="fa fa-image fa-3x"></i><br>
+                            <span>{{ 'Click to upload your English logo'|_ }}</span>
+                        </figcaption>
+                    </figure>
+                    <input type="file"
+                           id="upload-logo-file-en"
+                           name="file_upload"
+                           data-lang="en"
+                           data-url="{{ 'account/register'|page }}"
+                           accept=".jpeg,.jpg,.png,.gif">
+                    <input type="hidden" name="logo_name_en">
+                </div>
+            </div>
+            {% if lang == 'en' %}
+                <div class="tab-pane fade {% if lang == 'fr' %}show active{% endif %} pt-1"
+                     id="fr" role="tabpanel" aria-labelledby="fr-tab">
+                    <div class="btn-file text-center grey-text upload-box">
+                        <figure>
+                            <img src="" class="logo-fr d-none">
+                            <figcaption class="logo-fr m-4">
+                                <i class="fa fa-image fa-3x"></i><br>
+                                <span>{{ 'Click to upload your French logo'|_ }}</span>
+                            </figcaption>
+                        </figure>
+                        <input type="file"
+                               id="upload-logo-file-fr"
+                               name="file_upload"
+                               data-lang="fr"
+                               data-url="{{ 'account/register'|page }}"
+                               accept=".jpeg,.jpg,.png,.gif">
+                        <input type="hidden" name="logo_name_fr">
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <small class="pr-3 mt-2 text-left d-block">
+            <span class="grey-text text-darken-2">
+                <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{{ 'For best results, choose an image that is no larger than 200x200 pixels and 100 KB.'|_ }}
+            </span><br>
+            <span class="grey-text text-darken-3">{{ 'Accepted image formats: JPG, PNG and GIF.'|_ }}</span>
+        </small>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col-12 col-lg-6 form-group">
+                <label>{{ 'Company name'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="company">
+            </div>
+            <div class="col-12 col-lg-6 form-group">
+                <label>{{ 'Address'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6 form-group">
+                <label>{{ 'City (Type city name & choose from list)'|_ }}</label>
+                <input type="text" class="form-control get-city" required
+                       name="name_city" placeholder="{{ 'Type city name & choose from list'|_ }}"
+                       value="{{ company.city ? company.city.nom_en ~ ' (' ~ company.state.nom_en ~ ' - ' ~ company.country.nom_en ~ ')' : '' }}">
+                <input type="hidden" name="city" value="{{ company.city_id }}">
+                <input type="hidden" name="state" value="{{ company.state_id }}">
+                <input type="hidden" name="country" value="{{ company.country_id }}">
+            </div>
+            <div class="col-12 col-lg-6 form-group">
+                <label>{{ 'Postal code'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="zip" value="{{ company.zip }}">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row mt-3">
+    <div class="col-md-8">
+        <span class="field-required"></span>&nbsp;
+        <small>{{ 'Required fields'|_ }}</small>
+    </div>
+    <div class="col-md-4 text-right">
+        <button type="button" class="btn btn-primary"
+                data-message-logo="{{ 'You must add a logo to finalize the creation of your account'|_ }}"
+                onclick="saveRegisterStep3(this)">
+            <i class="fa fa-save"></i>&nbsp;&nbsp;
+            {{ 'Submit'|_ }}
+        </button>
+    </div>
+</div>
+{{ form_close() }}

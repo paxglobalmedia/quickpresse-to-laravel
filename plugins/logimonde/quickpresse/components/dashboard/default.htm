@@ -1,0 +1,36 @@
+<div class="row mt-2">
+    <div class="col">
+        {% partial __SELF__ ~ '::_search_bar' %}
+    </div>
+</div>
+<div class="row">
+    <div class="col" id="active-qp-panel">
+        {% partial __SELF__ ~ '::_panel_active' %}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col text-right">
+        <small>
+            {% if qps.lastPage > 1 %}
+                {% set start = (qps.currentPage * __SELF__.perPage) - (__SELF__.perPage - 1) %}
+                {% set end = qps.currentPage * __SELF__.perPage %}
+                {{ start }}&nbsp;-&nbsp;
+                {% if end > qps.total %}{{ qps.total }}&nbsp;{% else %}{{ end }}&nbsp;{% endif %}
+                {{ 'of'|_ }}&nbsp;{{ qps.total }} {{ 'results'|_ }}
+            {% else %}
+                {{ qps.total }} {{ 'results'|_ }}
+            {% endif %}
+        </small>
+    </div>
+    <div class="col-auto text-right">
+        {% partial 'pagination-input' items=qps size='sm' %}
+    </div>
+</div>
+
+{{ form_open({"id":"form-edit-date" }) }}
+<div class="modal" tabindex="-1" role="dialog" id="modal-edit-date">
+    <div class="modal-dialog" role="document" id="edit-date-content">
+        {% partial __SELF__ ~ '::_edit_date' %}
+    </div>
+</div>
+{{ form_close() }}

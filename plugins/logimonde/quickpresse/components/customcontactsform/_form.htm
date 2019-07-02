@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="card-header">
+        {{ 'Information'|_ }}
+    </div>
+    <div class="card-body">
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'Email'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="email" value="{{ customContact.email }}">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'First Name'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="first_name" value="{{ customContact.first_name }}">
+            </div>
+            <div class="col form-group">
+                <label>{{ 'Last Name'|_ }}</label>
+                <input type="text" class="form-control" required
+                       name="last_name" value="{{ customContact.last_name }}">
+                <input type="hidden" class="form-control"
+                       name="custom_list_id" value="{{ customContact.custom_list_id }}">
+            </div>
+
+        </div>
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'Title'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="title" value="{{ customContact.title }}">
+            </div>
+            <div class="col form-group">
+                <label>{{ 'Company'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="company" value="{{ customContact.company }}">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'Address'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="address" value="{{ customContact.address }}">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="col form-group">
+                <label>{{ 'Phone'|_ }}</label>
+                <input type="text" class="form-control"
+                       name="phone" value="{{ customContact.phone }}">
+            </div>
+            <div class="col form-group">
+                <label>{{ 'Subscription'|_ }}</label>
+                <input type="text" class="form-control" disabled
+                       name="created_at" value="{{ customContact.created_at|mydate }}">
+            </div>
+        </div>
+
+
+    </div>
+</div>

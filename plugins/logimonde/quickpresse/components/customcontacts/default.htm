@@ -1,0 +1,51 @@
+<div class="row mt-2">
+    <div class="col">
+        <h5 class="h5-responsive">
+            <strong>{{ 'List'|_ }}</strong>:&nbsp;
+            <span class="grey-text">{{ customList.name }}</span>
+        </h5>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        {% if customContacts|length > 0 %}
+
+            {% partial __SELF__ ~ '::_tools_bar' %}
+
+            {% partial __SELF__ ~ '::_list' %}
+            <div class="row mt-3">
+                <div class="col text-right">
+                    <small>
+                        {% if customContacts.lastPage > 1 %}
+                            {% set start = (customContacts.currentPage * __SELF__.perPage) - (__SELF__.perPage - 1) %}
+                            {% set end = customContacts.currentPage * __SELF__.perPage %}
+                            {{ start }}&nbsp;-&nbsp;
+                            {% if end > customContacts.total %}{{ customContacts.total }}&nbsp;{% else %}{{ end }}&nbsp;{% endif %}
+                            {{ 'of'|_ }}&nbsp;{{ customContacts.total }} {{ 'results'|_ }}
+                        {% else %}
+                            {{ customContacts.total }} {{ 'results'|_ }}
+                        {% endif %}
+                    </small>
+                </div>
+                <div class="col-auto text-right">
+                    {% partial 'pagination-input' items=customContacts size='sm' %}
+                </div>
+            </div>
+        {% else %}
+            <div class="row my-5">
+                <div class="col text-center">
+                    <h3 class="h3-responsive">{{ 'You currently have no contacts to display'|_ }}</h3>
+                    <div class="mt-5">
+                        <a href="{{ 'app/lists'|page }}"
+                           class="btn btn-secondary btn-cancel mr-3">{{ 'Back'|_ }}</a>
+                        <a href="{{ 'app/custom-contacts-form'|page({list: customList.id}) }}"
+                           class="btn btn-primary">
+                            {{ 'Add Contact'|_ }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>

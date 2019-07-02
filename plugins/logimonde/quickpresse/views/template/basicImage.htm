@@ -1,0 +1,48 @@
+<!-- TEMPLATE: Basic Image -->
+
+<!-- ........... Content .............-->
+
+<table border="0" align="center" width="755">
+    <tr>
+        <td>
+            <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td align="center" valign="top"
+                        style="padding: 15px 0;font-family: 'Helvetica', 'Arial', sans-serif;font-size: 14px;vertical-align: middle;">
+                        <table cellpadding="0" cellspacing="0">
+                            {% for contentData in campaign.contents %}
+                                <tr>
+                                    <td style="padding: 10px 0;">
+                                        {% if contentData.source_path %}
+                                            {% if contentData.link_content %}
+                                                <a href="{{ host ~ 'click-tracking/image/' ~ contentData.code }}"
+                                                   target="_blank">
+                                                    <img src="{{ host ~ contentData.source_path }}">
+                                                </a>
+                                            {% else %}
+                                                <img src="{{ host ~ contentData.source_path }}">
+                                            {% endif %}
+                                        {% else %}
+                                            <h1 style="margin-top: 50px;">{{ 'File not found'|_ }}</h1>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+

@@ -1,0 +1,30 @@
+// Bootstrap overrides
+//
+// Copy variables from `_variables.scss` to this file to override default values
+// without modifying source files.
+
+// Typography
+// --------------------------------------------------
+
+//$font-family-sans-serif: -apple-system, system-ui, Lato, "Helvetica Neue", Arial, sans-serif;
+
+$font-family-sans-serif: omnes-pro, sans-serif;
+$font-family-base:       $font-family-sans-serif ;
+
+// Grid columns
+// --------------------------------------------------
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1368px
+) !default;
+
+$grid-gutter-width-base: 20px;
+
+$blue:            #3d6d97;
+$yellow:  #ffd276;
+$secondary:     #ced4da;
+$brand-primary: $blue;

@@ -1,0 +1,20 @@
+{% if campaign %}
+    {% if campaign.subaccount %}
+        <label>{{ 'SubAccount'|_ }}</label>
+        <input type="text" class="form-control" disabled
+               name="name_subaccount" value="{{ campaign.subaccount.name }}">
+        <input type="hidden" name="subaccount_id" value="{{ campaign.subaccount_id }}">
+    {% endif %}
+{% else %}
+    {% if subaccounts|length %}
+        <label>{{ 'SubAccounts'|_ }}</label>
+        <select name="subaccount_id" class="form-control">
+            <option value="">{{ 'Select'|_ }}</option>
+            {% for subaccount in subaccounts %}
+                <option value="{{ subaccount.id }}"
+                        {{ campaign.subaccount_id == subaccount.id ? 'selected' : '' }}>
+                    {{ subaccount.name }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+{% endif %}

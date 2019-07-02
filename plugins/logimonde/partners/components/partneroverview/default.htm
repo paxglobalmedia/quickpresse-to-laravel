@@ -1,0 +1,5 @@
+{% set partners = __SELF__.partners %}
+
+<div id="carousel-partners" class="carousel slide ">
+    {% partial __SELF__ ~ '::_carousel_desktop' partners=partners %}
+</div>

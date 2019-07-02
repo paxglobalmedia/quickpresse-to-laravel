@@ -1,0 +1,70 @@
+<div class="row mt-2">
+    <div class="col">
+        <h5 class="h5-responsive">
+            <strong>{{ 'List'|_ }}</strong>:&nbsp;
+            {{ customList.name }}
+        </h5>
+
+    </div>
+</div>
+<div class="grey-text text-darken-2 mt-3">
+    {{ 'The data presented in your .CSV document are separated by what punctuation mark'|_ }}?&nbsp;
+    {{ 'Please select from the following choices'|_ }}:
+</div>
+{{ form_open({"id":"form-import-list", "files": true, "data-redirect": redirect }) }}
+<div class="form-row mt-1">
+    <div class="col form-group">
+        <label>{{ 'Delimiter'|_ }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <div class="custom-control custom-radio d-inline-block">
+            <input type="radio" id="customRadio1"
+                   name="delimiter" class="custom-control-input" value=",">
+            <label class="custom-control-label" for="customRadio1">{{ 'Comma'|_ }}&nbsp;&nbsp;-&nbsp;&nbsp;
+                <strong>,</strong></label>
+        </div>
+        <div class="custom-control custom-radio d-inline-block">
+            <input type="radio" id="customRadio2"
+                   name="delimiter" class="custom-control-input" value=";">
+            <label class="custom-control-label" for="customRadio2">{{ 'Semicolon'|_ }}&nbsp;&nbsp;-&nbsp;&nbsp; <strong>;</strong></label>
+        </div>
+        <div class="custom-control custom-radio d-inline-block">
+            <input type="radio" id="customRadio3"
+                   name="delimiter" class="custom-control-input" value="|">
+            <label class="custom-control-label" for="customRadio3">{{ 'Vertical bar'|_ }}&nbsp;&nbsp;-&nbsp;&nbsp;
+                <strong>|</strong></label>
+        </div>
+        <div class="custom-control custom-radio d-inline-block">
+            <input type="radio" id="customRadio4"
+                   name="delimiter" class="custom-control-input" value="¦">
+            <label class="custom-control-label" for="customRadio4">{{ 'Broken vertical bar'|_ }}&nbsp;&nbsp;-&nbsp;&nbsp;
+                <strong>¦</strong></label>
+        </div>
+    </div>
+
+</div>
+<div class="row mt-2">
+    <div class="col">
+        <span class="btn btn-primary btn-file">
+            <i class="fa fa-upload"></i>&nbsp;&nbsp;
+            <span id="browse-file-text"
+                  data-message="{{ 'Charging file'|_ }}..."
+                  data-start-message="{{ 'Browse CSV file'|_ }}">{{ 'Browse CSV file'|_ }}</span>
+            <input type="file"
+                   id="import-file-contacts"
+                   name="file_upload"
+                   data-url="{{ 'app/import-list'|page({id: customList.id}) }}"
+                   accept=".csv">
+
+        </span>&nbsp;&nbsp;
+        <div class="mt-2 grey-text text-darken-2">
+            <i class="fa fa-info-circle"></i>&nbsp;
+            {{ 'Your Excel document must be transferred to a .CSV format before being imported'|_ }}
+        </div>
+    </div>
+</div>
+<input type="hidden" name="list_id" value="{{ customList.id }}">
+<div class="row mt-4">
+    <div class="col col-xl-8" id="imported-fields">
+
+    </div>
+</div>
+{{ form_close() }}

@@ -1,0 +1,31 @@
+title = "Active Quick Presse"
+url = "/active"
+layout = "app"
+is_hidden = 0
+
+[Dashboard]
+
+[session]
+security = "user"
+redirect = "account/connection"
+==
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h1 class="h1-responsive ">
+                <i class="fa fa-cog fa-spin text-primary"></i>&nbsp;
+                <span class="text-primary">{{ 'Active Quick Presse'|_ }} </span>
+            </h1>
+            <div class="grey-text" style="margin-top: -10px;">{{ 'The following Quick Presse are currently active.'|_ }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {% component 'Dashboard' %}
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col"></div>
+    </div>
+</div>
+{% component 'session' %}

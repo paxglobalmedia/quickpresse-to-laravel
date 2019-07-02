@@ -1,0 +1,69 @@
+<div class="row my-5">
+    <div class="col-xs-12 col-md-6">
+        <div id="contact-form" class="mb-4 mb-lg-0">
+
+            {{ __SELF__.settings.text_top_form|raw }}
+
+            <form id="simpleContactForm" data-request="{{ __SELF__ }}::onFormSubmit">
+
+                <div class="form-group">
+                    <label for="name">{{ __SELF__.properties.nameLabel|_ }}</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">{{ __SELF__.properties.emailLabel|_ }}</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+
+                {% if(__SELF__.properties.phoneEnabled) %}
+                    <div class="form-group">
+                        <label for="phone">{{ __SELF__.properties.phoneLabel|_ }}</label>
+                        <input type="text" id="phone" name="phone" class="form-control" required>
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="subject">{{ __SELF__.properties.subjectLabel|_ }}</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">{{ __SELF__.properties.messageLabel|_ }}</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button id="simpleContactSubmitButton"
+                                type="submit" class="btn btn-primary ">
+                            {{ 'Submit'|_ }}
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-5 ml-md-auto">
+
+        <div>
+            <h6 style="border-bottom: 1px solid #cccccc;">{{ 'Public Relations'|_ }}</h6>
+            <i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:4506895060">{{ '4506895060'|phone }}</a><br>
+            <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:info@paxglobalmedia.com">{{ 'Email Us'|_ }}</a>
+
+        </div>
+        <div class="mt-5">
+            <h6 style="border-bottom: 1px solid #cccccc;">{{ 'Mailing Address'|_ }}</h6>
+            PAXGlobalMedia<br>
+            <i class="fa fa-map-marker"></i>&nbsp; 782 rue Principale Laval, QC, H7X 1E6
+        </div>
+    </div>
+</div>
+
+
+
+
+

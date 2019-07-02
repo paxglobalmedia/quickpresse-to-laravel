@@ -1,0 +1,30 @@
+<div class="row mt-2">
+    <div class="col">
+        <div class="form-group">
+            {% if not campaign %}
+                <label>{{ 'Company'|_ }}</label>
+                <div class="input-group">
+                    <input type="text" class="form-control get-company"
+                           name="name_company"
+                           value="{{ name_company }}" required
+                           data-toggle="tooltip" data-placement="left"
+                           title="{{ 'Type company name & choose from list'|_ }}"
+                           placeholder="{{ 'Type company name & choose from list'|_ }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button"
+                                onclick="getCompanyIntro(this)">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <input type="hidden" name="company_id">
+            {% else %}
+                <label>{{ 'Company'|_ }} :</label>
+                <input type="text" class="form-control" disabled
+                       name="name_company" value="{{ campaign.company.Name }}">
+                <input type="hidden" name="company_id" value="{{ campaign.company_id }}">
+            {% endif %}
+        </div>
+    </div>
+</div>
+

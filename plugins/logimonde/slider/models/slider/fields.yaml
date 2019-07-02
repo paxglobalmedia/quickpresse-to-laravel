@@ -1,0 +1,54 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Description
+        type: text
+
+    link:
+        label: Link
+        type: text
+        span: left
+    target:
+        label: Target
+        type: dropdown
+        span: right
+
+tabs:
+    fields:
+        image:
+            label: Images
+            type: fileupload
+            mode: image
+            tab: Image
+        caption:
+            label: Caption
+            type: richeditor
+            size: giant
+            tab: Caption
+        language:
+            label: Language
+            type: dropdown
+            span: left
+            tab: Settings
+        sort:
+            label: Priority
+            type: number
+            span: right
+            tab: Settings
+        map_id:
+            label: Map ID
+            type: text
+            span: left
+            tab: Settings
+        map_code:
+            label: Use map tag
+            type: textarea
+            size: small
+            tab: Settings
+        published:
+            label: Published
+            type: switch
+            tab: Settings

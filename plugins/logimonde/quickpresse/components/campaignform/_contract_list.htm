@@ -1,0 +1,23 @@
+{% if not campaign %}
+    {% if contracts %}
+        <div class="form-group">
+            <label>{{ 'Contracts'|_ }}</label>
+            <select name="contract_id"
+                    class="form-control" required
+                    onchange="validateContract(this)">
+                <option value="">{{ 'Select'|_ }}</option>
+                {% for contract in contracts %}
+                    <option value="{{ contract.id }}" {{ campaign.contract_id == contract.id ? 'selected' : '' }}>
+                        {{ contract.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="form-group">
+        <label>{{ 'Contract'|_ }}</label>
+        <input type="text" class="form-control" disabled
+               name="name_contract" value="{{ campaign.contract.title }}">
+        <input type="hidden" name="contract_id" value="{{ campaign.contract_id }}">
+    </div>
+{% endif %}

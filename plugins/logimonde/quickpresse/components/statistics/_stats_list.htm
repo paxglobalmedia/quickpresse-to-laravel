@@ -1,0 +1,123 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm" style="display: table;{% if print %}font-size: 10px;{% endif %}">
+                <thead>
+                <tr>
+                    <th style="width: 13%;" colspan="2">
+                        {{ 'Send date'|_ }}&nbsp;&nbsp;
+                    </th>
+                    <th style="width: 30%;">{{ 'Subject line'|_ }}</th>
+                    {% if user.role_id != '3' %}
+                        <th>{{ 'Company'|_ }}</th>
+                    {% else %}
+                        {% if subaccount_id == '' %}
+                            <th>{{ 'SubAccount'|_ }}</th>
+                        {% endif %}
+                    {% endif %}
+                    <th>{{ 'Destination'|_ }}</th>
+                    <th class="text-right">{{ 'Recipients'|_ }}</th>
+                    <th class="text-right">{{ 'Opened'|_ }} %</th>
+                    <th class="text-center" colspan="2" style="width: 9%;">{{ 'Clicked'|_ }} %</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for qp in qps %}
+                    <tr>
+                        <td>
+                            {{ qp.date_required|mydate }}
+                        </td>
+                        <td class="text-center">
+                            {% if qp.time_required != '00:00:00' %}
+                                {{ qp.time_required|mytime }}
+                            {% endif %}
+                        </td>
+                        <td>{{ qp.eblast.title }}</td>
+                        {% if user.role_id != '3' %}
+                            <td>{{ qp.company_name }}</td>
+                        {% else %}
+                            {% if subaccount_id == '' %}
+                                <td>{{ qp.subaccount_name }}</td>
+                            {% endif %}
+                        {% endif %}
+                        <td>
+                            {% if qp.eblast.list_name %}
+                                {{ qp.eblast.list_name }}
+                            {% else %}
+                                {{ lang == 'en' ? qp.eblast.product.name_en : qp.eblast.product.name_fr }}
+                            {% endif %}
+                            {% if qp.eblast.type_qp == 'custom' %}
+                                &nbsp;&nbsp;-&nbsp;&nbsp;({{ qp.eblast.custom_list.name }})
+                            {% endif %}
+                        </td>
+
+                        <td class="text-right">
+                            {{ qp.recipients|number(0) }}
+                        </td>
+
+                        <td class="text-right pr-3">
+                            {% if qp.recipients > 0 %}
+                                {% set openRate = (qp.views / qp.recipients) * 100 %}
+                                {{ openRate|number(0) }}&nbsp;%
+                            {% else %}
+                                0
+                            {% endif %}
+                        </td>
+                        <td class="text-right">
+                            {% if qp.recipients > 0 %}
+                                {% set clickRate = (qp.eblast.clicks_total / qp.recipients) * 100 %}
+                                {{ clickRate|number(1) }}&nbsp;%
+
+                            {% else %}
+                                0
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if not print %}
+                                {% if qp.eblast.clicks_total > 0 %}
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a href="#content-clicks-modal"
+                                       data-toggle="modal"
+                                       data-eblast="{{ qp.eblast.id }}">
+                                        <i class="fa fa-list-alt"
+                                           data-toggle="tooltip"
+                                           data-placement="left"
+                                           title="Clicks Details"></i>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="content-clicks-modal" tabindex="-1" role="dialog" aria-labelledby="content-clicks-modal"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        {{ form_open({"id":"content-clicks" }) }}
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    {{ 'Details Quick Presse Clicks'|_ }}&nbsp;
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid text-center" style="min-height: 450px;" id="content-clicks-body">
+                    <i class="fa fa-spinner fa-spin fa-3x fa-fw" style="margin-top: 150px;"></i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|_ }}</button>
+            </div>
+        </div>
+        {{ form_close() }}
+    </div>
+</div>

@@ -1,0 +1,49 @@
+description = "Header layout"
+==
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+    <a class="navbar-brand" href="#"><i class="fa fa-share-alt"></i>&nbsp;{{ 'Share'|_ }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item px-3">
+                <a class="nav-link white-text"
+                   href="https://www.facebook.com/sharer/sharer.php?u={{ host }}show/{{ qp.slug }}&t={{ campaign.title }}"
+                   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+                                   return false;"
+                   target="_blank" title="{{ 'Share on'|_ }} Facebook"><i class="fa fa-facebook" style="font-size: 1.4rem;"></i>
+                </a>
+
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link white-text"
+                        href="https://twitter.com/share?url={{ host }}show/{{ qp.slug }}&via=QuickPresse.com&text={{ campaign.title }}"
+                   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+                                   return false;"
+                   target="_blank" title="{{ 'Share on'|_ }} Twitter"><i class="fa fa-twitter" style="font-size: 1.4rem"></i>
+                </a>
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link white-text"
+                        href="https://www.linkedin.com/shareArticle?url={{ host }}show/{{ qp.slug }}&mini=true&text={{ campaign.title }}"
+                   target="_blank" title="{{ 'Share on'|_ }} LinkedIn"><i class="fa fa-linkedin" style="font-size: 1.4rem"></i>
+                </a>
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link white-text"
+                   href="#"
+                   data-toggle="modal" data-target="#modal-email"><i class="fa fa-envelope-o" style="font-size: 1.4rem"></i>
+                </a>
+
+            </li>
+
+        </ul>
+    </div>
+</nav>

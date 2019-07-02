@@ -1,0 +1,67 @@
+<div class="row my-3">
+    {# --- Buttons --- #}
+    <div class="col">
+            <span class="btn btn-primary btn-file">
+                <i class="fa fa-upload"></i>&nbsp;&nbsp;{{ 'Upload'|_ }}
+                <input type="file"
+                       id="upload-image-library"
+                       name="item_image"
+                       data-url="{{ url }}"
+                       accept=".jpeg,.jpg,.png,.gif">
+            </span>
+    </div>
+    <div class="col-12 col-sm-auto text-right">
+        <p class="d-inline-block">{{ 'View by'|_ }} :</p>
+        <div class="btn-group" role="group" aria-label="View type" id="view-type">
+            <button type="button"
+                    class="btn btn-secondary {% if typeView == 'grid-view' %}active{% endif %}"
+                    title="{{ 'Toggle grid view'|_ }}"
+                    data-request="onLoadImageList"
+                    data-request-data="view_type: 'grid-view'"
+                    data-request-complete="$('.flex-images').flexImages({rowHeight: 225});">
+                <i class="fa fa-th"></i>
+            </button>
+            <button type="button"
+                    class="btn btn-secondary {% if typeView == 'list-view' %}active{% endif %}"
+                    title="{{ 'Toggle list view'|_ }}"
+                    data-request="onLoadImageList"
+                    data-request-data="view_type: 'list-view'">
+                <i class="fa fa-list-ul"></i>
+            </button>
+        </div>
+    </div>
+    <div class="col-12 col-sm-auto text-right">
+        <p class="d-inline-block">{{ 'Sort by'|_ }} :</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                {{ sort != '' ? sortOptions[sort]|_ : 'Newest first'|_ }}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item"
+                   href="javascript:void(0);"
+                   data-action="updated_at desc">{{ 'Newest first'|_ }}</a>
+                <a class="dropdown-item"
+                   href="javascript:void(0);"
+                   data-action="updated_at asc">{{ 'Oldest first'|_ }}</a>
+                <a class="dropdown-item"
+                   href="javascript:void(0);"
+                   data-action="size asc">{{ 'Smallest first'|_ }}</a>
+                <a class="dropdown-item"
+                   href="javascript:void(0);"
+                   data-action="size desc">{{ 'Largest first'|_ }}</a>
+                <input type="hidden" class="dropdown-input"
+                       name="sort" value="{{ sort != '' ? sort : 'updated_at desc' }}">
+            </div>
+        </div>
+    </div>
+</div>
+{% if pictures|length %}
+    <div class="row mt-2">
+        <div class="col">
+            {# --- Search --- #}
+            {% partial 'app/search-bar' %}
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,68 @@
+<div class="row mt-3">
+    <div class="col">
+        {% if customLists|length > 0 %}
+            {{ form_open({"id":"form-list-custom" }) }}
+            <div class="row mt-3">
+                <div class="col-12 col-sm">
+                    <a href="{{ 'app/lists-form'|page }}"
+                       class="btn btn-primary">
+                        {{ 'Add List'|_ }}
+                    </a>
+                </div>
+                <div class="col-12 col-sm-3 mt-3 mt-sm-0">
+                    {% if user.role_id != '3' %}
+                        <div class="input-group">
+                            <input type="text" class="form-control get-company"
+                                   name="name_company"
+                                   value="{{ name_company }}"
+                                   data-toggle="tooltip" data-placement="left"
+                                   title="{{ 'Type company name & choose from list'|_ }}"
+                                   placeholder="{{ 'Company'|_ }}">
+                            <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                        <input type="hidden" name="company_id" value="{{ company_id }}">
+                    {#{% else %}#}
+                        {#{% partial 'app/search-bar' %}#}
+                    {% endif %}
+                </div>
+            </div>
+            {{ form_close() }}
+            {% partial __SELF__ ~ '::_list' %}
+            <div class="row mt-3">
+                <div class="col text-right">
+                    <small>
+                        {% if customLists.lastPage > 1 %}
+                            {% set start = (customLists.currentPage * __SELF__.perPage) - (__SELF__.perPage - 1) %}
+                            {% set end = customLists.currentPage * __SELF__.perPage %}
+                            {{ start }}&nbsp;-&nbsp;
+                            {% if end > customLists.total %}{{ customLists.total }}&nbsp;{% else %}{{ end }}&nbsp;{% endif %}
+                            {{ 'of'|_ }}&nbsp;{{ customLists.total }} {{ 'results'|_ }}
+                        {% else %}
+                            {{ customLists.total }} {{ 'results'|_ }}
+                        {% endif %}
+                    </small>
+                </div>
+                <div class="col-auto text-right">
+                    {% partial 'pagination-input' items=customLists size='sm' %}
+                </div>
+            </div>
+        {% else %}
+            <div class="row my-5">
+                <div class="col text-center">
+                    <h3 class="h3-responsive">{{ 'You currently have no lists to display'|_ }}</h3>
+                    <div class="mt-5">
+                        <a href="{{ 'app/lists-form'|page }}"
+                           class="btn btn-primary">
+                            {{ 'Add List'|_ }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>

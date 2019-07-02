@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col" style="font-size: 14px;">
+        {% if search %}
+            {{ 'Search results for'|_ }}&nbsp;"{{ search }}"
+        {% endif %}
+        {% if search and startDate %}
+            &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+        {% if startDate %}
+            {{ 'From'|_ }}:&nbsp;&nbsp;{{ startDate }}&nbsp;&nbsp;&nbsp;&nbsp;{{ 'To'|_ }}:&nbsp;&nbsp;{{ endDate }}
+        {% endif %}
+    </div>
+</div>

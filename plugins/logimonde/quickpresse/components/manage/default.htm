@@ -1,0 +1,100 @@
+{{ form_open({"id":"form-manage-campaing",  "data-redirect": redirect}) }}
+
+{% partial __SELF__ ~ '::_header' %}
+
+<div class="mt-3" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card">
+        <div class="card-header {% if campaign %}primary-color{% else %}bg-highlight{% endif %}" role="tab"
+             id="headingOne">
+            <h5 class="mb-0">
+                <a class="white-text"
+                   data-toggle="collapse"
+                   data-parent="#accordion" href="#stepOne" aria-expanded="true" aria-controls="stepOne">
+                    1. {{ 'Set up your eblast'|_ }}
+                    <span class="pull-right">
+                        <i class="fa fa-minus-square-o"></i>
+                    </span>
+                </a>
+            </h5>
+        </div>
+
+        <div id="stepOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="card-body">
+                {% partial __SELF__ ~ '::_settings' %}
+            </div>
+        </div>
+    </div>
+    {% if campaign %}
+        {% if campaign.contents|length > 0 %}
+            {% set contentColor = 'primary-color' %}
+        {% else %}
+            {% set contentColor = 'bg-highlight' %}
+        {% endif %}
+    {% else %}
+        {% set contentColor = 'primary-color' %}
+    {% endif %}
+
+    <div class="card">
+        <div class="card-header {{ contentColor }}"
+             role="tab" id="headingTwo">
+            <h5 class="mb-0">
+                <a class="collapsed white-text " data-toggle="collapse" data-parent="#accordion" href="#stepTwo"
+                   aria-expanded="false" aria-controls="stepTwo">
+                    2. {{ 'Design your content'|_ }}
+                    <span class="pull-right">
+                        <i class="fa fa-minus-square-o"></i>
+                    </span>
+                </a>
+            </h5>
+        </div>
+        <div id="stepTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="card-body">
+                {% partial __SELF__ ~ '::_content' %}
+            </div>
+        </div>
+    </div>
+    {% if campaign %}
+        {% if campaign.sends|length > 0 %}
+            {% set sendColor = 'primary-color' %}
+        {% else %}
+            {% if campaign.contents|length > 0 %}
+                {% set sendColor = 'bg-highlight' %}
+            {% else %}
+                {% set sendColor = 'primary-color' %}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% set sendColor = 'primary-color' %}
+    {% endif %}
+    <div class="card">
+        <div class="card-header {{ sendColor }}" role="tab" id="headingThree">
+            <h5 class="mb-0">
+                <a class="collapsed white-text" data-toggle="collapse" data-parent="#accordion" href="#stepThree"
+                   aria-expanded="false" aria-controls="stepThree">
+                    3. {{ 'Schedule'|_ }}
+                    <span class="pull-right">
+                        <i class="fa fa-minus-square-o"></i>
+                    </span>
+                </a>
+            </h5>
+        </div>
+        <div id="stepThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
+            <div class="card-body">
+                {% partial __SELF__ ~ '::_schedule' %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+<div class="row mt-5">
+    <div class="col text-right">
+        <a class=""
+           href="{{ 'app/dashboard'|page }}">
+            <i class="fa fa-undo"></i>&nbsp;
+            {{ 'Back to Quick Presse List'|_ }}
+        </a>
+    </div>
+</div>
+{{ form_close() }}

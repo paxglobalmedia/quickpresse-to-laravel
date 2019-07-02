@@ -1,0 +1,42 @@
+{% if clicks|length %}
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-12 col-md-9">
+                    <h6 class="text-left text-primary">
+                        {{ campaign.title }}
+                    </h6>
+                </div>
+                <div class="col-12 col-md-3">
+                    <a href="{{ 'app-print/clicks-details'|page({eblast: campaign.id }) }}" target="_blank"
+                       class="btn btn-outline-dark btn-sm">
+                        <i class="fa fa-print"></i>&nbsp;&nbsp;{{ 'Print'|_ }}
+                    </a>
+                </div>
+            </div>
+
+            <div class="table-responsive pr-3 mt-2" style="max-height: 380px;overflow-y: auto;">
+                <table class="table table-hover table-sm"
+                       style="display: table;max-width: 660px;">
+                    <thead>
+                    <tr>
+                        <th>{{ 'Link'|_ }}</th>
+                        <th>{{ 'Title'|_ }}</th>
+                        <th class="text-right">{{ 'Total'|_ }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for click in clicks %}
+                        <tr>
+                            <td class="text-left">{{ click.url }}</td>
+                            <td class="text-left">{{ click.title }}</td>
+                            <td class="text-right">{{ click.actions }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endif %}

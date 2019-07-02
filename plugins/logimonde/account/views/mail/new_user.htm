@@ -1,0 +1,43 @@
+subject = "User has signed up in Quick Presse"
+layout = "custom"
+==
+<table width="640" cellspacing="0" cellpadding="0" border="0" align="center"
+       style="font-family: Helvetica, sans-serif;">
+    <tr>
+        <td style="background-color: #f5f5f5;padding: 20px 35px;border-top: 4px solid #111820;">
+            <img src="{{ logo }}" width="200">
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px 35px;font-family: Helvetica, sans-serif;">
+            <br/>
+            Hello ,<br/><br/>
+            <strong>{{ user.name }}</strong> just signed up in Quick Presse. You must to add company in CRM and activate
+            this user.
+            <br/>
+            <br/>
+            Email: <strong>{{ user.email }}</strong>
+            <br/>
+            Password: <strong>{{ user_pwd }}</strong>
+            <br/><br>
+            Title: <strong>{{ user.title }}</strong><br>
+            Phone: <strong>{{ user.phone|phone }}&nbsp;</strong>
+                {% if user.extension %}
+                &nbsp;Ext : <strong>{{ user.extension }} </strong><br>
+            {% endif %}
+            <hr>
+            <br/>
+            Company: <strong>{{ company }}</strong><br>
+            Address: <strong>{{ address }}</strong><br>
+            Postal code: <strong>{{ zip }}</strong><br>
+            City: <strong>{{ name_city }}</strong><br><br>
+            <hr>
+            <strong>Logo as attachment</strong>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #111820;padding: 10px 20px;font-family: Helvetica, sans-serif;font-size: 10px;color: #ffffff;text-align: right;">
+            All rights reserved &copy; Logimonde Media {{ "now"|date('Y') }}
+        </td>
+    </tr>
+</table>

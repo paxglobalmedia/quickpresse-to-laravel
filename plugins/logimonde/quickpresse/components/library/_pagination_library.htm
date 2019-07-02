@@ -1,0 +1,22 @@
+<div class="row mt-2">
+    <div class="col">
+        <div class="text-right">
+            <small>
+                {% if pictures.lastPage > 1 %}
+                    {% set start = (pictures.currentPage * __SELF__.perPage) - (__SELF__.perPage - 1) %}
+                    {% set end = pictures.currentPage * __SELF__.perPage %}
+                    {{ start }}&nbsp;-&nbsp;
+                    {% if end > pictures.total %}{{ pictures.total }}&nbsp;{% else %}{{ end }}&nbsp;{% endif %}
+                    {{ 'of'|_ }}&nbsp;{{ pictures.total }} {{ 'results'|_ }}
+                {% else %}
+                    {{ pictures.total }} {{ 'results'|_ }}
+                {% endif %}
+            </small>
+        </div>
+    </div>
+    <div class="col-12 col-lg-auto">
+        <div class="text-right">
+            {% partial 'pagination-input' items=pictures size='sm' %}
+        </div>
+    </div>
+</div>

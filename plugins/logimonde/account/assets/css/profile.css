@@ -1,0 +1,19 @@
+.form-profile .control-single-image-uploader {
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    min-height: 175px;
+    min-width: 175px;
+    background-image: url("/themes/logimonde/assets/images/user-empty.jpg");
+    background-size: 175px;
+}
+
+.form-profile .control-single-image-uploader .content {
+    padding: 0;
+
+}
+
+.form-profile
+.control-single-image-uploader
+.content img {
+    border-radius: 50%;
+}

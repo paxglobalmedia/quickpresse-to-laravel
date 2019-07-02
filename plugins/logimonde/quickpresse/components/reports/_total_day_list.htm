@@ -1,0 +1,70 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm" style="display: table;{% if print %}font-size: 10px;{% endif %}">
+                <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th class="text-right">QP - {{ 'English'|_ }}</th>
+                    <th class="text-right">Total ($) - {{ 'English'|_ }}</th>
+                    <th class="text-right">QP - {{ 'French'|_ }}</th>
+                    <th class="text-right">Total ($) - {{ 'French'|_ }}</th>
+
+                </tr>
+                </thead>
+                {% set sum_en = 0 %}
+                {% set sum_fr = 0 %}
+                {% set sum_total_en = 0 %}
+                {% set sum_total_fr = 0 %}
+                <tbody>
+                {% for total in totals %}
+                    <tr>
+                        <td>
+                            {{ total.date_sent|mydate }}
+                        </td>
+                        <td class="text-right">
+                            {{ total.en }}
+                        </td>
+                        <td class="text-right">
+                            {% set total_en = total.en > 0 ? total.total_en : 0 %}
+                            {{ total_en|number }}
+                        </td>
+
+                        <td class="text-right">
+                            {{ total.fr }}
+                        </td>
+                        <td class="text-right">
+                            {% set total_fr = total.fr > 0 ? total.total_fr : 0 %}
+                            {{ total_fr|number }}
+                        </td>
+                        {% set sum_en = sum_en + total.en %}
+                        {% set sum_fr = sum_fr + total.fr %}
+                        {% set sum_total_en = sum_total_en + total_en %}
+                        {% set sum_total_fr = sum_total_fr + total_fr %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td class="text-right">
+                        <strong>{{ sum_en }}</strong>
+                    </td>
+                    <td class="text-right">
+                        <strong>{{ sum_total_en|number }}</strong>
+                    </td>
+                    <td class="text-right">
+                        <strong>{{ sum_fr }}</strong>
+                    </td>
+                    <td class="text-right">
+                        <strong>{{ sum_total_fr|number }}</strong>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>

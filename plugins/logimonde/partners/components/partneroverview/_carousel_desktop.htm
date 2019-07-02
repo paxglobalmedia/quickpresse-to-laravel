@@ -1,0 +1,26 @@
+<div class="carousel-inner">
+    {% set x = 0 %}
+    {% for j in 1..iterate %}
+        <div class="carousel-item {{ j == 1 ? 'active':'' }}">
+            <div class="row">
+                {% for i in 0..5 %}
+                    {% if (partners[x]) %}
+                        <div class="col-md-2">
+                            {% if partners[x].url %}
+                                <a href="{{partners[x].url}}" target="_blank" rel="noopener noreferrer">
+                                    <img class="img-fluid" src="/storage/app/media{{partners[x].image}}"
+                                         alt="{{ partners[x].logimondename }}"/>
+                                </a>
+                            {% else %}
+                                <img class="img-fluid px-3" src="/storage/app/media{{partners[x].image}}"
+                                     alt="{{ partners[x].name }}" style="max-height: 180px;" />
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    {% set x = x + 1 %}
+                {% endfor %}
+            </div>
+            <!--/row-->
+        </div>
+    {% endfor %}
+</div>

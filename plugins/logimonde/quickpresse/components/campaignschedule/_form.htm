@@ -1,0 +1,54 @@
+{% macro schedule(campaign, send, balance) %}
+    {{ form_open({"id":"form-campaign-schedule" }) }}
+    <div class="card">
+        <div class="card-body">
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>{{ 'Date'|_ }}</label>
+                        <input type="text" class="form-control datepicker" required
+                               name="date" value="{{ send ? send.date_required|mydate : '' }}">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>{{ 'Time'|_ }}</label>
+                        <input type="text" class="form-control timepicker"
+                               name="time" value="{{ send.time_required }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    {% if not campaign.sends|length %}
+                        {% if campaign.type_qp == 'contract' %}
+                            {{ 'Quick Presse Balance'|_ }}: {{ balance }}
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col text-right">
+                    <input type="hidden" name="send_id" value="{{ send.id }}">
+                    <input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+                    <button type="button"
+                            class="btn btn-primary btn-sm"
+                            onclick="addDateCampaign(this)">{{ 'Confirm'|_ }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_close() }}
+{% endmacro %}
+
+
+{% import _self as form %}
+
+
+{% if campaign.type_qp == 'contract' %}
+    {% if balance > 0 %}
+        {{ form.schedule(campaign, send, balance) }}
+    {% endif %}
+{% else %}
+    {% if campaign %}
+        {{ form.schedule(campaign, send, balance) }}
+    {% endif %}
+{% endif %}

@@ -1,0 +1,46 @@
+<p class="mt-3 grey-text">
+    <i class="fa fa-info-circle"></i>&nbsp;
+    {% if blockType == 'mix' %}
+        {% if pictures|length > 0 %}
+            {{ 'You can also upload an image from your hard drive or attach an Html file'|_ }}
+        {% else %}
+            {{ 'Select an image or an Html file from your hard drive'|_ }}
+        {% endif %}
+    {% elseif blockType == 'image' %}
+        <input type="hidden" name="block_type" value="image">
+        {% if pictures|length > 0 %}
+            {{ 'You can also upload from your hard drive an image'|_ }}
+        {% else %}
+            {{ 'Select an image from your hard drive'|_ }}
+        {% endif %}
+    {% elseif blockType == 'html' %}
+        <input type="hidden" name="block_type" value="html">
+        {{ 'Select an Html file from your hard drive'|_ }}
+    {% endif %}
+</p>
+<div class="row mt-4">
+    <div class="col-5">
+        <span class="btn btn-primary btn-file">
+            <i class="fa fa-upload"></i>&nbsp;&nbsp;{{ 'Upload'|_ }}
+            {% if blockType == 'image' %}
+                <input type="file"
+                       id="upload-file-content"
+                       name="file_upload"
+                       data-url="{{ 'app/campaign-content'|page({campaign: campaign.id}) }}"
+                       accept=".jpeg,.jpg,.png,.gif">
+            {% elseif blockType == 'html' %}
+                <input type="file"
+                       id="upload-file-content"
+                       name="file_upload"
+                       data-url="{{ 'app/campaign-content'|page({campaign: campaign.id}) }}"
+                       accept=".html">
+            {% endif %}
+        </span>
+    </div>
+    <div class="col-5 pt-2">
+        {% if blockType == 'image' %}
+            <input type="checkbox" id="test6" name="add_library" value="1"/>
+            <label for="test6">{{ 'Add to library'|_ }}</label>
+        {% endif %}
+    </div>
+</div>

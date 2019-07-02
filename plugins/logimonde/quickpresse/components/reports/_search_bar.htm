@@ -1,0 +1,84 @@
+{{ form_open({"id":"form-list-stats" }) }}
+<div class="row mt-0 mt-md-3">
+
+    <div class="col-12 col-sm-4 mt-1 mt-sm-0 text-right ">
+        <div class="row">
+            <div class="col pr-1">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control datepicker"
+                           name="start_date" value="{{ startDate }}"
+                           placeholder="{{ 'Start date'|_ }}">
+                </div>
+
+            </div>
+            <div class="col pl-1">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control datepicker no-submit"
+                           name="end_date" value="{{ endDate }}"
+                           placeholder="{{ 'End date'|_ }}">
+                </div>
+            </div>
+            <div class="col-auto pl-1">
+                <div class="input-group">
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm mt-3 mt-md-0 text-center text-lg-right d-none d-md-block">
+        <button type="submit" class="btn btn-dark mr-3 "
+                name="print"
+                value="print"
+                data-redirect="{{ printRedirect }}"
+                onclick="setPrintAction(this)">
+            <i class="fa fa-print"></i>
+            <span class="d-sm-none d-lg-inline-block">&nbsp;&nbsp;&nbsp;{{ 'Print'|_ }}</span>
+        </button>
+
+        <button type="submit" class="btn btn-success"
+                name="export"
+                value="export">
+            <i class="fa fa-file-excel-o"></i>
+            <span class="d-sm-none d-lg-inline-block">&nbsp;&nbsp;&nbsp;{{ 'Export'|_ }}</span>
+        </button>
+
+    </div>
+    {% if qps.total %}
+        <div class="col-12 col-sm d-none d-md-block">
+            <div class="row  pt-3 pt-sm-0">
+                <div class="col">
+                    <div class="text-right">
+                        <small>
+                            {% if qps.lastPage > 1 %}
+                                {% set start = (qps.currentPage * __SELF__.perPage) - (__SELF__.perPage - 1) %}
+                                {% set end = qps.currentPage * __SELF__.perPage %}
+                                {{ start }}&nbsp;-&nbsp;
+                                {% if end > qps.total %}{{ qps.total }}&nbsp;{% else %}{{ end }}&nbsp;{% endif %}
+                                {{ 'of'|_ }}&nbsp;{{ qps.total }} {{ 'results'|_ }}
+                            {% else %}
+                                {{ qps.total }} {{ 'results'|_ }}
+                            {% endif %}
+                        </small>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-auto text-right">
+                    {% partial 'pagination-input' items=qps size='sm' %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{{ form_close() }}

@@ -1,0 +1,19 @@
+{% if not print %}
+    <div class="row">
+        <div class="col">
+            {% partial __SELF__ ~ '::_search_bar' %}
+        </div>
+    </div>
+{% else %}
+    {% partial __SELF__ ~ '::_print_header' %}
+{% endif %}
+<div class="row">
+    <div class="col">
+        {% partial __SELF__ ~ '::_total_day_list' %}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col text-right">
+        {% partial 'pagination-input' items=qps size='sm' %}
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row my-5">
+    <div class="col">
+        {% if contact %}
+            {{ form_open({"id":"form-custom-list" }) }}
+            <div class="row my-5">
+                <div class="col text-center">
+                    <h4 class="h4-responsive">
+                        <i class="fa fa-envelope-open-o"></i>
+                        {{ contact.email }}
+                    </h4>
+                    <p class="mt-4 text-center">
+                        {{ "We're sorry to see you go"|_ }}.&nbsp;{{ "Please confirm unsubscribe"|_ }}
+                    </p>
+                    <input name="subscriber" type="hidden" value="{{ contact.public_key }}">
+                    <div class="text-center" data-request-data="code: '{{ contact.public_key }}'">
+                        <button type="button"
+                                class="btn btn-danger"
+                                data-request="onUnsubscribeContact"
+                                data-request-success="toastr.success('{{ "Your email has been removed from the list. Thank you"|_ }}', null, opts);$(this).remove();"
+                                data-request-confirm="{{ 'Are you sure'|_ }}?">{{ 'Unsubcribe'|_ }}</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_close() }}
+        {% else %}
+            <div class="row my-5">
+                <div class="col text-center">
+                    <i class="fa fa-frown-o fa-3x"></i>
+                    <br><br>
+                    <h3 class="h3-responsive">{{ 'Sorry, your email does not exist'|_ }}</h3>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

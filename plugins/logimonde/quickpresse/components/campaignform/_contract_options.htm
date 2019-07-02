@@ -1,0 +1,63 @@
+{% set contract = campaign ? campaign.contract : contract %}
+{% if contract and status %}
+    <div class="form-row">
+        <div class="col">
+            <div class="text-right text-primary grey lighten-5 py-1 px-2">
+                {{ 'Total contract'|_ }}: &nbsp;&nbsp;<strong>{{ contract.total_items }}</strong>&nbsp;&nbsp;/&nbsp;&nbsp;
+                {{ 'Balance'|_ }}:&nbsp;&nbsp;<strong>{{ contract.balance }}</strong>
+            </div>
+        </div>
+    </div>
+    {% if campaign %}
+        <div class="form-row">
+            <div class="col form-group">
+                <label>Quick Presse&nbsp;{{ 'List'|_ }}</label>
+                {% if campaign.list_name %}
+                    {% set listName = campaign.list_name %}
+                {% else %}
+                    {% set listName = lang == 'fr' ? campaign.product.name_fr : campaign.product.name_en %}
+                {% endif %}
+                <input type="text" class="form-control" disabled
+                       name="name_qp_list"
+                       value="{{ listName }}">
+                <input type="hidden" name="product_id" value="{{ campaign.product_id }}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col form-group">
+                <label>{{ 'SubAccount'|_ }}</label>
+                <input type="text" class="form-control" disabled
+                       name="name_subaccount" value="{{ campaign.subaccount.name }}">
+                <input type="hidden" name="subaccount_id" value="{{ campaign.subaccount_id }}">
+            </div>
+        </div>
+    {% else %}
+        {% if products %}
+            <div class="form-row">
+                <div class="col form-group">
+                    <label>Quick Presse&nbsp;{{ 'List'|_ }}</label>
+                    <select name="product_id" class="form-control"
+                            onchange="getProductBalance(this)">
+                        <option value="">{{ 'Select'|_ }}</option>
+                        {% for product in products %}
+                            <option value="{{ product.product_id }}">
+                                {% if product.qp_list_name %}
+                                    {{ product.qp_list_name }}{% else %}
+                                    {{ lang == 'fr' ? product.product.name_fr : product.product.name_en }}{% endif %}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" id="product-balance">
+
+            </div>
+        {% endif %}
+        {% if subaccounts %}
+            <div class="form-row">
+                <div class="col form-group" id="subaccount-list">
+                    {% partial __SELF__ ~ '::_subaccount_list' %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}

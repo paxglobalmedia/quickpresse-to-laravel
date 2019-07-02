@@ -1,0 +1,63 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm" style="display: table">
+                <thead>
+                <tr>
+                    <th>{{ 'First Name'|_ }}</th>
+                    <th>{{ 'Last Name'|_ }}</th>
+                    <th>{{ 'Email'|_ }}</th>
+                    <th>{{ 'Title'|_ }}</th>
+                    <th>{{ 'Company'|_ }}</th>
+                    <th>{{ 'Active'|_ }}</th>
+                    <th>{{ 'Subscription date'|_ }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contact in customContacts %}
+                    <tr>
+                        <td>
+                            {{ contact.first_name }}
+                        </td>
+                        <td>
+                            {{ contact.last_name }}
+                        </td>
+                        <td>
+                            {{ contact.email }}
+                        </td>
+                        <td>
+                            {{ contact.title }}
+                        </td>
+                        <td>
+                            {{ contact.company }}
+                        </td>
+                        <td>
+                            {% if contact.active %}
+                                {{ 'Yes'|_ }}
+                            {% else %}
+                                {{ 'No'|_ }}
+                            {% endif %}
+                        </td>
+                        <td>{{ contact.created_at|mydate }}</td>
+                        <td class="text-right" data-request-data="id: {{ contact.id }}">
+                            <a href="{{ 'app/custom-contacts-form'|page({member: contact.id,list: customList.id}) }}"
+                               class="btn btn-info btn-sm mr-2">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <button type="button"
+                                    class="btn btn-danger btn-sm"
+                                    data-request="onDeleteContact"
+                                    data-request-confirm="{{ 'Are you sure'|_ }}?"
+                                    data-request-redirect="{{ 'app/custom-contacts'|page({id: customList.id}) }}">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

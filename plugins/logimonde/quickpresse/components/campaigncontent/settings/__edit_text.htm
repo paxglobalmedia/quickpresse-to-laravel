@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label>{{ 'Insert text'|_ }}</label>
+            <textarea class="form-control text-editor"
+                      name="text_content"
+                      rows="7">{{ contentData.text_content }}</textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h5 class="h5-responsive">{{ 'Block Style'|_ }}</h5>
+        <p class="grey-text">
+            <i class="fa fa-info-circle"></i>&nbsp;{{ 'Select the background colour and text colour'|_ }}
+        </p>
+        <div class="row mt-3">
+            <div class="col">
+                <label for="color-background">{{ 'Background'|_ }}:&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       id="color-background"
+                       name="background_color"
+                       class="color-picker"
+                       value="{{ contentData.style_block.background ? contentData.style_block.background : '#ffffff' }}">
+            </div>
+            <div class="col">
+                <label for="color-background">{{ 'Text'|_ }}:&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       id="color-text"
+                       name="text_color"
+                       class="color-picker"
+                       value="{{ contentData.style_block.text ? contentData.style_block.text : '#333333' }}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col text-right">
+        <button type="button"
+                class="btn btn-primary btn-sm"
+                data-template-file="CampaignContent::{{ campaign.template.partial_file }}"
+                data-id="{{ contentData.id }}"
+                onclick="updateProperties(this)">
+            {{ 'Update'|_ }}
+        </button>
+    </div>
+</div>

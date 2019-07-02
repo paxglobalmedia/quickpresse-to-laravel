@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Template
+
+# Model Form Field configuration
+form: $/logimonde/quickpresse/models/template/fields.yaml
+
+# Model Class name
+modelClass: Logimonde\Quickpresse\Models\Template
+
+# Default redirect location
+defaultRedirect: logimonde/quickpresse/templates
+
+# Create page
+create:
+    title: Create Template
+    redirect: logimonde/quickpresse/templates/update/:id
+    redirectClose: logimonde/quickpresse/templates
+
+# Update page
+update:
+    title: Edit Template
+    redirect: logimonde/quickpresse/templates
+    redirectClose: logimonde/quickpresse/templates
+
+# Preview page
+preview:
+    title: Preview Template

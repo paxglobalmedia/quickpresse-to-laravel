@@ -1,0 +1,25 @@
+title = "Reports"
+url = "/reports"
+layout = "app"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[Reports]
+==
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h1 class="h1-responsive text-primary">{{ 'Total day'|_ }} </h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-12">
+           {% component 'Reports' %}
+        </div>
+    </div>
+    <div class="row mb-5"><div class="col"></div></div>
+</div>
+{% component 'session' %}

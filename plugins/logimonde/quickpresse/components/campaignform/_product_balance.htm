@@ -1,0 +1,8 @@
+{% if product %}
+    <div class="col">
+        <div class="text-right text-primary grey lighten-5 py-1 px-2">
+            {{ 'Total'|_ }} Quick Presse: &nbsp;&nbsp;<strong>{{ product.quantity }}</strong>&nbsp;&nbsp;/&nbsp;&nbsp;
+            {{ 'Balance'|_ }}:&nbsp;<strong>{{ product.qp_balance }}</strong>
+        </div>
+    </div>
+{% endif %}

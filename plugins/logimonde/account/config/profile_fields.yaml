@@ -1,0 +1,63 @@
+# ===================================
+#  Extended Profile Field Definitions
+# ===================================
+
+phone:
+    label: logimonde.account::lang.user.phone
+    tab: logimonde.account::lang.tab.profile
+    span: left
+
+mobile:
+    label: logimonde.account::lang.user.mobile
+    tab: logimonde.account::lang.tab.profile
+    span: right
+
+title:
+    label: Title
+    tab: logimonde.account::lang.tab.profile
+    span: left
+
+company:
+    label: logimonde.account::lang.user.company
+    tab: logimonde.account::lang.tab.profile
+    span: right
+
+street_addr:
+    label: logimonde.account::lang.user.street_addr
+    tab: logimonde.account::lang.tab.profile
+    span: left
+
+zip:
+    label: logimonde.account::lang.user.zip
+    tab: logimonde.account::lang.tab.profile
+    span: right
+
+country:
+    label: Country
+    placeholder: Select a country
+    type: dropdown
+    tab: logimonde.account::lang.tab.profile
+    span: left
+
+state:
+    label: Province
+    placeholder: Select a province
+    type: dropdown
+    tab: logimonde.account::lang.tab.profile
+    span: right
+    dependsOn: country
+
+city:
+    label: City
+    placeholder: Select a city
+    type: dropdown
+    tab: logimonde.account::lang.tab.profile
+    span: left
+    dependsOn: state
+
+language:
+    label: Language
+    placeholder: Select a language
+    type: dropdown
+    tab: logimonde.account::lang.tab.profile
+    span: right

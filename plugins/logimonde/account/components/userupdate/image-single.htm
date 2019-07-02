@@ -1,0 +1,7 @@
+{% if image %}
+    <img
+        src="{{ __SELF__.getThumb }}"
+        style="{{ __SELF__.getCssSize }}" />
+{% else %}
+    <span class="placeholder text-primary">  <br><br><br><i class="fa fa-upload"></i> <strong>{{ 'Upload'|_ }}</strong></span>
+{% endif %}

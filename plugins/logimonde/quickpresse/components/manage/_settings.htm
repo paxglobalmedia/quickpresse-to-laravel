@@ -1,0 +1,78 @@
+{% if campaign %}
+    <div class="row">
+        <div class="col-md-5 col-lg-4 col-xl-3">
+            <div class="card text-center">
+                <div class="card-header" style="padding: 2px;">
+                    {{ 'Number of subscribers'|_ }}
+                </div>
+                <div class="card-body" style="padding: 0 10px;">
+                    <span style="font-size: 5.1rem;">
+                        <strong>
+                            {{ reached|number(0) }}
+                        </strong>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-7 {% if campaign.type_qp != 'contract' %}pt-3{% endif %}">
+            {% if user.role_id != '3' %}
+                <p>{{ 'Company'|_ }}:&nbsp;<strong>{{ campaign.company.Name }}</strong></p>
+            {% endif %}
+            {% if campaign.subaccount %}
+                <p>{{ 'Subaccount name'|_ }}:&nbsp;<strong>{{ campaign.subaccount.name }}</strong></p>
+            {% endif %}
+            <p>{{ 'Eblast subject'|_ }}:&nbsp;<strong>{{ campaign.title }}</strong></p>
+            {% if campaign.type_qp == 'contract' %}
+                <p>{{ 'Contract Description'|_ }}:&nbsp;<strong>{{ campaign.contract.title }}</strong></p>
+                <p>{{ 'Distribution List'|_ }}:&nbsp;
+                    <strong>
+                        {% if lang == 'en' %}
+                            {{ campaign.product.name_en }}
+                        {% else %}
+                            {{ campaign.product.name_fr }}
+                        {% endif %}
+                    </strong>
+                </p>
+            {% elseif campaign.type_qp == 'qp_list' %}
+                <p>{{ 'Distribution List'|_ }}:&nbsp;
+                    <strong>
+                        {% if lang == 'en' %}
+                            {{ campaign.product.name_en }}
+                        {% else %}
+                            {{ campaign.product.name_fr }}
+                        {% endif %}
+                    </strong>
+                </p>
+            {% elseif campaign.type_qp == 'custom' %}
+                <p>{{ 'Custom list'|_ }}:&nbsp;<strong>{{ campaign.custom_list.name }}</strong></p>
+            {% endif %}
+            {% if campaign.sender_name %}
+                <p>{{ 'Sender name'|_ }}:&nbsp;<strong>{{ campaign.sender_name }}</strong></p>
+            {% endif %}
+        </div>
+
+    </div>
+    {% if __SELF__.kind == 'normal' %}
+        <div class="row">
+            <div class="col text-right">
+                {% if sentEblats|length == 0 %}
+                    <a class="btn btn-primary manage-edit {{ campaign.active ? 'disabled' : '' }}"
+                       href="{{ 'app/campaign-settings'|page({campaign: campaign.id}) }}">
+                        {{ 'Edit information'|_ }}</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="row">
+        <div class="col pt-3">
+            {{ 'You know your target audience, and you can’t wait to share what’s new and exciting with them'|_ }}.&nbsp;
+            {{ 'Now it’s time to bring your message to life, digitally'|_ }}!
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-right">
+            <a class="btn btn-primary" href="{{ 'app/campaign-settings'|page }}">{{ 'Begin'|_ }}</a>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,44 @@
+title = "Video"
+url = "/video"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/video"
+
+[partnerOverview]
+maxItems = 0
+orderBy = "created_at"
+order = "desc"
+==
+function onStart()
+{
+    $this->addJs('assets/js/video.js');
+}
+==
+<section class="demo-header">
+    <div class="container">
+        <div class="row ">
+            <div class="col my-5 text-center">
+                <h1 class="h1-responsive">
+                    {{ 'Welcome'|_ }}
+                </h1>
+                {% partial 'video' %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="grey lighten-4 py-5">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col">
+                <h1 class="h1-responsive text-primary text-center">
+                    {{ 'Who use QuickPresse'|_ }}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="p-5">
+        {% component 'partnerOverview' %}
+    </div>
+</section>

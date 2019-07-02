@@ -1,0 +1,39 @@
+subject = "Welcome to Quick Presse"
+layout = "custom"
+==
+<table width="640" cellspacing="0" cellpadding="0" border="0" align="center"
+       style="font-family: Helvetica, sans-serif;">
+    <tr>
+        <td style="background-color: #f5f5f5;padding: 20px 35px;border-top: 4px solid #111820;">
+            <img src="{{ logo }}" width="200">
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px 35px;font-family: Helvetica, sans-serif;">
+            <br/>
+            <strong>Hello {{ user.name }}</strong>,<br/><br/>
+            Thank you for your interest in Quick Presse. Your account will be confirmed shortly. You will receive an e-mail once activated.
+            <br/>
+            <br/>
+            Your user: <strong>{{ user.email }}</strong>
+            <br/>
+            Your password: <strong>{{ user_pwd }}</strong>
+            <br/><br/><br/><br/>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #40464c;padding: 20px;font-family: Helvetica, sans-serif;font-size: 12px;color: #ffffff;">
+            For any questions, do not hesitate to
+            <a href="{{ host }}contact" style="color: #ffffff;text-decoration: underline;">contact us</a><br><br>
+            We recommend you review the&nbsp;
+            <a href="{{ 'https://logimondemedia.com/privacy-policy' }}" style="color: #ffffff;text-decoration: underline;">
+                privacy policy
+            </a>.
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #111820;padding: 10px 20px;font-family: Helvetica, sans-serif;font-size: 10px;color: #ffffff;text-align: right;">
+            All rights reserved &copy; Logimonde Media {{ "now"|date('Y') }}
+        </td>
+    </tr>
+</table>

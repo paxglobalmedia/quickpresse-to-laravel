@@ -1,0 +1,123 @@
+{{ form_open({"id":"form-list-qps" }) }}
+<div class="row mt-3">
+    <div class="col-12 col-sm-7">
+        <a href="{{ 'app/manage'|page({campaign: ''}) }}"
+           class="btn btn-primary mr-2">
+            <i class="fa fa-plus-square"></i>&nbsp;&nbsp;{{ 'Add Eblast'|_ }}
+        </a>
+        {% if user.role_id != '3' %}
+            <button type="submit"
+                    class="btn btn-outline-success mr-2">
+                <i class="fa fa-refresh"></i>&nbsp;&nbsp;{{ 'Reload page'|_ }}
+            </button>
+        {% endif %}
+        {% if contracts|length %}
+            <button type="button"
+                    class="btn btn-info"
+                    data-toggle="modal" data-target="#contracts-list">
+                <i class="fa fa-sticky-note"></i>&nbsp;&nbsp;{{ 'Get Contract Balance'|_ }}
+            </button>
+        {% endif %}
+    </div>
+
+    <div class="col-12 col-sm-5 mt-0 mt-sm-2 text-right">
+        {% if incomplete|length %}
+            <span class="text-danger"
+                  {% if user.role_id == '3' %}id="launch-modal-incomplete"{% endif %}>
+                <i class="fa fa-info-circle"></i>&nbsp;
+                {% if user.role_id != '3' %}
+                    {{ 'There are'|_ }}&nbsp;{{ incomplete|length }}&nbsp;{{ 'incomplete eblast '|_ }}.
+                {% else %}
+                    {{ 'You have'|_ }}&nbsp;{{ incomplete|length }}&nbsp;{{ 'incomplete eblast '|_ }}.
+                {% endif %}
+            </span>
+            &nbsp;<a href="#" class="underline"
+                     data-toggle="modal"
+                     data-target="#incomplete-list">{{ 'Click here to review'|_ }}
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12 col-sm mt-3 mt-sm-0">
+        {% partial 'app/search-bar' %}
+    </div>
+    <div class="col-12 col-sm mt-3 mt-lg-0 text-left text-lg-right">
+        <p class="d-inline-block">{{ 'Filter by'|_ }} :</p>&nbsp;&nbsp;
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                {{ filter != '' ? filterOptions[filter]|_ : 'Select'|_ }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                {% for key, filterOption in filterOptions %}
+
+                    {% if filterOption != '-' %}
+                        <a class="dropdown-item"
+                           href="javascript:void(0);"
+                           data-action="{{ key }}">{{ filterOption|_ }}</a>
+                    {% else %}
+                        <div class="dropdown-divider"></div>
+                    {% endif %}
+                {% endfor %}
+                <input type="hidden" class="dropdown-input"
+                       name="filter" value="{{ filter != '' ? filter : 'all' }}">
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm mt-3 mt-lg-0 text-left text-lg-right">
+        <p class="d-inline-block">{{ 'Sort by'|_ }} :</p>&nbsp;&nbsp;
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                {{ sort != '' ? sortOptions[sort]|_ : sortOptions['updated_at desc']|_ }}
+            </button>
+            <div class="dropdown-menu">
+                {% for key, sortOption in sortOptions %}
+                    <a class="dropdown-item"
+                       href="javascript:void(0);"
+                       data-action="{{ key }}">{{ sortOption|_ }}</a>
+                {% endfor %}
+                <input type="hidden" class="dropdown-input"
+                       name="sort" value="{{ sort != '' ? sort : 'updated_ad desc' }}">
+            </div>
+        </div>
+    </div>
+
+</div>
+{{ form_close() }}
+
+<div class="modal fade" id="contracts-list" tabindex="-1" role="dialog" aria-labelledby="contracts-list"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="contracts-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="incomplete-list" tabindex="-1" role="dialog" aria-labelledby="incomplete-list"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" >
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title white-text">
+                    <i class="fa fa-exclamation-circle text-light"></i>&nbsp;
+                    {{ 'List of incomplete eblast'|_ }}
+                </h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                </button>
+            </div>
+            <div class="modal-body text-center" id="incomplete-content">
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw my-5"></i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|_ }}</button>
+            </div>
+        </div>
+    </div>
+</div>

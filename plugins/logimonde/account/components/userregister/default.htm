@@ -1,0 +1,122 @@
+<div class="row my-5 form-profile">
+    <div class="col mt-3">
+        <div class="card" style="background-color:rgba(255,255,255,0.9);">
+            <div class="card-body" id="profile-body">
+                <h1 class="h1-responsive">{{ 'Create your account'|_ }}</h1>
+                <ul class="nav nav-tabs mt-4 nav-justified" id="user-tab" role="tablist">
+                    {#---   Step 1 ---#}
+                    <li class="nav-item" id="nav-item-step-1">
+                        <a class="nav-link active"
+                           data-toggle="tab"
+                           href="#step1" role="tab" aria-controls="home">
+                            <div class="row">
+                                <div class="col col-lg-auto">
+                                    <i class="fa fa-key fa-2x"></i>
+                                </div>
+                                <div class="col col-lg d-none d-lg-block text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <strong class="d-inline-block justify-content-end mr-auto">{{ 'Step'|_ }}&nbsp;1&nbsp; :</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: -10px;">
+                                        <div class="col">
+                                            <small class="grey-text justify-content-end">{{ 'Create your account login'|_ }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {#---   Step 2 ---#}
+                    <li class="nav-item " id="nav-item-step-2">
+                        <a class="nav-link disabled" data-toggle="tab"
+                           href="#step2" role="tab"
+                           aria-controls="step2">
+                            <div class="row">
+                                <div class="col col-lg-auto">
+                                    <i class="fa fa-user fa-2x"></i>
+                                </div>
+                                <div class="col col-lg d-none d-lg-block text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <strong class="d-inline-block justify-content-end mr-auto">{{ 'Step'|_ }}&nbsp;2&nbsp; :</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: -10px;">
+                                        <div class="col">
+                                            <small class="grey-text justify-content-end">{{ 'Your personal details'|_ }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {#---   Step 3 ---#}
+                    <li class="nav-item " id="nav-item-step-3">
+                        <a class="nav-link disabled" data-toggle="tab"
+                           href="#step3" role="tab" aria-controls="messages">
+                            <div class="row">
+                                <div class="col col-lg-auto">
+                                    <i class="fa fa-suitcase fa-2x"></i>
+                                </div>
+                                <div class="col col-lg d-none d-lg-block text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <strong class="d-inline-block justify-content-end mr-auto">{{ 'Step'|_ }}&nbsp;3&nbsp; :</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: -10px;">
+                                        <div class="col">
+                                            <small class="grey-text justify-content-end">{{ 'Your Company information'|_ }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="step1" role="tabpanel">
+                        {% partial __SELF__ ~ '::_step1' %}
+                    </div>
+                    <div class="tab-pane" id="step2" role="tabpanel">
+                        {% partial __SELF__ ~ '::_step2' %}
+                    </div>
+                    <div class="tab-pane" id="step3" role="tabpanel">
+                        {% partial __SELF__ ~ '::_step3' %}
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <small>
+                            <i class="fa fa-info-circle"></i>&nbsp;
+                            {{ 'By clicking Submit, you agree to our'|_ }}&nbsp;
+
+                            <a href="{{ 'http://logimondemedia.com/privacy-policy'|_ }}"
+                               target="_blank">{{ 'Privacy Policy'|_ }}</a>
+                            &nbsp;{{ 'and'|_ }}&nbsp;
+                            <a href="{{ 'http://logimondemedia.com/terms-use'|_ }}"
+                               target="_blank">{{ 'Terms of Use'|_ }}</a>
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer text-muted text-center">
+                {{ "Already have an account?"|_ }}&nbsp;
+                <a href="{{ 'account/connection'|page }}">{{ 'Log in'|_ }}</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

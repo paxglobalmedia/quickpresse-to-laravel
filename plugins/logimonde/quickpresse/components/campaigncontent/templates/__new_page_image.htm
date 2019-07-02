@@ -1,0 +1,9 @@
+<div class="wrapper-template basic-image">
+    {% set block = 'block-flyer-' ~ counter %}
+    <div class="mt-5 block-content block-flyer" id="{{ block }}"
+         data-file-type=""
+         data-image-size="750"
+         data-block-type="image">
+        {% partial __SELF__ ~ '::templates/__block_image' block=block %}
+    </div>
+</div>

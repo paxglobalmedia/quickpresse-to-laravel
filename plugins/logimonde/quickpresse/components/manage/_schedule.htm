@@ -1,0 +1,42 @@
+{% if campaign.sends|length > 0 %}
+    <div class="row">
+        <div class="col-3 col-lg-1 text-center">
+            <i class="fa fa-calendar-check-o fa-5x text-success"></i>
+        </div>
+        <div class="col-9 col-lg-11">
+
+            {% for send in campaign.sends %}
+                <p>
+                    <i class="fa fa-calendar-plus-o"></i>&nbsp;
+                    {% if send.status == '1' %}
+                        &nbsp;&nbsp;<span class="badge badge-success">{{ 'Sent'|_ }}</span>
+                    {% endif %}
+                    {{ send.date_required|mydatelong }}
+                    {% if send.time_required != '00:00:00' %}
+                        &nbsp;-&nbsp;{{ send.time_required|mytime }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-right">
+            <a class="btn btn-primary manage-edit {{ campaign.active ? 'disabled' : '' }}"
+               href="{{ 'app/campaign-schedule'|page({qp: campaign.id}) }}">{{ 'Edit schedule'|_ }}</a>
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col pt-3">
+            {{ 'Set a preferred date and time for your clients to receive your Quick Presse'|_ }}<br>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-right">
+            <a class="btn btn-primary {% if not campaign %}disabled{% endif %}"
+               href="{{ 'app/campaign-schedule'|page }}">{{ 'Create'|_ }}</a>
+        </div>
+    </div>
+{% endif %}

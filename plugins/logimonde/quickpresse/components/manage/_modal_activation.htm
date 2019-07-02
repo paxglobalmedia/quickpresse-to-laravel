@@ -1,0 +1,22 @@
+<div class="modal" id="campaign-activation" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">{{ 'Eblast activation'|_ }}</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="h3-responsive text-center text-primary">
+                    {{ 'Your eblast is complete, now you can activate it'|_ }}!</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Cancel'|_ }}</button>
+                <button type="button" class="btn btn-primary"
+                        data-campaign="{{ campaign.id }}"
+                        onclick="setActiveCampaign(this)">{{ 'Activate'|_ }}</button>
+            </div>
+        </div>
+    </div>
+</div>

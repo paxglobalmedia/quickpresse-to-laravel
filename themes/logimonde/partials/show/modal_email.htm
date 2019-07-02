@@ -1,0 +1,68 @@
+description = "Modal Email share"
+==
+<div class="modal modal-center" id="modal-email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            {{ form_open({"id":"form-confirm"}) }}
+            <div class="modal-header primary-color">
+                <h5 class="modal-title white-text">{{ 'Share'|_ }}&nbsp;Quick Presse</h5>
+                <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>{{ 'To'|_ }}</label>
+                        <input type="email" class="form-control" required
+                               name="email_to">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label>{{ 'From'|_ }}</label>
+                        <input type="email" class="form-control" required
+                               placeholder="{{ 'Your email address'|_ }}"
+                               name="email_from">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col form-group">
+                        <label>{{ 'Message'|_ }}</label>
+                        <textarea class="materialize-textarea form-control" rows="3"
+                                  name="msg_text" required></textarea>
+                    </div>
+                </div>
+                <hr class="mt-3">
+                <div class="row ">
+                    <div class="col">
+                        <label class="fixed-text">{{ 'Subject'|_ }} :</label> &nbsp;
+                        <span class="grey-text text-darken-2">{{ campaign.title }}</span>
+                        <input value="{{ campaign.title }}" type="hidden" name="subject">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label class="fixed-text">{{ 'URL'|_ }} :</label> &nbsp;
+                        <span class="grey-text text-darken-2">{{ host }}show/{{ qp.slug }}</span>
+                        <input value="{{ host }}show/{{ qp.slug }}" type="hidden" name="url">
+                    </div>
+                </div>
+            </div>
+            <input value="{{ qp.id }}" type="hidden" name="eblast_id">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link"
+                        id="cancel-button"
+                        data-dismiss="modal">{{ 'Cancel'|_ }}</button>
+                <button type="button" class="btn btn-primary ml-3"
+                        id="okay-button"
+                        data-dismiss="modal"
+                        onclick="shareQuickPresse(this)">
+                    {{ 'Share'|_ }}</button>
+            </div>
+            {{ form_close() }}
+        </div>
+    </div>
+</div>

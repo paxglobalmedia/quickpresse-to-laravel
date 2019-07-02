@@ -1,0 +1,23 @@
+title = "Account Form"
+url = "/admin/sub-account/:account?"
+layout = "app"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/admin/sous-compte/:account?"
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[SubaccountForm]
+==
+<div class="container-fluid">
+    <div class="row my-5">
+        <div class="col">
+            {% component 'SubaccountForm' %}
+        </div>
+    </div>
+
+</div>
+{% component 'session' %}

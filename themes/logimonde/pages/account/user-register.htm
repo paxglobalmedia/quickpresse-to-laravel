@@ -1,0 +1,35 @@
+title = "account user"
+url = "/account/user/register"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/account/user/register"
+
+[BasicRegister]
+redirect = "home"
+==
+<section class="parallax"
+         style="background-image: url({{ 'assets/images/front/bg-account.jpg'|theme }});min-height: 800px;">
+    <div class="container">
+        <div class="row py-5">
+            <div class="col py-5">
+                {% component 'BasicRegister' %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="grey lighten-4">
+    <div class="container">
+        <div class="row py-5">
+            <div class="col py-5 text-center">
+                <h1 class="display-3 text-primary">
+                    {{ 'Quick Presse'|_ }}
+                </h1>
+                <h2 class="h2-responsive grey-text darken-2">
+                    {{ 'e-Blast service targeting Canadian Travel Professionals'|_ }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>

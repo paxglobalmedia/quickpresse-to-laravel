@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-3">
+        <i class="fa fa-file-code-o fa-5x"></i>
+    </div>
+    <div class="col-8">
+        <p class="mt-1"><strong>{{ contentData.original_name }}</strong></p>
+        <span class="btn btn-secondary btn-sm btn-file">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;{{ 'Replace'|_ }}
+            <input type="file"
+                   id="upload-file-content"
+                   name="file_upload"
+                   data-id="{{ contentData.id }}"
+                   data-url="{{ 'app/campaign-content'|page({qp: campaign.id}) }}"
+                   accept=".html">
+        </span>
+        &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+        <a href="javascript:;"
+           class="btn btn-secondary btn-sm"
+           data-template-file="CampaignContent::{{ campaign.template.partial_file }}"
+           data-confirm="{{ 'Are you sure'|_ }}?"
+           data-id="{{ contentData.id }}"
+           onclick="removeFileContent(this)"><i class="fa fa-times"></i>&nbsp;{{ 'Remove'|_ }}</a>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col" style="border-bottom: 1px solid #ececec;"></div>
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <div class="row">
+            <div class="col-8 mt-1">
+                {{ 'To host your images on our servers'|_ }}:
+            </div>
+            <div class="col-4 text-right">
+                <span class="btn btn-primary btn-file btn-sm">
+                    <i class="fa fa-upload"></i>&nbsp;&nbsp;{{ 'Browse'|_ }}
+                    <input type="file"
+                           id="upload-file-content-html"
+                           name="file_upload"
+                           data-id="{{ contentData.id }}"
+                           data-url="{{ 'app/campaign-content'|page({qp: campaign.id}) }}"
+                           accept=".zip,.rar">
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning mt-2" role="alert">
+                    <ul class="small mt-2 mb-0 pl-2">
+                        <li>{{ 'Accepted file format: zip, rar.'|_ }}</li>
+                        <li class="pt-2">
+                            {{ "The 'SRC' or source attribute in tag 'IMG' must contain file name only."|_ }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<input type="hidden" name="called_block" value="{{ block }}">

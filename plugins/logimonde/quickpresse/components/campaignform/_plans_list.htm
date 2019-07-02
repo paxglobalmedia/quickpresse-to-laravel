@@ -1,0 +1,45 @@
+{% if not campaign %}
+    {% if agreements|length %}
+        <input type="hidden" name="agreement_id">
+        <label>{{ 'Agreement Distribution List'|_ }}</label>
+        <select name="product_id" class="form-control" required
+                onchange="selectAgreement(this)">
+            <option value="">{{ 'Select'|_ }}</option>
+            {% for item in agreements %}
+                <option value="{{ item.product_id }}" data-agreement="{{ item.agreement_id }}">
+                    {% if item.qp_list_name %}
+                        {{ item.qp_list_name }}{% else %}
+                        {{ lang == 'fr' ? item.product.name_fr : item.product.name_en }}{% endif %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+                    {% if item.price_sale %}
+                        {{ item.price_sale|money(0) }}{% else %}
+                        {{ item.price_list|money(0) }}{% endif %}
+                </option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <label>{{ 'Distribution List'|_ }}</label>
+        <select name="product_id" class="form-control" required
+                data-confirm="{{ 'You currently have an active contract for this list'|_ }}. {{ 'Do you still want to use this one at a regular price'|_ }}?"
+                data-url="{{ 'app/campaign-settings'|page }}"
+                onchange="checkProductContract(this)">
+            <option value="">{{ 'Select'|_ }}</option>
+            {% for product in products %}
+                <option value="{{ product.id }}">
+                    {{ lang == 'fr' ? product.name_fr : product.name_en }}
+                    &nbsp;&nbsp;-&nbsp;{{ product.price|money(0) }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+{% else %}
+    <label>Quick Presse&nbsp;{{ 'List'|_ }}</label>
+    {% if campaign.list_name %}
+        {% set listName = campaign.list_name %}
+    {% else %}
+        {% set listName = lang == 'fr' ? campaign.product.name_fr : campaign.product.name_en %}
+    {% endif %}
+    <input type="text" class="form-control" disabled
+           name="name_qp_list"
+           value="{{ listName }}">
+    <input type="hidden" name="product_id" value="{{ campaign.product_id }}">
+{% endif %}

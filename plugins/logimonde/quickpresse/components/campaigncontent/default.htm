@@ -1,0 +1,76 @@
+{{ form_open({"id":"form-campaign-content", "files": true }) }}
+<div class="row" id="campaign-content">
+    <div class="col">
+        <h5 class="h5-responsive" id="template-title"
+            style="visibility: {% if campaign.contents|length %}visible{% else %}hidden{% endif %}">
+            {{ 'Template'|_ }}:
+            <span class="grey-text text-darken-2">{{ campaign.template.name }}</span>
+        </h5>
+        <div class="row mt-3">
+
+            <div class="col col-sm-4 col-md-2" {% if campaign.contents|length %} style="display: none;" {% endif %}>
+                <div class="card">
+                    <div class="card-header">
+                        {{ 'Template list'|_ }}
+                    </div>
+                    <div class="card-body" style="height: 600px;overflow-y: scroll;padding: 0 10px;">
+                        <div id="template-list">
+                            {% partial __SELF__ ~ '::_templates' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="{% if campaign.contents|length %}col{% else %}col col-sm-8 col-md-10{% endif %}">
+                <div class="card">
+                    <div class="card-body" style="height: 600px;overflow-y: scroll;">
+                        <div id="content-preview">
+                            {% if campaign.template %}
+                                {% partial __SELF__ ~ '::' ~ campaign.template.partial_file %}
+                            {% else %}
+                                {% partial __SELF__ ~ '::_preview' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col text-right">
+                <button class="btn btn-success " type="button"
+                        id="btn-save" disabled
+                        onclick="saveCampaignContent(this)">{{ 'Save'|_ }}</button>
+                <button class="btn btn-primary " type="button"
+                        id="btn-save-close"
+                        data-redirect="{{ 'app/manage'|page({campaign: campaign.id}) }}"
+                        onclick="saveCloseCampaignContent(this)"
+                        disabled>{{ 'Save & Close'|_ }}</button>
+                <a href="{{ 'app/manage'|page({campaign: campaign.id}) }}"
+                   class="btn btn-secondary btn-cancel">{{ 'Cancel'|_ }}</a>
+            </div>
+        </div>
+        <input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+        <input type="hidden" name="company_id" value="{{ user.company.id }}">
+        <div class="slide-out-settings z-depth-1">
+            <button class="btn handle z-depth-1" type="button"
+                    disabled
+                    data-url="{{ '/plugins/logimonde/quickpresse/assets/vendor/tabSlideOut/images/setting-en.jpg'|_ }}">
+                <i class="fa fa-cogs"></i>
+            </button>
+            <div class="card" style="min-height: 500px;">
+                <div class="card-body">
+                    <button type="button"
+                            class="close" aria-label="Close"
+                            onclick="triggerHandler();">
+                        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                    </button>
+                    <div id="content-settings" style="margin-right: 0;">
+                        {% partial __SELF__ ~ '::_settings' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ form_close() }}

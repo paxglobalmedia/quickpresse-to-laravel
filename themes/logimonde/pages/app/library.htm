@@ -1,0 +1,35 @@
+title = "My Library"
+url = "/library"
+layout = "app"
+is_hidden = 0
+
+[Library]
+pageNumber = "{{ :page }}"
+itemsPerPage = 12
+sortOrder = "updated_at desc"
+
+[session]
+security = "user"
+redirect = "account/connection"
+==
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h1 class="h1-responsive text-primary">
+                <i class="fa fa-folder-open"></i>&nbsp;
+                {{ 'My Library'|_ }}
+            </h1>
+            <div class="grey-text" style="margin-top: -10px;">
+                {{ 'Welcome to the Quick Presse Library! Here, you can add images and files to include in your Quick Presse'|_ }}.&nbsp;
+                {{ 'Upload multiple images and files and store them safely and securely for future use'|_ }}.
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 mb-5">
+        <div class="col-sm-12">
+            {% component 'Library' %}
+        </div>
+    </div>
+    <div class="row mb-5"><div class="col"></div></div>
+</div>
+{% component 'session' %}

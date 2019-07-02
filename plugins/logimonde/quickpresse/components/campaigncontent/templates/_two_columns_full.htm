@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-12 py-5">
+        <div class="wrapper-template two-column full py-4 px-2">
+            {#Block logo#}
+            {% for contentData in campaign.contents if contentData.block == 'block-image-1' %}
+                <div class="mt-3 block-content block-logo" id="block-image-1"
+                     data-file-type="{{ contentData.mime }}"
+                     data-image-size="350"
+                     data-block-type="image">
+                    {% partial __SELF__ ~ '::templates/__block_logo' contentData=contentData block='block-image-1' %}
+                </div>
+            {% else %}
+                <div class="mt-3 block-content block-logo" id="block-image-1"
+                     data-file-type=""
+                     data-image-size="350"
+                     data-block-type="image">
+                    {% partial __SELF__ ~ '::templates/__block_logo' block='block-image-1' %}
+                </div>
+            {% endfor %}
+            {# Block text large #1 #}
+            {% for contentData in campaign.contents if contentData.block == 'block-text-1' %}
+                <div class="mt-5 block-content block-text-large" id="block-text-1"
+                     data-file-type="{{ contentData.mime }}"
+                     data-block-type="text">
+                    {% partial __SELF__ ~ '::templates/__block_text' contentData=contentData block='block-text-1' %}
+                </div>
+            {% else %}
+                <div class="mt-5 block-content block-text-large" id="block-text-1"
+                     data-file-type=""
+                     data-block-type="text">
+                    {% partial __SELF__ ~ '::templates/__block_text' block='block-text-1' %}
+                </div>
+            {% endfor %}
+            <div class="row justify-content-center">
+                {#Block column 1#}
+                <div class="col-3 pr-1">
+                    {#Block featured image#}
+                    {% for contentData in campaign.contents if contentData.block == 'block-image-2' %}
+                        <div class="mt-5 block-content block-image" id="block-image-2"
+                             data-file-type="{{ contentData.mime }}"
+                             data-image-size="340"
+                             data-block-type="image">
+                            {% partial __SELF__ ~ '::templates/__block_image' contentData=contentData block='block-image-2' %}
+                        </div>
+                    {% else %}
+                        <div class="mt-5 block-content block-image" id="block-image-2"
+                             data-file-type=""
+                             data-image-size="330"
+                             data-block-type="image">
+                            {% partial __SELF__ ~ '::templates/__block_image' block='block-image-2' %}
+                        </div>
+                    {% endfor %}
+                    {#Block main text#}
+                    {% for contentData in campaign.contents if contentData.block == 'block-text-2' %}
+                        <div class="mt-2 block-content block-text-column" id="block-text-2"
+                             data-file-type="{{ contentData.mime }}"
+                             data-block-type="text">
+                            {% partial __SELF__ ~ '::templates/__block_text' contentData=contentData block='block-text-2' %}
+                        </div>
+                    {% else %}
+                        <div class="mt-2 block-content block-text-column" id="block-text-2"
+                             data-file-type=""
+                             data-block-type="text">
+                            {% partial __SELF__ ~ '::templates/__block_text' block='block-text-2' %}
+                        </div>
+                    {% endfor %}
+                </div>
+                {#Block column 2#}
+                <div class="col-3 pl-1">
+                    {#Block featured image#}
+                    {% for contentData in campaign.contents if contentData.block == 'block-image-3' %}
+                        <div class="mt-5 block-content block-image" id="block-image-3"
+                             data-file-type="{{ contentData.mime }}"
+                             data-image-size="340"
+                             data-block-type="image">
+                            {% partial __SELF__ ~ '::templates/__block_image' contentData=contentData block='block-image-3' %}
+                        </div>
+                    {% else %}
+                        <div class="mt-5 block-content block-image" id="block-image-3"
+                             data-file-type=""
+                             data-image-size="330"
+                             data-block-type="image">
+                            {% partial __SELF__ ~ '::templates/__block_image' block='block-image-3' %}
+                        </div>
+                    {% endfor %}
+                    {#Block main text#}
+                    {% for contentData in campaign.contents if contentData.block == 'block-text-3' %}
+                        <div class="mt-2 block-content block-text-column" id="block-text-3"
+                             data-file-type="{{ contentData.mime }}"
+                             data-block-type="text">
+                            {% partial __SELF__ ~ '::templates/__block_text' contentData=contentData block='block-text-3' %}
+                        </div>
+                    {% else %}
+                        <div class="mt-2 block-content block-text-column" id="block-text-3"
+                             data-file-type=""
+                             data-block-type="text">
+                            {% partial __SELF__ ~ '::templates/__block_text' block='block-text-3' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<input type="hidden" name="template_id" value="{{ template ? template.id : campaign.template_id }}">

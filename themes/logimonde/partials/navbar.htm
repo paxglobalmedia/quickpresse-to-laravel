@@ -1,0 +1,81 @@
+description = "Navigation bar"
+==
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top" style="border-bottom: 2px solid #ababab;">
+    <a class="navbar-brand" href="{{ 'home'|page }}">
+        <img class="brand-logo my-1 d-none d-sm-block logo-desktop"
+             src="{{ 'assets/images/quickpresse.svg'|theme }}">
+        <img class="brand-logo my-1 d-sm-none logo-mobile"
+             src="{{ 'assets/images/quickpresse-full.svg'|theme }}">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse menu--shylock" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-lg-end ">
+            <li class="nav-item {% if this.page.id == 'home' %}active{% endif %}">
+                <a class="nav-link text-primary" href="{{ 'home'|page }}">
+                    <span class="sr-only">(current)</span>
+                    <span>{{ 'Home'|_ }}</span>
+                </a>
+            </li>
+            <li class="nav-item {% if this.page.id == 'pricing' %}active{% endif %}">
+                <a class="nav-link  text-primary" href="{{ 'pricing'|page }}">
+                    {{ 'Pricing'|_ }}
+                </a>
+            </li>
+            <li class="nav-item {% if this.page.id == 'contact' %}active{% endif %}">
+                <a class="nav-link  text-primary" href="{{ 'contact'|page }}">
+                    {{ 'Contact'|_ }}
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle  text-primary" href="http://example.com"
+                   id="navbarDropdownMenuLink"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {{ 'Your account'|_ }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% if user %}
+                        {% if user.role_id != '3' %}
+                            <a href="{{ 'app/dashboard'|page }}"
+                               class="dropdown-item">{{ 'Dashboard'|_ }}</a>
+                        {% else %}
+                            <a href="{{ 'app/manage'|page({campaign: ''}) }}"
+                               class="dropdown-item">{{ 'New Eblast'|_ }}</a>
+                        {% endif %}
+                        <a class="dropdown-item"
+                           data-request="onLogout" data-request-data="redirect: '/'">
+                            {{ 'Logout'|_ }}</a>
+                    {% else %}
+                        <a href="{{ 'account/connection'|page }}"
+                           class="dropdown-item">{{ 'Login'|_ }}</a>
+                        <a href="{{ 'account/register'|page }}"
+                           class="dropdown-item">{{ 'Register'|_ }}</a>
+                    {% endif %}
+                </div>
+            </li>
+            <li class="nav-item">
+                {% if lang == 'en' %}
+                    <a href="#"
+                       class="nav-link  text-primary"
+                       data-request="onSwitchLocale"
+                       data-request-data="locale: 'fr'" title="Français">
+                        Français
+                    </a>
+                {% else %}
+                    <a href="#"
+                       class="nav-link  text-primary"
+                       data-request="onSwitchLocale"
+                       data-request-data="locale: 'en'" title="English">
+                        English
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+
+    </div>
+</nav>

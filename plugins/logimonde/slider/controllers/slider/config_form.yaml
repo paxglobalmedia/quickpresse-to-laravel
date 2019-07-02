@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Slider
+
+# Model Form Field configuration
+form: $/logimonde/slider/models/slider/fields.yaml
+
+# Model Class name
+modelClass: Logimonde\Slider\Models\Slider
+
+# Default redirect location
+defaultRedirect: logimonde/slider/slider
+
+# Create page
+create:
+    title: Create Slider
+    redirect: logimonde/slider/slider/update/:id
+    redirectClose: logimonde/slider/slider
+
+# Update page
+update:
+    title: Edit Slider
+    redirect: logimonde/slider/slider
+    redirectClose: logimonde/slider/slider
+
+# Preview page
+preview:
+    title: Preview Slider

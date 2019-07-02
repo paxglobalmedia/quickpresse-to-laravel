@@ -1,0 +1,1 @@
+$('#carousel-logimonde').carousel();

@@ -1,0 +1,32 @@
+{% if campaign.sends|length and campaign.contents|length %}
+    {% if not campaign.active %}
+        <div class="alert alert-success mb-5" role="alert" id="campaign-not-active">
+            <strong>{{ 'Your eblast is complete, now you can activate it'|_ }}!</strong>
+        </div>
+        {% partial __SELF__ ~ '::_modal_activation' %}
+    {% endif %}
+{% endif %}
+
+{% if campaign.sends|length > 0 %}
+    <div class="row">
+        <div class="col-12 col-md col-lg-8">
+            {% partial __SELF__ ~ '::_tool_bar' %}
+        </div>
+        <div class="col-12 col-md col-lg-4" id="summary-campaign">
+            {% partial __SELF__ ~ '::_summary' %}
+        </div>
+    </div>
+{% else %}
+    {% if campaign %}
+        <div class="row mt-2">
+            <div class="col text-right" data-request-data="id: {{ campaign.id }}">
+                <button class="btn btn-outline-danger" type="button"
+                        data-request="onDeleteCampaign"
+                        data-request-confirm="{{ 'Are you sure'|_ }}?"
+                        data-request-redirect="{{ 'app/dashboard'|page }}">
+                    <i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'Remove this eblast'|_ }}
+                </button>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

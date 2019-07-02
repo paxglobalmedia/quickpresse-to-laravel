@@ -1,0 +1,58 @@
+title = "Contact"
+url = "/contact"
+layout = "default"
+is_hidden = 0
+
+[simpleContact contact_qp]
+nameTitle = "Full Name"
+emailTitle = "Email"
+phoneTitle = "Phone"
+subjectTitle = "Subject"
+messageTitle = "Message"
+buttonText = "Submit"
+displayPhone = 1
+
+[viewBag]
+localeUrl[fr] = "/nous-joindre"
+
+[partnerOverview]
+maxItems = 0
+orderBy = "created_at"
+order = "desc"
+==
+<section class="contact-header"
+         style="background-image: url({{ 'assets/images/front/contact-bg.jpg'|theme }});background-size: cover;">
+    <div class="container">
+        <div class="row ">
+            <div class="col text-center my-5">
+                <h1 class="display-2 text-white">{{ 'Contact Us'|_ }}</h1>
+                <h2 class="h2-responsive text-white mt-lg-5">
+                    {{ 'Send us your questions, comments, or general feedback by filling out the form below, and we will get back to you as quickly as possible'|_ }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row my-2 my-lg-5">
+            <div class="col">
+                {% component 'contact_qp' %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="grey lighten-4 py-5">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col">
+                <h1 class="h1-responsive text-primary text-center">
+                    {{ 'Who use QuickPresse'|_ }}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="p-5">
+        {% component 'partnerOverview' %}
+    </div>
+</section>

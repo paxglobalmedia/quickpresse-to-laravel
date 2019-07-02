@@ -1,0 +1,47 @@
+{% set contentData = campaign.contents[0] %}
+<div class="row">
+    <div class="col-10 offset-1 ">
+        <div class="wrapper-template basic-image py-4">
+            <div class="block-content block-flyer" id="block-flyer-1"
+                 data-file-type="{{ contentData.mime }}"
+                 data-image-size="750"
+                 data-block-type="image">
+                {% partial __SELF__ ~ '::templates/__block_image' contentData=contentData block='block-flyer-1' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% if campaign.contents|length > 0 %}
+    <div class="row">
+        <div class="col-10 offset-1" id="image-pages">
+            {% if campaign.contents|length > 1 %}
+                <div class="wrapper-template basic-image">
+                    {% for pageData in campaign.contents %}
+                        {% if loop.index > 1 %}
+                            {% set blockLoop = "block-flyer-" ~ loop.index %}
+                            <div class="block-content block-flyer my-4" id="block-flyer-{{ loop.index }}"
+                                 data-file-type="{{ pageData.mime }}"
+                                 data-image-size="750"
+                                 data-block-type="image">
+                                {% partial __SELF__ ~ '::templates/__block_image' contentData=pageData block=blockLoop %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col text-center">
+            {% set counter = campaign.contents|length + 1 %}
+            <button type="button"
+                    class="btn btn-sm pointer"
+                    data-block-counter="{{ counter }}"
+                    onclick="addPageImage(this)">
+                <i class="fa fa-file-o"></i>&nbsp;&nbsp;&nbsp;{{ 'Add Page'|_ }}
+            </button>
+        </div>
+    </div>
+{% endif %}
+<input type="hidden" name="template_id" value="{{ template.id ? template.id : campaign.template_id }}">

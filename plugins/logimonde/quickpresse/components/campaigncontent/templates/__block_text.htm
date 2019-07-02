@@ -1,0 +1,33 @@
+<div class="block-file-header text-right">
+    <i class="fa {% if contentData %}fa-edit{% else %}fa-plus-square-o{% endif %} pointer"
+       title="{% if contentData %}{{ 'Edit block properties'|_ }}{% else %}{{ 'Insert image or HTML file'|_ }}{% endif %}"
+       onclick="getBlockContent(this)"></i>
+    {% if contentData %}
+        <div class="d-inline" style="border-left: 2px solid #ffffff;margin-right: 5px;"></div>
+        <i class="fa fa-trash pointer"
+           data-id="{{ contentData.id }}"
+           data-confirm="{{ 'Are you sure'|_ }}?"
+           onclick="removeFileContent(this)"></i>
+    {% endif %}
+</div>
+<div class="block-file"
+        {% if contentData.block == block %}
+            style="background-color: {{ contentData.style_block.background }};color: {{ contentData.style_block.text }};"
+        {% endif %}
+     onclick="getBlockContent(this)">
+    {% if contentData.block == block %}
+        <div class="block-file-item p-2"
+             id="{{ contentData.id }}">
+            {{ contentData.text_content|raw }}</div>
+    {% else %}
+        <div class="text-center my-4" style="z-index: 1;">
+            <i class="fa fa-text-width fa-3x grey-text"></i>
+            <p class="text-center">
+                {{ "It's time to design your email."|_ }}
+            </p>
+        </div>
+        <div style="z-index: 1;">
+            {#{% content 'app/specification.htm' %}#}
+        </div>
+    {% endif %}
+</div>

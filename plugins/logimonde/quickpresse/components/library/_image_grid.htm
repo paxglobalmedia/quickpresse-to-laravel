@@ -1,0 +1,32 @@
+{% if pictures|length > 0 %}
+    <div class="row mt-4" id="grid-view">
+        <div class="col">
+            <div id="results-images" class="flex-images">
+                {% for picture in pictures %}
+                    {% set dimension = __SELF__.getDimensionsPhoto(picture.width, picture.height) %}
+                    <div class="item hoverable p-3" data-w="{{ dimension.width }}" data-h="{{ dimension.height }}">
+                        <img src="{{ picture.source|media }}"
+                             class="">
+                        <div class="images-title">{{ picture.title|truncate(35) }}</div>
+                        <div class="images-actions">
+                            <div class="">
+                                <button type="button" class="btn btn-outline-danger btn-sm"
+                                        data-id="{{ picture.id }}"
+                                        data-view-type="grid-view"
+                                        data-confirm="{{ 'Are you sure'|_ }}?"
+                                        data-message="{{ 'The image has been delete'|_ }}"
+                                        onclick="deleteImage(this)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    {% partial __SELF__ ~ '::_empty' %}
+{% endif %}
+<input type="hidden" name="view_type" value="grid-view">

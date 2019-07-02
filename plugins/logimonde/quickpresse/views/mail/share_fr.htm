@@ -1,0 +1,54 @@
+subject = "QuickPresse.com  Quelqu’un vous envoie ceci croyant que cela peut vous intéresser"
+layout = "custom"
+==
+<table width="640" cellspacing="0" cellpadding="0" border="0" align="center"
+       style="font-family: Helvetica, sans-serif;">
+    <tr>
+        <td style="background-color: #f5f5f5;padding: 20px 35px;border-top: 4px solid #111820;">
+            <img src="{{ logo }}" width="200">
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px 35px;font-family: Helvetica, sans-serif;">
+            <strong>Bonjour</strong>,<br/><br/>
+            Quelqu’un ({{ email_from }}) vous envoie ceci croyant que cela peut vous intéresser:
+            <br/>
+            <h2 style="font-family: Helvetica, sans-serif;">{{ subject }}</h2>
+            <br/>
+            <strong>Message</strong>
+            <br/>
+            <p style="text-align: justify;font-family: Helvetica, sans-serif;font-size: 14px;">{{ msg_text }}</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px 35px;font-family: Helvetica, sans-serif;">
+            <table>
+                <tr>
+                    <td width="160"></td>
+                    <td width="320" style="background-color: #3d6d97;padding: 10px 30px;">
+                        <h3>
+                            <a style="color: #fff;font-family: Helvetica, sans-serif;text-decoration: none"
+                               href="{{ url }}">Cliquez ici pour consulter</a>
+                        </h3>
+                    </td>
+                    <td width="150"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #40464c;padding: 20px;font-family: Helvetica, sans-serif;font-size: 12px;color: #ffffff;">
+            Pour toute question, n'hésitez pas à
+            <a href="{{ host }}contact" style="color: #ffffff;text-decoration: underline;">nous contacter</a><br><br>
+            Nous vous recommandons de revoir la
+            <a href="{{ 'https://logimondemedia.com/privacy-policy' }}" style="color: #ffffff;text-decoration: underline;">
+                politique de confidentialité
+            </a>.
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #111820;padding: 10px 20px;font-family: Helvetica, sans-serif;font-size: 10px;color: #ffffff;text-align: right;">
+            Tous droits r&eacute;serv&eacute;s &copy; Logimonde Media {{ "now"|date('Y') }}
+        </td>
+    </tr>
+</table>

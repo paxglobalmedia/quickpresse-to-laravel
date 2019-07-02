@@ -1,0 +1,16 @@
+{% if campaign %}
+    <label>{{ 'Custom List'|_ }}</label>
+    <input type="text" class="form-control" disabled
+           name="name_list" value="{{ campaign.custom_list.name }}">
+    <input type="hidden" name="custom_list_id" value="{{ campaign.custom_list_id }}">
+{% else %}
+    <label>{{ 'Custom Lists'|_ }}</label>
+    <select name="list_id" class="form-control" required
+            onchange="validateCustomlist(this)">
+        <option value="">{{ 'Select'|_ }}</option>
+        {% for custom in customLists %}
+            <option value="{{ custom.id }}">
+                {{ custom.name }}</option>
+        {% endfor %}
+    </select>
+{% endif %}

@@ -1,0 +1,57 @@
+{% if accounts|length > 0 %}
+    <div class="row mt-3">
+        <div class="col">
+            <a href="{{ 'account/subaccount-form'|page }}?redirect={{ this.page.baseFileName }}&user_id={{ currentUser.id }}"
+               class="btn btn-primary">
+                {{ 'Add subaccount'|_ }}
+            </a>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-hover table-sm" style="display: table">
+                    <thead>
+                    <tr>
+                        <th>{{ 'Subaccount'|_ }}</th>
+                        <th>{{ 'Email'|_ }}</th>
+                        <th>{{ 'City'|_ }}</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for account in accounts %}
+                        <tr>
+                            <td>
+                                <a href="{{ 'account/subaccount-form'|page({account: account.id}) }}?redirect={{ this.page.baseFileName }}&user_id={{ currentUser.id }}">
+                                    {{ account.name }}
+                                </a>
+                            </td>
+                            <td>{{ account.email }}</td>
+                            <td>{{ account.city.nom_en }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col text-right">
+            {% partial 'pagination' items=accounts %}
+        </div>
+    </div>
+{% else %}
+    <div class="row my-5">
+        <div class="col text-center">
+            <h3 class="h3-responsive">{{ 'You currently have no subaccounts to display'|_ }}</h3>
+            <div class="mt-5">
+                <a href="{{ 'account/subaccount-form'|page({company: currentUser.company.id}) }}"
+                   class="btn btn-primary">
+                    {{ 'Add SubAccount'|_ }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}

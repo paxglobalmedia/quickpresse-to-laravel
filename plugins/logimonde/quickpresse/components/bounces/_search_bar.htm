@@ -1,0 +1,28 @@
+{{ form_open({"id":"form-list-stats" }) }}
+<div class="row mt-0 mt-md-3">
+    <div class="col-12 col-sm mt-3 mt-sm-0">
+        {% partial 'app/search-bar' %}
+    </div>
+    <div class="col-12 col-sm mt-3 mt-md-0 text-right">
+        <p class="d-inline-block">{{ 'Sort by'|_ }} :</p>&nbsp;&nbsp;
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                {{ sort != '' ? sortOptions[sort]|_ : sortOptions['error_count desc']|_ }}
+            </button>
+            <div class="dropdown-menu">
+                {% for key, sortOption in sortOptions %}
+                    <a class="dropdown-item"
+                       href="javascript:void(0);"
+                       data-action="{{ key }}">{{ sortOption|_ }}</a>
+                {% endfor %}
+                <input type="hidden" class="dropdown-input"
+                       name="sort" value="{{ sort != '' ? sort : 'error_count desc' }}">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{ form_close() }}

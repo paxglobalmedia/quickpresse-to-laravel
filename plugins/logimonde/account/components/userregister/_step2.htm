@@ -1,0 +1,61 @@
+{{ form_open({"id":"form-register-user-2", 'files':'true' }) }}
+<div class="row mt-3 d-block d-lg-none">
+    <div class="col">
+        <strong>{{ 'Step'|_ }}&nbsp;2&nbsp; :</strong>
+        <span class="grey-text">{{ 'Your personal details'|_ }}</span>
+    </div>
+</div>
+<div class="form-row mt-3">
+    <div class="col">
+        <h5 class="h5-responsive">
+            {{ 'Email'|_ }}:
+            <span>{{ user.email }}</span>
+        </h5>
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <input type="hidden" name="user_pwd" value="{{ userPwd }}">
+    </div>
+
+</div>
+<div class="form-row mt-2">
+    <div class="col-12 col-sm-6 form-group">
+        <label>{{ 'First name'|_ }}</label>
+        <input type="text" class="form-control" required
+               name="first_name">
+    </div>
+    <div class="col-12 col-sm-6 form-group">
+        <label>{{ 'Last name'|_ }}</label>
+        <input type="text" class="form-control" required
+               name="last_name">
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-12 col-sm-5 form-group">
+        <label>{{ 'Title'|_ }}</label>
+        <input type="text" class="form-control"
+               name="title" >
+    </div>
+    <div class="col-8 col-sm-4 form-group">
+        <label>{{ 'Phone'|_ }}</label>
+        <input type="text" class="form-control" required
+               name="phone" >
+    </div>
+    <div class="col-4 col-sm-3 form-group">
+        <label>{{ 'Extension'|_ }}</label>
+        <input type="text" class="form-control"
+               name="extension" >
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-8">
+        <span class="field-required"></span>&nbsp;
+        <small>{{ 'Required fields'|_ }}</small>
+    </div>
+    <div class="col-md-4 text-right">
+        <button type="button" class="btn btn-primary"
+                onclick="saveRegisterStep2(this)">
+            {{ 'Next'|_ }}&nbsp;&nbsp;
+            <i class="fa fa-caret-right"></i>
+        </button>
+    </div>
+</div>
+{{ form_close() }}

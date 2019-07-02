@@ -1,0 +1,120 @@
+{% if campaign.sends|length %}
+    <div class="row mt-1">
+        <div class="col">
+            <div class="btn-group">
+                <a href="{{ 'app/show'|page({qp: campaign.sends.0.id}) }}"
+                   class="btn btn-info" target="_blank">{{ 'Preview'|_ }}</a>
+                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item exclude" target="_blank"
+                       href="{{ 'app/show'|page({qp: campaign.sends.0.id}) }}">
+                        <i class="fa fa-external-link"></i>&nbsp;&nbsp;&nbsp;{{ 'In Browser'|_ }}
+                    </a>
+                    <a class="dropdown-item exclude"
+                       href="javascript:void(0);"
+                       data-send-id="{{ campaign.sends.0.id }}"
+                       data-send-confirm="{{ 'Are you sure'|_ }}?"
+                       data-sent-message="{{ 'An email has been sent to'|_ }} "
+                       onclick="sendTestByEmail(this);">
+                        <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;&nbsp;{{ 'By email'|_ }}
+                    </a>
+                    {% if user.role_id != '3' %}
+                        <a class="dropdown-item exclude"
+                           href="javascript:void(0);"
+                           data-send-id="{{ campaign.sends.0.id }}"
+                           data-send-confirm="{{ 'Are you sure'|_ }}?"
+                           data-sent-message="{{ 'The email test has been sent'|_ }}"
+                           onclick="sendAdminTestByEmail(this);">
+                            <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;{{ 'Admin Test Email'|_ }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {% if eblastApproved|length %}
+                <div class="alert alert-primary" role="alert">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    {{ 'The edit is not available at this time because the sending is in progress'|_ }}.&nbsp;
+                    {{ 'Please try again in a few minutes. Thank you'|_ }}
+                </div>
+            {% else %}
+                {% if campaign.type_qp == 'custom' %}<br>{% endif %}
+                <div class="switch mt-1">
+                    <label>{{ 'Activated'|_ }}?&nbsp;&nbsp;</label>
+                    <i class="fa fa-info-circle text-primary"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{ 'If your eblast is finalized and ready, click YES to activate the request'|_ }}."
+                       style="font-size: 1.2rem;"></i>&nbsp;&nbsp;&nbsp;
+                    <label>
+                        {{ 'No'|_ }}
+                        <input type="checkbox" value="1" name="published"
+                               data-message-yes="{{ 'Eblast has been activated'|_ }}"
+                               data-message-no="{{ 'Eblast has been deactivated'|_ }}"
+                               onchange="setPublishedCampaign(this)"
+                                {{ campaign.active ? 'checked' : '' }}>
+                        <span class="lever"></span>
+                        {{ 'Yes'|_ }}
+                    </label>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if campaign.type_qp != 'custom' %}
+        <div class="row mt-1">
+            <div class="col-12 col-md-auto col-lg-auto">
+                <div class="switch d-inline-block mt-1">
+                    <label>{{ 'Include in the Quick Presse section'|_ }}?&nbsp;&nbsp;&nbsp;</label>
+                    <i class="fa fa-info-circle text-primary"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{ 'Section on the websites of www.PAXnews.com & PAXnewsWest.com which includes all sent QuickPresse eblasts and sent by email daily'|_ }}."
+                       style="font-size: 1.2rem;"></i>&nbsp;&nbsp;&nbsp;
+                    <label>
+                        {{ 'No'|_ }}
+                        <input type="checkbox" value="1" name="pax_section"
+                               data-message-yes="{{ 'Eblast has been included in Quick Presse section'|_ }}"
+                               data-message-no="{{ 'Eblast has been removed from Quick Presse section'|_ }}"
+                               onchange="setIncludeCampaign(this)"
+                                {{ campaign ? (campaign.show_qp_section ? 'checked' : '') : 'checked' }}>
+                        <span class="lever"></span>
+                        {{ 'Yes'|_ }}
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div id="days-pax-section"
+                     class="{{ campaign.show_qp_section ? 'd-inline-block' : 'd-none' }} w-100">
+                    <select class="form-control  form-control-sm  w-50 d-inline-block "
+                            name="days_pax"
+                            data-message="{{ 'The eblast will be shown during'|_ }}"
+                            data-days="{{ 'days'|_ }}"
+                            onchange="setDaysPaxSection(this)">
+                        <option value="1" {{ campaign.period_show == '1' ? 'selected' : '' }}>1</option>
+                        <option value="2" {{ campaign.period_show == '2' ? 'selected' : '' }}>2</option>
+                        <option value="3" {{ campaign.period_show == '3' ? 'selected' : '' }}>3</option>
+                        <option value="4" {{ campaign.period_show == '4' ? 'selected' : '' }}>4</option>
+                        <option value="5"
+                                {{ campaign.period_show == '5' or campaign.period_show == '0' ? 'selected' : '' }}>
+                            5
+                        </option>
+                    </select>
+                    <label for="days-pax-section"
+                           class="d-inline-block mt-1">&nbsp;&nbsp;{{ 'Days'|_ }}</label>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+
+    <div class="alert alert-warning" role="alert">
+        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;
+        {{ 'The preview of this eblast is not available yet'|_ }}.
+        {{ 'You must complete the 3 steps'|_ }}.
+    </div>
+
+{% endif %}

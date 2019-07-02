@@ -1,0 +1,70 @@
+{{ form_open({"id":"form-update-company", 'files':'true', 'data-parsley-validate': "", "redirec": redirect }) }}
+<div class="row my-5">
+    <div class="col">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>{{ 'Name'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="name" value="{{ company.name }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>{{ 'Address'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="address" value="{{ company.address }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ 'Postal code'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="zip" value="{{ company.zip }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>{{ 'City (Type city name & choose from list)'|_ }}</label>
+                    <input type="text" class="form-control get-city"
+                           name="name_city"
+                           value="{{ company.city ? company.city.nom_en ~ ' (' ~ company.state.nom_en ~ ' - ' ~ company.country.nom_en ~ ')' : '' }}">
+                    <input type="hidden" name="city" value="{{ company.city_id }}">
+                    <input type="hidden" name="state" value="{{ company.state_id }}">
+                    <input type="hidden" name="country" value="{{ company.country_id }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ 'Phone'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="phone" value="{{ company.phone }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% partial 'account/_company_logos' %}
+            </div>
+        </div>
+        <input type="hidden" name="company_id" value="{{ company.id }}">
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                <span class="field-required"></span>&nbsp; {{ 'Required fields'|_ }}
+            </div>
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary"
+                        type="submit" name="submit_form"
+                        value="form-company-ok">{{ 'Save'|_ }}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{ form_close() }}

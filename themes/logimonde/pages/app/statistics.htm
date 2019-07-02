@@ -1,0 +1,36 @@
+title = "Statistics"
+url = "/statistics/:company?"
+layout = "app"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/statistiques/:company?"
+
+[Statistics]
+pageNumber = "{{ :page }}"
+itemsPerPage = 15
+sortOrder = "date_requested desc"
+
+[session]
+security = "user"
+redirect = "account/connection"
+==
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col">
+            <h1 class="h1-responsive text-primary">
+                <i class="fa fa-line-chart"></i>&nbsp;
+                {{ 'Statistics'|_ }} </h1>
+            <div class="grey-text" style="margin-top: -10px;">
+                {{ 'Track your overall reach, audience, and the percentage of the number of times your Quick Presse have been opened or clicked'|_ }}.&nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-12">
+           {% component 'Statistics' %}
+        </div>
+    </div>
+    <div class="row mb-5"><div class="col"></div></div>
+</div>
+{% component 'session' %}

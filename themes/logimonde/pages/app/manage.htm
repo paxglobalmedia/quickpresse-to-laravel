@@ -1,0 +1,44 @@
+title = "Manage Eblast"
+url = "/eblast/manage/:campaign?"
+layout = "app"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[Manage]
+kind = "normal"
+==
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col">
+            <h1 class="h1-responsive text-primary">
+                {% if campaign %}
+                    <i class="fa fa-edit"></i>&nbsp;
+                    {{ 'Edit your eblast'|_ }}
+                {% else %}
+                    <i class="fa fa-plus-circle"></i>&nbsp;
+                    {{ 'Create your eblast'|_ }}
+                {% endif %}
+            </h1>
+        </div>
+        <div class="col text-right pt-3">
+            <a class=""
+               href="{{ 'app/dashboard'|page }}">
+                <i class="fa fa-undo"></i>&nbsp;
+                {{ 'Back to Quick Presse List'|_ }}
+            </a>
+        </div>
+    </div>
+    <hr class="m-0">
+    <div class="row mt-3 mb-5">
+        <div class="col-sm-12">
+            {% component 'Manage' %}
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col"></div>
+    </div>
+</div>
+{% component 'session' %}

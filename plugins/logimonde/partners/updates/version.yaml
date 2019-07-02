@@ -1,0 +1,7 @@
+1.0.1:
+    - First version of Partners
+    - create_partners_table.php
+1.0.2:
+    - Order partners
+1.0.3:
+    - Added integration with Rainlab translate plugin

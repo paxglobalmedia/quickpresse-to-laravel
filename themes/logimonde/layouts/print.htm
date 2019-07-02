@@ -1,0 +1,59 @@
+description = "Print"
+==
+<?php
+use RainLab\Translate\Classes\Translator;
+function onInit()
+{
+    $translator = Translator::instance();
+    $lang = $translator->getLocale();
+    $this['lang'] = $translator->getLocale();
+    $this['site_url'] = asset('');
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0"/>
+    <title>QuickPresse.com - {{ this.page.title|_ }}</title>
+    <meta name="description" content="{{ this.page.description|_ }}">
+    <meta name="title" content="{{ this.page.title|_ }}">
+    <meta name="author" content="Logimonde Media">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="{{ 'assets/images/favicon.ico'|theme }}"/>
+    <link href="{{ [
+    'assets/css/theme.css',
+    ]|theme }}" rel="stylesheet">
+    {% styles %}
+    <script>
+        var lang = "{{ lang }}";
+        var site_url = '{{ site_url }}';
+    </script>
+    {% if landscape %}
+        <style>
+            @media print{@page {size: landscape}}
+        </style>
+    {% endif %}
+</head>
+<body onload="window.print();">
+
+<main id="page">
+    {% page %}
+</main>
+
+<footer>
+    {% partial "app-print/footer" %}
+</footer>
+
+
+<script src="{{ [
+'assets/vendor/jquery/dist/jquery.min.js',
+'assets/vendor/bootstrap/dist/js/bootstrap.min.js',
+'assets/js/default.js'
+]|theme }}"></script>
+
+{% framework extras %}
+{% scripts %}
+</body>
+</html>

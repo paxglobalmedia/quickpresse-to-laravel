@@ -1,0 +1,76 @@
+description = "Header application"
+==
+<nav class="navbar primary-color navbar-inverse">
+    <button class="navbar-toggler button-collapse" type="button"
+            data-activates="slide-out">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav"></ul>
+    <ul class="text-xs-center nav-menu navbar-nav">
+        <li class="list-inline-item">
+            <a class="white-text"
+               href="{{ 'home'|page }}" target="_blank">
+                <i class="fa fa-home"></i>
+                <span class="d-none d-md-block">{{ 'Go to homepage'|_ }}</span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="white-text"
+               href="{{ 'app/help'|page }}">
+                <i class="fa fa-info-circle"></i>
+                <span class="d-none d-md-block">{{ 'Help & Specs'|_ }}</span>
+            </a>
+        </li>
+        {% if user.role_id != '3' %}
+            <li class="list-inline-item">
+                <a href="{{ 'account/users'|page }}">
+                    <i class="fa fa-users"></i>
+                    <span class="d-none d-md-block">{{ 'Users'|_ }}</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="list-inline-item">
+                <a href="{{ 'account/profile'|page }}">
+                    <i class="fa fa-user"></i>
+                    <span class="d-none d-md-block">{{ 'My Account'|_ }}</span>
+                </a>
+            </li>
+        {% endif %}
+
+        <li class="list-inline-item">
+            {% if lang == 'en' %}
+                <a href="#"
+                   class="text-center"
+                   data-request="onSwitchLocale"
+                   data-request-data="locale: 'fr'" title="Français">
+                    <span class="d-none d-md-block"><i class="fa fa-flag"></i></span>
+                    <span class="d-none d-md-inline-block">
+                        Français
+                    </span>
+                    <span class="lang d-sm-none" style="font-weight: 600;font-size: 1rem;">FR</span>
+                </a>
+            {% else %}
+                <a href="#"
+                   class="text-center"
+                   data-request="onSwitchLocale"
+                   data-request-data="locale: 'en'" title="English">
+                    <span class="d-none d-md-block"><i class="fa fa-flag"></i></span>
+                    <span class="d-none d-md-inline-block">
+                        English
+                    </span>
+                    <span class="lang d-sm-none" style="font-weight: 600;font-size: 1rem;">EN</span>
+                </a>
+            {% endif %}
+        </li>
+        <li class="list-inline-item">
+            <a class="waves-effect waves-light white-text"
+               href="javascript:void(0)"
+               data-request="onLogout" data-request-data="redirect: '/'">
+                <i class="fa fa-sign-out"></i>
+                <span class="d-none d-md-block">{{ 'Logout'|_ }}</span>
+            </a>
+        </li>
+    </ul>
+
+
+</nav>

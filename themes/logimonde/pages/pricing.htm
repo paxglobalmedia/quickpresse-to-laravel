@@ -1,0 +1,145 @@
+title = "Pricing"
+url = "/pricing"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[fr] = "/prix"
+
+[partnerOverview]
+maxItems = 0
+orderBy = "created_at"
+order = "desc"
+==
+function onStart()
+{
+    $this->addCss('assets/css/pricing.css', '1.03');
+    $this->addJs('assets/js/pricing.js', '1.04');
+}
+==
+<section class="pricing-header"
+         style="background-image: url({{ 'assets/images/front/price-bg.jpg'|theme }});background-position: center;">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="display-2" style="text-shadow: 2px 2px #cccccc;">
+                    <strong>{{ 'Simple Pricing'|_ }}.</strong>
+                </h1>
+                <h1 class="display-3">{{ 'Great business opportunities'|_ }}.</h1>
+                <div class="row justify-content-center pricing-description">
+                    <div class="col col-sm-10">
+                        <h5 class="h5-responsive grey-text mt-4">
+                            {{ 'Our QuickPresse email distribution service is the only e-distribution in Canada to be audited by Deloitte LLP'|_ }},
+                            {{ 'That means you’re guaranteed to reach who you want, when you want, without worrying about being off target'|_ }}
+                            {{ "We're confident that no matter which service you go with, you'll love using QuickPresse"|_ }}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row mt-3 mb-5 my-lg-5">
+            <div class="col text-center mb-5">
+                <div class="row justify-content-center mt-0 mt-lg-5">
+                    <div class="col col-md-6 col-lg-4 ">
+                        <div class="card z-depth-1">
+                            <div class="card-header text-white bg-highlight">
+                                <h5 class="h5-responsive m-0">{{ 'English e-blast'|_ }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title">{{ '135'|money(0) }}/page</h1>
+                                <span class="card-text">
+                                    {{ 'Reach'|_ }}&nbsp;
+                                    <strong>{{ '17497'|number(0) }}</strong>&nbsp;
+                                    {{ 'English subscribers'|_ }}</span>
+
+                                <p class="card-text text-left">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-md-6 col-lg-4 mt-3 mt-sm-0">
+                        <div class="card z-depth-1">
+                            <div class="card-header text-white bg-highlight">
+                                <h5 class="h5-responsive m-0">{{ 'French e-blast'|_ }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title">{{ '50'|money(0) }}/page</h1>
+                                <span class="card-text">
+                                    {{ 'Reach'|_ }}&nbsp;
+                                    <strong>{{ '8682'|number(0) }}</strong>&nbsp;
+                                    {{ 'French subscribers'|_ }}</span>
+                                <p class="card-text text-left">
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Nouvelle categorie de prix ajoutee en date du 2017-OCT-27-->
+                    <div class="col col-md-6 col-lg-4 mt-4 mt-lg-0">
+                        <div class="card z-depth-1">
+                            <div class="card-header text-white bg-highlight">
+                                <h5 class="h5-responsive m-0">{{ 'Custom list price'|_ }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title">
+                                    {% if lang == 'en' %}$&nbsp;{% endif %}
+                                    <span id="amount">0.10</span>
+                                    {% if lang == 'fr' %}&nbsp;${% endif %}
+                                    /{{ 'email'|_ }}
+                                </h1>
+
+                                <div id="slider" class="mx-5 my-4"></div>
+
+
+                                <div class="card-text mt-2">{{ 'Promote your service and reach your customers using your own list'|_ }}</div>
+                                <p class="card-text text-left">
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Fin de la nouvelle categorie-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% partial 'marketing' %}
+<section>
+    <div class="container">
+        <div class="row py-5">
+            <div class="col py-5 text-center">
+                <h1 class="display-4 text-primary text-center">
+                    {{ 'Welcome to'|_ }}&nbsp;Quick Presse
+                </h1>
+                <h1 class="h1-responsive grey-text text-darken-1 text-center">
+                    {{ 'Targeting the right people, using the right approach'|_ }}
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="grey lighten-4 py-5">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col">
+                <h1 class="h1-responsive text-primary text-center">
+                    {{ 'Who use QuickPresse'|_ }}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="p-5">
+        {% component 'partnerOverview' %}
+    </div>
+</section>

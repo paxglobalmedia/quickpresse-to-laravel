@@ -1,0 +1,77 @@
+<div class="card">
+    <div class="card-body">
+        <h2 class="h2-responsive text-center mt-3">
+            {{ 'Which list you want to use for this Quick Presse'|_ }}?
+        </h2>
+        <div class="text-center mt-5">
+            <button class="btn btn-primary" type="button"
+                    data-toggle="collapse" data-target="#collapse-specs"
+                    aria-expanded="false" aria-controls="collapse-specs">
+                {{ 'Please see the specifications'|_ }}
+            </button>
+        </div>
+        <div class="collapse mt-3" id="collapse-specs">
+            <div class="bg-light p-4 border">
+                <div class="row">
+                    <div class="col-12 col-sm-8">
+                        {% content 'app/spec_html.htm' %}
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        {% content 'app/spec_image.htm' %}
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        {% content 'app/spec_pdf.htm' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 justify-content-lg-center">
+            <div class="col-xl-10">
+                <div class="row">
+                    {% if contracts|length %}
+                        <div class="col-12 col-sm text-center ">
+                            <a href="javascript:void(0)"
+                               class="btn btn-cancel hover-highlight w-100 highlight"
+                               data-option="contract"
+                               onclick="getFormOptions(this)">
+                                <i class="fa fa-check-square-o fa-5x"></i><br>
+                                <strong>{{ 'Existing Contract'|_ }}</strong>
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="col-12 col-sm text-center text-primary">
+                        <a href="javascript:void(0)"
+                           class="btn btn-cancel hover-highlight w-100"
+                           data-option="qp_list"
+                           onclick="getFormOptions(this)">
+                            <i class="fa fa-bookmark fa-5x"></i><br>
+                            <span>{{ 'Regular Distribution'|_ }}</span>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm text-center text-primary">
+                        {% if customLists|length %}
+                            <a href="javascript:void(0)"
+                               class="btn  btn-cancel hover-highlight w-100"
+                               data-option="custom"
+                               onclick="getFormOptions(this)">
+                                <i class="fa fa-list-alt fa-5x"></i><br>
+                                <span>{{ 'Custom List'|_ }}</span>
+                            </a>
+                        {% else %}
+                            <a href="{{ 'app/lists'|page }}"
+                               class="btn btn-cancel grey-text text-darken-2 hover-highlight w-100"
+                               data-toggle="tooltip" data-placement="top"
+                               data-html="true"
+                               title="{{ 'You do not have custom lists'|_ }}!<br>{{ 'You can create your own list'|_ }}">
+                                <i class="fa fa-list-alt fa-5x"></i><br>
+                                <span>{{ 'Custom List'|_ }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

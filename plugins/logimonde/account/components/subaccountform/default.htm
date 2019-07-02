@@ -1,0 +1,98 @@
+{% set url = redirect|page({company: account.company_id, user: user_id}) %}
+{{ form_open({"id":"form-update-account", 'files':'true',  "data-redirect": url  }) }}
+<div class="row mt-3 mb-5">
+    <div class="col">
+        <h1 class="h1-responsive">
+            {{ 'SubAccount'|_ }} :
+            <span class="grey-text">{{ account.name }}</span>
+        </h1>
+        <h4 class="h4-responsive">
+            {{ 'Company'|_ }} :
+            <span class="grey-text">{{ account.company.name }}</span>
+        </h4>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ 'Name'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="name" value="{{ account.name }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ 'Email'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="email" value="{{ account.email }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>{{ 'Address'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="address" value="{{ account.address }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ 'Postal code'|_ }}</label>
+                    <input type="text" class="form-control" required
+                           name="zip" value="{{ account.zip }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>{{ 'City (Type city name & choose from list)'|_ }}</label>
+                    <input type="text" class="form-control get-city"
+                           name="name_city"
+                           value="{{ account.city ? account.city.nom_en ~ ' (' ~ account.state.nom_en ~ ' - ' ~ account.country.nom_en ~ ')' : '' }}">
+                    <input type="hidden" name="city" value="{{ account.city_id }}">
+                    <input type="hidden" name="state" value="{{ account.state_id }}">
+                    <input type="hidden" name="country" value="{{ account.country_id }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>{{ 'Phone'|_ }}</label>
+                    <input type="text" class="form-control"
+                           name="phone" value="{{ account.phone }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="switch mt-2">
+                    <label>
+                        {{ 'Inactive'|_ }}
+                        <input type="checkbox" name="active"
+                               value="1" {{ account.active ? 'checked' : '' }}>
+                        <span class="lever"></span>
+                        {{ 'Active'|_ }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                {% partial __SELF__ ~ '::_account_logos' %}
+            </div>
+        </div>
+        <input type="hidden" name="account_id" value="{{ account.id }}">
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                <span class="field-required"></span>&nbsp; {{ 'Required fields'|_ }}
+            </div>
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary"
+                        type="submit" name="submit_form"
+                        value="form-sub-account-ok">{{ 'Save'|_ }}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{ form_close() }}

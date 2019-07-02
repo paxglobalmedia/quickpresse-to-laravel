@@ -1,0 +1,50 @@
+<div id="carousel-logimonde" class="carousel slide"
+     data-ride="carousel" data-interval="{{ slider_interval }}">
+    <!-- Indicators -->
+    {% if slider_indicators %}
+        <ol class="carousel-indicators">
+            {% for slider in sliders %}
+                <li data-target="#carousel-logimonde" data-slide-to="{{ loop.index-1 }}"
+                    class="{{ loop.index == 1 ? 'active':'' }}"></li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        {% for slider in sliders %}
+            <div class="carousel-item {{ loop.index == 1 ? 'active':'' }}" style="width: 100%;">
+                {% if slider.link %}
+                <a href="{{ slider.link }}" target="{{ slider.target }}">
+                    {% endif %}
+                    <img src="{{ slider.image.path }}" alt="{{ slider.name }}"
+                         class="d-block w-100"
+                            {{ slider.map_id ? 'usemap="#'~ slider.map_id:'' }}>
+                    {% if slider.link %}
+                </a>
+                {% endif %}
+                {% if slider.caption %}
+                    <div class="carousel-caption">
+                        {{ slider.caption|raw }}
+                    </div>
+                {% endif %}
+                {% if slider.map_code %}
+                    <map name="{{ slider.map_id ? slider.map_id:'' }}">
+                        {{ slider.map_code|raw }}
+                    </map>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    {% if slider_controls %}
+        <a class="left carousel-control-prev" href="#carousel-logimonde" role="button" data-slide="prev">
+            <span class="fa fa-angle-left icon-prev fa-4x grey-text " aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control-next" href="#carousel-logimonde" role="button" data-slide="next">
+            <span class="fa fa-angle-right icon-next fa-4x grey-text" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    {% endif %}
+</div>

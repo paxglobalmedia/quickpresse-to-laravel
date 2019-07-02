@@ -1,0 +1,78 @@
+<div class="card mt-2">
+    <div class="card-header">
+        {{ 'Match the columns'|_ }}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <label>{{ 'Imported Columns'|_ }}</label>
+
+            </div>
+            <div class="col-1"></div>
+            <div class="col">
+                <label>{{ 'Available column names'|_ }}</label>
+            </div>
+            <div class="col-1">
+                <label>{{ 'Include'|_ }}</label>
+            </div>
+        </div>
+        {% for field in fields if field != '0' %}
+            <div class="row column-field">
+                <div class="col">
+                    <div class="form-group">
+                        <input class="form-control" type="text"
+                               name="columns[]" value="{{ field }}" readonly>
+                    </div>
+                </div>
+                <div class="col-1 pt-1 text-center">
+                    <i class="fa fa-arrow-right"></i>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <select name="app_fields[]"
+                                class="form-control"
+                                onchange="setIncludeField(this)">
+                            <option value="">{{ 'Select'|_ }}</option>
+                            <option value="email">{{ 'Email Address'|_ }}</option>
+                            <option value="first_name">{{ 'First Name'|_ }}</option>
+                            <option value="last_name">{{ 'Last Name'|_ }}</option>
+                            <option value="address">{{ 'Address'|_ }}</option>
+                            <option value="zip">{{ 'Postal code'|_ }}</option>
+                            <option value="phone">{{ 'Phone'|_ }}</option>
+                            <option value="title">{{ 'Title'|_ }}</option>
+                            <option value="company">{{ 'Company'|_ }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-1 pt-2 text-center">
+
+                    <input type="checkbox" class="filled-in checkbox-include"
+                           id="chk-{{ field }}"
+                           name="include[]"
+                           value="1"
+                           disabled
+                           checked="checked"/>
+                    <label for="chk-{{ field }}"></label>
+
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+<input type="hidden" name="filename" value="{{ filename }}">
+<div class="row mt-3">
+    <div class="col text-right">
+        <a href="{{ 'app/lists'|page }}"
+           class="btn btn-link btn-cancel">{{ 'Cancel'|_ }}
+        </a>
+        <button class="btn btn-primary ml-3" type="button"
+                id="btn-save"
+                data-message="{{ 'Wait please. Importing data'|_ }}..."
+                onclick="saveImportedData(this)">
+            {{ 'Save'|_ }}
+        </button>
+
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% set contentData = campaign.contents[0] %}
+<div class="row">
+    <div class="col-10 offset-1 pt-3 pb-5">
+        <div class="wrapper-template basic-html">
+            <div class="block-content block-html" id="block-file-1"
+                 data-file-type="{{ contentData.mime }}"
+                 data-image-width="750"
+                 data-block-type="html">
+                <div class="block-file-header text-right">
+                    <i class="fa {% if contentData %}fa-edit{% else %}fa-plus-square-o{% endif %} pointer"
+                       title="{% if contentData %}{{ 'Edit block properties'|_ }}{% else %}{{ 'Insert HTML file'|_ }}{% endif %}"
+                       onclick="getBlockContent(this)"></i>
+                    {% if contentData %}
+                        <div class="d-inline" style="border-left: 2px solid #ffffff;margin-right: 5px;"></div>
+                        <i class="fa fa-trash pointer"
+                           data-id="{{ contentData.id }}"
+                           data-template-file="CampaignContent::{{ campaign.template.partial_file }}"
+                           data-confirm="{{ 'Are you sure'|_ }}?"
+                           onclick="removeFileContent(this)"></i>
+                    {% endif %}
+                </div>
+                <div class="block-file"
+                     onclick="getBlockContent(this)">
+                    {% if contentData %}
+                        {% if contentData.mime == 'text/html' %}
+                            {% set fileHtml = __SELF__.readHtmlFile(contentData.source_path) %}
+                            <div class="block-file-item" id="{{ contentData.id }}">
+                                {{ source(fileHtml) }}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="text-center my-5" style="z-index: 1;">
+                            <i class="fa fa-file-code-o fa-5x grey-text"></i>
+                            <p class="text-center">
+                                {{ 'Upload an HTML file'|_ }}
+                            </p>
+                        </div>
+                        <div class="py-3 px-5" style="z-index: 1;">
+                            {% content 'app/spec_html.htm' %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="template_id" value="{{ template.id ? template.id : campaign.template_id }}">

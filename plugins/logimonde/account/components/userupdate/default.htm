@@ -1,0 +1,33 @@
+{#{{ var_dump(user) }}#}
+<h1 class="h1-responsive text-primary">{{ 'Account'|_ }} :
+    <span class="grey-text">{{ currentUser.first_name ~ ' ' ~ currentUser.last_name }}</span>
+</h1>
+<div class="row mt-4">
+    <div class="col">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active"
+                   data-toggle="tab" href="#info" role="tab">{{ 'Information'|_ }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   data-toggle="tab" href="#pwd" role="tab">{{ 'Password'|_ }}</a>
+            </li>
+
+        </ul>
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="info" role="tabpanel" style="min-height: 350px;">
+                {% partial __SELF__ ~ '::_user_form' %}
+            </div>
+            <div class="tab-pane" id="pwd" role="tabpanel" style="min-height: 350px;">
+                {% partial __SELF__ ~ '::_password' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

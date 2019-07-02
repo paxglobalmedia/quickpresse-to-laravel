@@ -1,0 +1,70 @@
+{% if campaign.active %}
+    {% if campaign.contents|length > 0 %}
+        {% if campaign.sends|length %}
+            <div class="card bg-light mt-3 mt-md-0">
+                <div class="card-body px-3 py-2">
+                    <div class="row">
+                        <div class="col-12 col-sm ">
+                            <div class="row">
+                                <div class="col-8 pr-0" style="padding-top: 0.3rem;">
+                                    {{ 'Total Quick Presse'|_ }}:
+                                </div>
+                                <div class="col-4 text-right pl-0">
+                                    <span class="text-primary bold"
+                                          style="font-size: 1.3rem">{{ campaign.total_qp }}</span>
+                                </div>
+                            </div>
+                            <div class="border-bottom"></div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12 col-sm py-2">
+                            <div class="row">
+                                <div class="col-8 pr-0" style="padding-top: 0.3rem;">
+                                    {{ 'Total page(s)'|_ }}:
+                                </div>
+                                <div class="col-4 text-right pl-0">
+                                    <span class="text-primary bold" style="font-size: 1.3rem">{{ pages }}</span>
+                                </div>
+                            </div>
+                            <div class="border-bottom"></div>
+                        </div>
+                    </div>
+                    {% if campaign.type_qp == 'contract' %}
+                        <div class="row ">
+                            <div class="col-12 col-sm ">
+                                <div class="row">
+                                    <div class="col-8 pr-0" style="padding-top: 0.3rem;">
+                                        {{ 'Quick Presse Balance'|_ }}:
+                                    </div>
+                                    <div class="col-4 text-right pl-0">
+                                        <span class="text-primary" style="font-size: 1.3rem">
+                                            {{ qp_balance }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="border-bottom"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if campaign.type_qp != 'contract' %}
+                        <div class="row ">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col pt-lg-1">
+                                        <strong>{{ 'Total eblast cost'|_ }}:</strong>
+                                    </div>
+                                    <div class="col text-right ">
+                                        <h4 class="h4-responsive m-0 highlight">{{ total_cost|money }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        {% endif %}
+    {% endif %}
+{% endif %}

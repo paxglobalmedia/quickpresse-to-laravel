@@ -1,0 +1,29 @@
+{{ form_open({'id': 'form-library'}) }}
+<div class="row">
+    <div class="col" id="tools-bar" {% if not pictures|length %}style="display:none;"{% endif %}>
+        {% partial __SELF__ ~ '::_bar_tools' %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col" id="image-list">
+
+        {% if typeView == 'grid-view' %}
+            {% partial __SELF__ ~ '::_image_grid' %}
+        {% else %}
+            {% partial __SELF__ ~ '::_image_list' %}
+        {% endif %}
+
+    </div>
+</div>
+{% if pictures|length %}
+    <div class="row mt-3">
+        <div class="col" id="pag-library">
+            {# --- Pagination --- #}
+            {% partial __SELF__ ~ '::_pagination_library' %}
+        </div>
+    </div>
+{% endif %}
+<input type="hidden" name="company_id" value="{{ company.id }}">
+<input type="hidden" name="add_library" value="{{ company.id }}">
+{{ form_close() }}

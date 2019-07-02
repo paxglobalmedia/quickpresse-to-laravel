@@ -1,0 +1,93 @@
+{{ form_open({"id":"form-list-stats" }) }}
+<div class="row mt-0 mt-md-3">
+    <div class="col-12 col-sm mt-3 mt-sm-0">
+        {% partial 'app/search-bar' %}
+    </div>
+    <div class="col-12 col-sm mt-3 mt-md-0 text-right">
+        <p class="d-inline-block">{{ 'Sort by'|_ }} :</p>&nbsp;&nbsp;
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                {{ sort != '' ? sortOptions[sort]|_ : sortOptions['date_requested desc']|_ }}
+            </button>
+            <div class="dropdown-menu">
+                {% for key, sortOption in sortOptions %}
+                    <a class="dropdown-item"
+                       href="javascript:void(0);"
+                       data-action="{{ key }}">{{ sortOption|_ }}</a>
+                {% endfor %}
+                <input type="hidden" class="dropdown-input"
+                       name="sort" value="{{ sort != '' ? sort : 'date_requested desc' }}">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12 col-lg-4 mr-auto mt-1 mt-sm-0 text-right ">
+        <div class="row">
+            <div class="col-6 pr-1">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                    </div>
+                    <input type="text" class="form-control datepicker"
+                           name="start_date" value="{{ startDate }}"
+                           placeholder="{{ 'Start date'|_ }}">
+                </div>
+            </div>
+            <div class="col-6 pl-1">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control datepicker no-submit"
+                           name="end_date" value="{{ endDate }}"
+                           placeholder="{{ 'End date'|_ }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg mt-1 mt-sm-0 text-right ">
+        {% if user.role_id == '3' %}
+            {% if subaccounts and subaccounts|length %}
+                <p class="d-inline-block">{{ 'SubAccount'|_ }} :</p>&nbsp;&nbsp;
+                <select name="subaccount_id"
+                        class="form-control d-inline-block w-50"
+                        onchange="$(this).closest('form').submit()">
+                    <option value="">{{ 'Select'|_ }}</option>
+                    {% for subaccount in subaccounts %}
+                        <option value="{{ subaccount.id }}"
+                                {{ subaccount_id == subaccount.id ? 'selected' : '' }}>
+                            {{ subaccount.name }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="col-12 col-lg mt-3 mt-md-0 text-center text-lg-right d-none d-md-block">
+        <button type="submit" class="btn btn-dark mr-3 "
+                name="print"
+                value="print"
+                data-redirect="{{ printRedirect }}"
+                onclick="setPrintAction(this)">
+            <i class="fa fa-print"></i>
+            <span class="d-sm-none d-lg-inline-block">&nbsp;&nbsp;&nbsp;{{ 'Print'|_ }}</span>
+        </button>
+
+        <button type="submit" class="btn btn-success"
+                name="export"
+                value="export">
+            <i class="fa fa-file-excel-o"></i>
+            <span class="d-sm-none d-lg-inline-block">&nbsp;&nbsp;&nbsp;{{ 'Export'|_ }}</span>
+        </button>
+
+    </div>
+</div>
+
+{{ form_close() }}

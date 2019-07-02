@@ -1,0 +1,27 @@
+{{ form_open({"id":"form-list-qps" }) }}
+<div class="row mt-3">
+    <div class="col-12 col-sm mt-3 mt-sm-0">
+        {% partial 'app/search-bar' %}
+    </div>
+    <div class="col-12 col-sm mt-3 mt-lg-0 text-left text-lg-right">
+        <p class="d-inline-block">{{ 'Sort by'|_ }} :</p>&nbsp;&nbsp;
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                {{ sort != '' ? sortOptions[sort]|_ : sortOptions['date_requested desc']|_ }}
+            </button>
+            <div class="dropdown-menu">
+                {% for key, sortOption in sortOptions %}
+                    <a class="dropdown-item"
+                       href="javascript:void(0);"
+                       data-action="{{ key }}">{{ sortOption|_ }}</a>
+                {% endfor %}
+                <input type="hidden" class="dropdown-input"
+                       name="sort" value="{{ sort != '' ? sort : 'date_requested desc' }}">
+            </div>
+        </div>
+    </div>
+
+</div>
+{{ form_close() }}

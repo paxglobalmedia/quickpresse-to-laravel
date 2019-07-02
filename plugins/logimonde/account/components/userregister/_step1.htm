@@ -1,0 +1,51 @@
+{{ form_open({"id":"form-register-user-1", 'files':'true' }) }}
+<div class="row mt-3 d-block d-lg-none">
+    <div class="col">
+        <strong>{{ 'Step'|_ }}&nbsp;1&nbsp; :</strong>
+        <span class="grey-text">{{ 'Create your account login'|_ }}</span>
+    </div>
+</div>
+<div class="form-row mt-3 mt-lg-5">
+    <div class="col col-sm-6 form-group">
+        <label>{{ 'Email'|_ }}</label>
+        <input type="email" class="form-control" required
+               name="email">
+    </div>
+    <div class="col col-sm-6 form-group">
+        <label for="selectLanguage">{{ 'Account Language'|_ }}</label>
+        <select id="selectLanguage" class="form-control"
+                name="language" required>
+            <option value="">{{ 'Select a language'|_ }}</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+        </select>
+
+    </div>
+</div>
+<div class="form-row">
+    <div class="col col-sm-6 form-group">
+        <label>{{ 'Password'|_ }}</label>
+        <input type="password" class="form-control"
+               name="password" id="pwd1" required>
+    </div>
+    <div class="col col-sm-6 form-group">
+        <label>{{ 'Confirm your password'|_ }}</label>
+        <input type="password" class="form-control"
+               name="pwd2" required
+               data-parsley-equalto="#pwd1">
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-8">
+        <span class="field-required"></span>&nbsp;
+        <small>{{ 'Required fields'|_ }}</small>
+    </div>
+    <div class="col-md-4 text-right">
+        <button type="button" class="btn btn-primary"
+                onclick="saveRegisterStep1(this)">
+            {{ 'Next'|_ }}&nbsp;&nbsp;
+            <i class="fa fa-caret-right"></i>
+        </button>
+    </div>
+</div>
+{{ form_close() }}

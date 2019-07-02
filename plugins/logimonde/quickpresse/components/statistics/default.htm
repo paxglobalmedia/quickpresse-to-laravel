@@ -1,0 +1,34 @@
+{% if not print %}
+    <div class="row">
+        <div class="col">
+            {% partial __SELF__ ~ '::_search_bar' %}
+        </div>
+    </div>
+{% else %}
+    {% partial __SELF__ ~ '::_print_header' %}
+{% endif %}
+<div class="row">
+    <div class="col">
+        {% partial __SELF__ ~ '::_stats_list' %}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col">
+        <div class="text-right">
+            <small>
+                {% if qps.lastPage > 1 %}
+                    {% set start = (qps.currentPage * __SELF__.perPage) - (__SELF__.perPage - 1) %}
+                    {% set end = qps.currentPage * __SELF__.perPage %}
+                    {{ start }}&nbsp;-&nbsp;
+                    {% if end > qps.total %}{{ qps.total }}&nbsp;{% else %}{{ end }}&nbsp;{% endif %}
+                    {{ 'of'|_ }}&nbsp;{{ qps.total }} {{ 'results'|_ }}
+                {% else %}
+                    {{ qps.total }} {{ 'results'|_ }}
+                {% endif %}
+            </small>
+        </div>
+    </div>
+    <div class="col-auto text-right">
+        {% partial 'pagination-input' items=qps size='sm' %}
+    </div>
+</div>

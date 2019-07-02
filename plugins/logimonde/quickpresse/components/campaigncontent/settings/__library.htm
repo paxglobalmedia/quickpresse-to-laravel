@@ -1,0 +1,26 @@
+{% if pictures|length > 0 %}
+    <h5 class="h5-responsive">{{ 'Library'|_ }}</h5>
+    <p class="grey-text">
+        <i class="fa fa-info-circle"></i>&nbsp;{{ 'Select an image from library'|_ }}
+    </p>
+    <div style="height: 250px;overflow-y: scroll;padding-right: 15px;padding-left: 15px;">
+        <div class="row mt-2" id="grid-view">
+            <div class="col">
+                <div id="results-images" class="flex-images">
+                    {% for picture in pictures %}
+                        {% set dimension = __SELF__.getDimensionsPhoto(picture.width, picture.height) %}
+                        <div class="item hoverable p-3 pointer"
+                             data-w="{{ dimension.width }}"
+                             data-h="{{ dimension.height }}"
+                             data-id="{{ picture.id }}"
+                             onclick="selectImageFromLibrary(this)">
+                            <img src="{{ picture.source|media }}"
+                                 class="">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+

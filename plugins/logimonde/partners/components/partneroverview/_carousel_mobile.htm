@@ -1,0 +1,20 @@
+<div class="carousel-inner">
+    {% for partner in partners %}
+        <div class="carousel-item {{ loop.index == 1 ? 'active':'' }}">
+            <div class="row">
+                <div class="col">
+                    {% if partner.url %}
+                        <a href="{{ partner.url }}" target="_blank" rel="noopener noreferrer">
+                            <img class="img-fluid mx-auto d-block" src="/storage/app/media{{ partner.image }}"
+                                 alt="{{ partner.logimondename }}"/>
+                        </a>
+                    {% else %}
+                        <img class="img-fluid px-3 mx-auto d-block" src="/storage/app/media{{ partner.image }}"
+                             alt="{{ partner.name }}" style="max-height: 180px;"/>
+                    {% endif %}
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+    {% endfor %}
+</div>

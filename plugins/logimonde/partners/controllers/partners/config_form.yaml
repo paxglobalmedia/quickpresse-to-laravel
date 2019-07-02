@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Partner
+
+# Model Form Field configuration
+form: $/logimonde/partners/models/partner/fields.yaml
+
+# Model Class name
+modelClass: Logimonde\Partners\Models\Partner
+
+# Default redirect location
+defaultRedirect: logimonde/partners/partners
+
+# Create page
+create:
+    title: Create Partner
+    redirect: logimonde/partners/partners/update/:id
+    redirectClose: logimonde/partners/partners
+
+# Update page
+update:
+    title: Edit Partner
+    redirect: logimonde/partners/partners
+    redirectClose: logimonde/partners/partners
+
+# Preview page
+preview:
+    title: Preview Partner
