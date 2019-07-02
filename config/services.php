@@ -8,35 +8,31 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, Mandrill, and others. This file provides a sane
+    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
     */
 
     'mailgun' => [
-        'domain' => '',
-        'secret' => '',
-    ],
-
-    'mandrill' => [
-        'secret' => '',
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
     ],
 
     'ses' => [
-        'key' => '',
-        'secret' => '',
+        'key' => env('SES_KEY'),
+        'secret' => env('SES_SECRET'),
         'region' => 'us-east-1',
     ],
 
-    'stripe' => [
-        'model'  => 'User',
-        'secret' => '',
+    'sparkpost' => [
+        'secret' => env('SPARKPOST_SECRET'),
     ],
 
-    /*'elastic_email' => [
-        'key' => 'abuse@logimonde.net',
-        'account' => '4ffd07e5-2ba5-44e6-8f2e-ee570091ce8c',
-    ]*/
+    'stripe' => [
+        'model' => App\User::class,
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
 
 ];
