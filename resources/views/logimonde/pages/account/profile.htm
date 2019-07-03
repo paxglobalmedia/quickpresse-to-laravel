@@ -1,0 +1,30 @@
+title = "Profile"
+url = "/account/profile/:user?"
+layout = "app"
+is_hidden = 0
+
+[UserUpdate]
+placeholderText = "Click or drag images to upload"
+maxSize = 5
+fileTypes = ".gif,.jpg,.jpeg,.png"
+previewWidth = 175
+previewHeight = 175
+previewMode = "auto"
+previewFluid = 1
+deferredBinding = 1
+
+[session]
+security = "user"
+redirect = "account/connection"
+==
+<div class="container-fluid">
+    <div class="row my-5">
+        <div class="col">
+
+            {% component 'UserUpdate' %}
+
+        </div>
+    </div>
+
+</div>
+{% component 'session' %}

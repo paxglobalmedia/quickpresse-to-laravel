@@ -1,0 +1,33 @@
+title = "Archives"
+url = "/archives"
+layout = "app"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[Archives]
+==
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h1 class="h1-responsive text-primary">
+                <i class="fa fa-archive"></i>&nbsp;
+                {{ 'Archives'|_ }}</h1>
+            <div class="grey-text" style="margin-top: -10px;">
+                {{ 'The following Quick Presse have been previously circulated'|_ }}.&nbsp;
+                {{ 'Click on any of your archived Quick Presse to view or copy the existing content'|_ }}.
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            {% component 'Archives' %}
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col"></div>
+    </div>
+</div>
+{% component 'session' %}

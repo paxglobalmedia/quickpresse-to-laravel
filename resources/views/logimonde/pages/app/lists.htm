@@ -1,0 +1,30 @@
+title = "Lists"
+url = "/lists/:export?"
+layout = "app"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[CustomList]
+==
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col">
+            <h1 class="h1-responsive text-primary">
+                <i class="fa fa-list-alt"></i>&nbsp;
+                {{ 'My Subscriber Lists'|_ }} </h1>
+            <div class="grey-text" style="margin-top: -10px;">
+                {{ 'Add, create, and manage your own targeted email lists, by uploading your contacts'|_ }}.&nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-12">
+            {% component 'CustomList' %}
+        </div>
+    </div>
+    <div class="row mb-5"><div class="col"></div></div>
+</div>
+{% component 'session' %}

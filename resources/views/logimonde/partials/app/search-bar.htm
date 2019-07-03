@@ -1,0 +1,19 @@
+description = "Search Bar"
+==
+{% if this.page.id != 'account-company' %}
+    <div class="input-group">
+        {% if search %}
+            <span class="reset-input-search"
+                  onclick="resetInputGroupSearch(this)"><i class="fa fa-times grey-text"></i></span>
+        {% endif %}
+        <input type="text" class="form-control"
+               name="search"
+               value="{{ search }}"
+               placeholder="{{ 'Search'|_ }}">
+        <span class="input-group-btn">
+        <button class="btn btn-secondary" type="submit">
+            <i class="fa fa-search"></i>
+        </button>
+    </span>
+    </div>
+{% endif %}

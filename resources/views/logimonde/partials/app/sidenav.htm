@@ -1,0 +1,115 @@
+description = "Navigation"
+==
+<!-- SideNav slide-out button -->
+
+<!--/. SideNav slide-out button -->
+
+<!-- Sidebar navigation -->
+<div id="slide-out" class="side-nav fixed admin-side-nav light-side-nav">
+    <!-- Logo -->
+
+    <div class="logo-wrapper pointer" onclick="redirectToProfile('{{ 'account/profile'|page({user: user.id}) }}')">
+
+        {% if user.avatar %}
+            <img src="{{ user.avatarThumb(50) }}" class="img-fluid img-circle">
+        {% else %}
+            <img src="{{ 'assets/images/user-empty.jpg'|theme }}" class="img-fluid rounded-circle">
+        {% endif %}
+        <div class="bg-highlight white-text">
+            <p class="user">
+                {#<a class="underline d-inline"#}
+                {#href="{{ 'account/profile'|page({user: user.id}) }}">#}
+                <span class="white-text">{{ user.name }}</span>
+                {#</a>#}
+                <small class="d-block">{{ user.company.Name|truncate(25) }}</small>
+            </p>
+        </div>
+    </div>
+    <!--/. Logo -->
+
+    <!-- Side navigation links -->
+    <ul class="collapsible collapsible-accordion list-unstyled">
+        <li>
+            <a href="{{ 'app/manage'|page({campaign: ''}) }}"
+               class="waves-effect {% if this.page.id == 'app-manage' %}active{% endif %}"
+               style="display: inline-block;width: 100%;">
+                <i class="fa fa-plus-circle"></i> {{ 'New Eblast'|_ }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ 'app/dashboard'|page }}"
+               class="waves-effect {% if this.page.id == 'app-dashboard' %}active{% endif %}"
+               style="display: inline-block;width: 100%;">
+                <i class="fa fa-cog fa-spin"></i> {{ 'Active Quick Presse'|_ }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ 'app/archives'|page }}"
+               class="waves-effect {% if this.page.id == 'app-archives' %}active{% endif %}"
+               style="display: inline-block;width: 100%;">
+                <i class="fa fa-archive"></i> {{ 'Archives'|_ }}
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ 'app/library'|page }}"
+               class="waves-effect {% if this.page.id == 'app-library' %}active{% endif %}">
+                <i class="fa fa-folder-open"></i> {{ 'My Library'|_ }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ 'app/lists'|page }}"
+               class="waves-effect {% if this.page.id == 'app-lists' %}active{% endif %}">
+                <i class="fa fa-list-alt"></i> {{ 'My Subscriber Lists'|_ }}
+            </a>
+        </li>
+        {% if user.role_id != '3' %}
+            <li>
+                <a href="#collapse-menu-reports" class="waves-effect d-flex justify-content-between align-items-center"
+                   data-toggle="collapse">
+                    <i class="fa fa-line-chart"></i>
+                    <span class="d-inline-block mr-auto">{{ 'Reports'|_ }}</span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="collapse {% if this.page.id == 'app-reports' or this.page.id == 'app-statistics' %}show{% endif %}"
+                     id="collapse-menu-reports">
+                    <ul class="list-unstyled" style="">
+                        <li>
+                            <a href="{{ 'app/reports'|page }}"
+                               class="waves-effect {% if this.page.id == 'app-reports' %}active{% endif %}">
+                                <i class="fa fa-caret-right"></i>&nbsp;{{ 'Total day'|_ }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ 'app/statistics'|page }}"
+                               class="waves-effect {% if this.page.id == 'app-statistics' %}active{% endif %}">
+                                <i class="fa fa-caret-right"></i>&nbsp;{{ 'Statistics'|_ }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ 'app/statistics'|page }}"
+                   class="waves-effect {% if this.page.id == 'app-statistics' %}active{% endif %}">
+                    <i class="fa fa-line-chart"></i> {{ 'Statistics'|_ }}
+                </a>
+            </li>
+        {% endif %}
+        {% if user.role_id != '3' %}
+            <li>
+                <a href="{{ 'app/templates'|page }}"
+                   class="waves-effect {% if this.page.id == 'app-templates' %}active{% endif %}">
+                    <i class="fa fa-crop"></i> {{ 'Templates'|_ }}
+                </a>
+            </li>
+        {% endif %}
+
+    </ul>
+    <!--/. Side navigation links -->
+    <img src="{{ 'assets/images/logo.png'|theme }}"
+         class="d-none d-lg-block"
+         style="max-width: 240px!important;padding: 40px!important;position: absolute;bottom: 40px;">
+</div>
+<!--/. Sidebar navigation -->

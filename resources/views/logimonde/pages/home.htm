@@ -1,0 +1,108 @@
+title = "Home"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[ShowImages]
+
+[partnerOverview]
+maxItems = 0
+orderBy = "created_at"
+order = "desc"
+==
+<section class="parallax home-header"
+         style="background-image: url({{ 'assets/images/front/bg-home-intro.jpg'|theme }});height: 800px;">
+
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col text-center text-md-right">
+
+                <div class="mr-md-5">
+                    <h1 class="display-1 text-white" style="text-shadow: 3px 3px 5px #333333;">{{ 'Easy-to-use'|_ }}
+                        .</h1>
+                    <h1 class="display-3 text-white"
+                        style="text-shadow: 3px 3px 5px #333333;">{{ 'Target the right audience'|_ }}.</h1>
+                    {% if lang == 'en' %}
+                        {% set urlCorporative = "https://logimondemedia.com/en/products/quickpresse" %}
+                    {% else %}
+                        {% set urlCorporative = "https://logimondemedia.com/fr/produits/quickpresse" %}
+                    {% endif %}
+                    <a class="btn btn-outline-light btn-lg mt-3 " style="border-width: 3px;"
+                       target="_blank"
+                       href="{{ urlCorporative }}">
+                        {{ 'Learn more'|_ }}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+        <div class="row py-5">
+            <div class="col py-4">
+                <h1 class="display-4 text-primary text-center">
+                    {{ 'Welcome to'|_ }}&nbsp;Quick Presse
+                </h1>
+                <h1 class="h1-responsive grey-text text-darken-1 text-center">
+                    {{ 'Targeting the right people, using the right approach'|_ }}
+                </h1>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="grey lighten-4 py-5">
+    <div class="container">
+        <div class="row py-5">
+            <div class="col">
+                <h1 class="h1-responsive text-primary text-center">
+                    {{ 'We make it possible to create and customize your e-blasts to your individual needs'|_ }}.
+                </h1>
+                <div class="p-3">
+                    {% if lang == 'en' %}
+                        <img class="img-fluid"
+                             src="{{ 'layout-img/preview-homepage-en.jpg'|media }}">
+                    {% else %}
+                        <img class="img-fluid"
+                             src="{{ 'layout-img/preview-homepage-fr.jpg'|media }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pt-0 pt-md-5">
+    <div class="container">
+        <div class="row pt-4 pt-md-5">
+            <div class="col">
+                <h1 class="h1-responsive text-primary text-center d-none d-md-block">
+                    {{ 'What makes QuickPresse so unique'|_ }}.
+                </h1>
+                <h3 class="h3-responsive text-primary text-center d-block d-md-none">
+                    {{ 'What makes QuickPresse so unique'|_ }}.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5 mb-lg-0">
+        {% component 'ShowImages' %}
+    </div>
+
+</section>
+<section class="grey lighten-4 py-5">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col">
+                <h1 class="h1-responsive text-primary text-center">
+                    {{ 'Who uses QuickPresse'|_ }}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="p-5">
+        {% component 'partnerOverview' %}
+    </div>
+</section>
+{% partial 'marketing' %}

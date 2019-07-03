@@ -1,0 +1,23 @@
+title = "Company"
+url = "/admin/company/:company"
+layout = "app"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[CompanyForm]
+
+[viewBag]
+localeUrl[fr] = "admin/compagnie/:company"
+==
+<div class="container-fluid">
+    <div class="row my-5">
+        <div class="col">
+            {% component 'CompanyForm' %}
+        </div>
+    </div>
+
+</div>
+{% component 'session' %}

@@ -1,0 +1,25 @@
+title = "Lists Form"
+url = "/lists/form/:custom?"
+layout = "app"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+
+[CustomListForm]
+==
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h1 class="h1-responsive text-primary">{{ 'List settings'|_ }} </h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-12">
+            {% component 'CustomListForm' %}
+        </div>
+    </div>
+    <div class="row mb-5"><div class="col"></div></div>
+</div>
+{% component 'session' %}

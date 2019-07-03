@@ -1,0 +1,32 @@
+description = "Footer Print"
+==
+use Logimonde\Quickpresse\Models\Settings;
+function onStart()
+{
+    $this['address'] = Settings::get('logimonde_address');
+    $this['phone'] = Settings::get('logimonde_phone');
+    $this['email_en'] = Settings::get('logimonde_email_en');
+    $this['email_fr'] = Settings::get('logimonde_email_fr');
+}
+==
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <img class=""
+                 src="{{ 'assets/images/logimonde.jpg'|theme }}" style="width: 200px;">
+        </div>
+        <div class="col text-right mt-1" style="font-size: 12px;">
+            {{ address }}<br>
+            <i class="fa fa-phone"></i>&nbsp;-&nbsp;{{ phone|phone }}<br>
+            {{ lang == 'en' ? email_en : email_fr }}
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col text-center" >
+            <p class="pt-2" style="font-size: 10px;border-top: 1px solid #cccccc;">
+                {{ 'All rights reserved'|_ }} &copy; Logimonde Media {{ "now"|date('Y') }}
+            </p>
+        </div>
+    </div>
+</div>

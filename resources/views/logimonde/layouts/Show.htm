@@ -1,0 +1,75 @@
+description = "Preview page"
+
+[ShowQuickpresse]
+==
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>QuickPresse.com - {{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.description|_ }}">
+    <meta name="title" content="{{ this.page.title }}">
+    <meta name="author" content="Logimonde Media">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta property="og:url" content="{{ host }}show/{{ qp.slug }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{{ this.page.title }}"/>
+    <meta property="og:image" content="{{ host }}themes/logimonde/assets/images/share-qp.jpg"/>
+    <meta property="og:description" content="{{ this.page.description|_ }}"/>
+    <meta property="fb:app_id" content="985238268209884" />
+    <link rel="icon" type="image/png" href="{{ 'assets/images/favicon.ico'|theme }}"/>
+    <link href="{{ 'assets/images/apple-touch-icon.png'|theme }}" rel="apple-touch-icon">
+    <link href="{{ 'assets/images/apple-touch-icon-precomposed.png'|theme }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ [
+    'assets/css/theme.css',
+    'assets/css/jquery-ui.min.css',
+    'assets/vendor/animate.css/animate.min.css',
+    ]|theme }}" rel="stylesheet">
+    {% styles %}
+    <script>
+        var lang = "{{ lang }}";
+        var site_url = '{{ site_url }}';
+    </script>
+</head>
+<body>
+
+<header class="{% if this.page.id != 'home' %}grey lighten-4{% endif %}"
+        style="{% if this.page.id != 'home' %}border-bottom: 1px solid #dcdcdc{% endif %}">
+    {% partial 'show/header' %}
+</header>
+
+
+<main id="page">
+    {% page %}
+</main>
+
+{#<footer>#}
+    {##}
+{#</footer>#}
+
+{% partial 'show/modal_email' %}
+{% flash %}
+<span id="flash" data-type="{{ type }}" data-message="{{ message|_ }}"></span>
+{% endflash %}
+
+<script src="{{ [
+'assets/vendor/jquery/dist/jquery.min.js',
+'assets/js/jquery-ui.min.js',
+'assets/vendor/popper/dist/umd/popper.min.js',
+'assets/vendor/tether/dist/js/tether.min.js',
+'assets/vendor/bootstrap/dist/js/bootstrap.min.js',
+'assets/vendor/parsley/dist/parsley.min.js',
+'assets/vendor/mdb/js/modules/toasts.js',
+'assets/js/default.js'
+]|theme }}"></script>
+{% if lang == 'fr' %}
+    {% put scripts %}
+    <script src="{{ 'assets/vendor/parsley/dist/i18n/fr.js'|theme }}"></script>
+    {% endput %}
+{% endif %}
+{% framework extras %}
+{% scripts %}
+{% partial 'analytics' %}
+</body>
+</html>

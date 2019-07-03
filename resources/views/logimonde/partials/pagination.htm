@@ -1,0 +1,76 @@
+{% set interval = 3 %}
+{% set numberPages = items.lastPage %}
+{% set currentPage = items.currentPage %}
+{% if numberPages > 1 %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end {% if size == 'sm' %}pagination-sm{% endif %}">
+            {% if currentPage > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options ~ '&':'?' }}&page={{ currentPage-1 }}"><i
+                                class="fa fa-angle-double-left"></i></a>
+                </li>
+            {% endif %}
+
+            {% if numberPages <= interval %}
+                {% for page in 1..numberPages %}
+                    <li class="page-item {{ currentPage == page ? 'active' : null }}">
+                        <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                {% if currentPage < interval %}
+
+                    {% for page in 1..interval %}
+                        <li class="page-item {{ currentPage == page ? 'active' : null }}">
+                            <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return false">...</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ numberPages }}">{{ numberPages }}</a>
+                    </li>
+                {% elseif currentPage > (numberPages - (interval- 1)) %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page=1">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return false">...</a>
+                    </li>
+                    {% for page in (numberPages - (interval- 1))..numberPages %}
+                        <li class="{{ currentPage == page ? 'active' : null }}">
+                            <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page=1">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return false">...</a>
+                    </li>
+                    {% for page in (currentPage- 2)..(currentPage+ 2) %}
+                        <li class="{{ currentPage == page ? 'active' : null }}">
+                            <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                    <li class="page-item">
+                        <a href="#" onclick="return false">...</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ numberPages }}">{{ numberPages }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+
+            {% if numberPages > currentPage %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ this.page.baseFileName|page }}{{ options ? options:'?' }}&page={{ currentPage+1 }}">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

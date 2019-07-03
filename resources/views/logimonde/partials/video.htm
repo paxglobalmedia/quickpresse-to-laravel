@@ -1,0 +1,15 @@
+description = "Video"
+==
+<div class="embed-responsive embed-responsive-16by9">
+    <video class="embed-responsive-item" controls poster="{{ 'layout-video/poster.jpg'|media }}">
+        {% if lang == 'en' %}
+            <source src="{{ 'layout-video/qp-video-demo-en.mp4'|media }}" type="video/mp4">
+        {% else %}
+            <source src="{{ 'layout-video/qp-video-demo-fr.mp4'|media }}" type="video/mp4">
+        {% endif %}
+        {{ 'Your browser does not support HTML5 video'|_ }}.
+    </video>
+</div>
+<script>
+
+</script>

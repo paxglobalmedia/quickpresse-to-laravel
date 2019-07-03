@@ -1,0 +1,98 @@
+description = "Home"
+
+[localePicker]
+forceUrl = 0
+
+[session]
+security = "all"
+redirect = "account/connection"
+
+==
+<?php
+use RainLab\Translate\Classes\Translator;
+function onInit()
+{
+    $translator = Translator::instance();
+    $lang = $translator->getLocale();
+    $this['lang'] = $translator->getLocale();
+    $this['site_url'] = asset('');
+    $this['host'] = $host = request()->getHttpHost();
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>QuickPresse.com - {{ this.page.title|_ }}</title>
+    <meta name="description" content="{{ this.page.description|_ }}">
+    <meta name="title" content="{{ this.page.title|_ }}">
+    <meta name="author" content="Logimonde Media">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <script src="https://use.typekit.net/vgg4wfu.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link rel="icon" type="image/png" href="{{ 'assets/images/favicon.ico'|theme }}"/>
+    <link href="{{ 'assets/images/apple-touch-icon.png'|theme }}" rel="apple-touch-icon">
+    <link href="{{ 'assets/images/apple-touch-icon-precomposed.png'|theme }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ [
+    'assets/css/jquery-ui.min.css',
+    'assets/vendor/animate.css/animate.min.css',
+    'assets/css/theme.css',
+    ]|theme }}" rel="stylesheet">
+    {% styles %}
+    <script>
+        var host = "{{ host }}";
+        var lang = "{{ lang }}";
+        var site_url = '{{ site_url }}';
+        // if (host === "new.quickpresse.com") {
+        //     window.location.replace("http://www.quickpresse.com");
+        // }
+    </script>
+</head>
+<body>
+
+<header class="{% if this.page.id != 'home' %}grey lighten-4{% endif %}"
+        style="{% if this.page.id != 'home' %}border-bottom: 1px solid #dcdcdc{% endif %}">
+    {% partial 'header' %}
+</header>
+
+
+<main id="page">
+    {% page %}
+</main>
+
+<footer class="px-5 grey lighten-5">
+    {% partial 'footer' %}
+</footer>
+{% partial "app/modal_confirm" %}
+{% flash %}
+<span id="flash" data-type="{{ type }}" data-message="{{ message|_ }}"></span>
+{% endflash %}
+
+<div class="loading-indicator-container" id="loader">
+    <div class="indicator-text">
+        <i class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+        <h5 class="h5-responsive mt-4">{{ 'Processing your order...'|_ }}</h5>
+    </div>
+</div>
+<script src="{{ [
+'assets/vendor/jquery/dist/jquery.min.js',
+'assets/js/jquery-ui.min.js',
+'assets/vendor/popper/dist/umd/popper.min.js',
+'assets/vendor/tether/dist/js/tether.min.js',
+'assets/vendor/bootstrap/dist/js/bootstrap.min.js',
+'assets/vendor/parsley/dist/parsley.min.js',
+'assets/vendor/mdb/js/modules/toasts.js',
+'assets/js/default.js'
+]|theme }}"></script>
+{% if lang == 'fr' %}
+    {% put scripts %}
+    <script src="{{ 'assets/vendor/parsley/dist/i18n/fr.js'|theme }}"></script>
+    {% endput %}
+{% endif %}
+{% framework extras %}
+{% scripts %}
+{% partial 'analytics' %}
+</body>
+</html>

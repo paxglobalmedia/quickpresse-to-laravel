@@ -1,0 +1,81 @@
+title = "Clicks details"
+url = "/statistics/clicks-details/print/:eblast"
+layout = "print"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "account/connection"
+==
+use Logimonde\Quickpresse\Models\Click;
+use Logimonde\Quickpresse\Models\Eblast;
+
+function onStart()
+{
+    if ($id = $this->param('eblast')) {
+        $campaign = Eblast::whereId($id)->first();
+        $contentIds = array();
+        $contents = $campaign->contents()->get();
+        foreach ($contents as $content) {
+            $contentIds[] = $content->id;
+        }
+        $this['campaign'] = $campaign;
+        $clicks = Click::whereIn('eblast_content_id', $contentIds)
+            ->orderBy('actions', 'desc')
+            ->get();
+        if (count($clicks) > 0) {
+            $this['clicks'] = $clicks;
+        } else {
+            $contentLink = array();
+            $contents = $campaign->contents()->get();
+            foreach ($contents as $key => $content) {
+                if ($content->link_content != '') {
+                    $contentLink[$key]['url'] = $content->link_content;
+                    $contentLink[$key]['title'] = '';
+                    $contentLink[$key]['actions'] = $content->clicks;
+                }
+            }
+            $this['clicks'] = $contentLink;
+        }
+    }
+}
+==
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col ">
+            <img class="mt-2"
+                 src="{{ 'assets/images/logo.jpg'|theme }}">
+        </div>
+        <div class="col text-right">
+            <h1 class="h1-responsive text-primary">{{ 'Click details'|_ }} </h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-12">
+            <h5 class="h5-responsive text-left text-primary">
+                {{ campaign.title }}
+            </h5>
+            <table class="table table-hover table-sm"
+                   style="display: table;">
+                <thead>
+                <tr>
+                    <th>{{ 'Link'|_ }}</th>
+                    <th>{{ 'Title'|_ }}</th>
+                    <th class="text-right">{{ 'Total'|_ }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for click in clicks %}
+                    <tr>
+                        <td class="text-left">{{ click.url }}</td>
+                        <td class="text-left">{{ click.title }}</td>
+                        <td class="text-right">{{ click.actions }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mb-5"><div class="col"></div></div>
+</div>
+{% component 'session' %}

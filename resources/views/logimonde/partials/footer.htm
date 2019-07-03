@@ -1,0 +1,16 @@
+description = "Footer"
+==
+<div class="py-5">
+    <div class="container-fluid">
+        {% partial 'footer-text' %}
+    </div>
+</div>
+<div class="pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+               {{ 'All Rights Reserved'|_ }} &copy; PAXGlobalMedia {{ "now"|date('Y') }}
+            </div>
+        </div>
+    </div>
+</div>
