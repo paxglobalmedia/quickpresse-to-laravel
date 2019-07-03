@@ -53,12 +53,9 @@ class CombGenerator implements RandomGeneratorInterface
      *
      * @param integer $length The number of bytes of random binary data to generate
      * @return string A binary string
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\UnsatisfiedDependencyException if `Moontoast\Math\BigNumber` is not present
      * @throws \InvalidArgumentException if length is not a positive integer
      * @throws \Exception
-=======
->>>>>>> dev
      */
     public function generate($length)
     {

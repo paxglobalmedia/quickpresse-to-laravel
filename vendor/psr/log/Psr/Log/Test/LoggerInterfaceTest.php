@@ -101,12 +101,9 @@ abstract class LoggerInterfaceTest extends \PHPUnit_Framework_TestCase
 
     public function testContextCanContainAnything()
     {
-<<<<<<< HEAD
         $closed = fopen('php://memory', 'r');
         fclose($closed);
 
-=======
->>>>>>> dev
         $context = array(
             'bool' => true,
             'null' => null,
@@ -116,10 +113,7 @@ abstract class LoggerInterfaceTest extends \PHPUnit_Framework_TestCase
             'nested' => array('with object' => new DummyTest),
             'object' => new \DateTime,
             'resource' => fopen('php://memory', 'r'),
-<<<<<<< HEAD
             'closed' => $closed,
-=======
->>>>>>> dev
         );
 
         $this->getLogger()->warning('Crazy context data', $context);

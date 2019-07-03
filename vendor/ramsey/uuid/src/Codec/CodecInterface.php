@@ -42,10 +42,7 @@ interface CodecInterface
      *
      * @param string $encodedUuid
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
-=======
->>>>>>> dev
      */
     public function decode($encodedUuid);
 
@@ -54,11 +51,8 @@ interface CodecInterface
      *
      * @param string $bytes
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
      * @throws \InvalidArgumentException if string has not 16 characters
-=======
->>>>>>> dev
      */
     public function decodeBytes($bytes);
 }

@@ -28,10 +28,7 @@ class RandomNodeProvider implements NodeProviderInterface
      * Returns the system node ID
      *
      * @return string System node ID as a hexadecimal string
-<<<<<<< HEAD
      * @throws \Exception if it was not possible to gather sufficient entropy
-=======
->>>>>>> dev
      */
     public function getNode()
     {

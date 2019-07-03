@@ -1,6 +1,5 @@
 # ramsey/uuid Changelog
 
-<<<<<<< HEAD
 ## 3.8.0
 
 _Released: 2018-07-19_
@@ -11,8 +10,6 @@ _Released: 2018-07-19_
   * Add annotations for thrown exceptions for improved IDE hinting ([#232](https://github.com/ramsey/uuid/pull/232))
   * Improve documentation, testing, and project metadata (i.e. `.gitattributes`, etc.)
 
-=======
->>>>>>> dev
 ## 3.7.3
 
 _Released: 2018-01-19_

@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-/**
-=======
 /*
->>>>>>> dev
  * This file is part of the Carbon package.
  *
  * (c) Brian Nesbitt <brian@nesbot.com>
@@ -13,43 +9,28 @@
  * file that was distributed with this source code.
  */
 
-<<<<<<< HEAD
-/*
- * Authors:
- * - Daniel S. Billing
- * - Paul
- * - Jimmie Johansson
- * - Jens Herlevsen
- */
-return array_replace_recursive(require __DIR__.'/nb.php', [
-    'formats' => [
-        'LLL' => 'D. MMMM YYYY HH:mm',
-        'LLLL' => 'dddd, D. MMMM YYYY [kl.] HH:mm',
-    ],
-    'calendar' => [
-        'nextWeek' => 'på dddd [kl.] LT',
-        'lastWeek' => '[i] dddd[s kl.] LT',
-    ],
-]);
-=======
 return array(
-    'year' => '1 år|:count år',
-    'y' => '1 år|:count år',
-    'month' => '1 måned|:count måneder',
-    'm' => '1 måned|:count måneder',
-    'week' => '1 uke|:count uker',
-    'w' => '1 uke|:count uker',
-    'day' => '1 dag|:count dager',
-    'd' => '1 dag|:count dager',
-    'hour' => '1 time|:count timer',
-    'h' => '1 time|:count timer',
-    'minute' => '1 minutt|:count minutter',
-    'min' => '1 minutt|:count minutter',
-    'second' => '1 sekund|:count sekunder',
-    's' => '1 sekund|:count sekunder',
+    'year' => ':count år|:count år',
+    'y' => ':count år|:count år',
+    'month' => ':count måned|:count måneder',
+    'm' => ':count måned|:count måneder',
+    'week' => ':count uke|:count uker',
+    'w' => ':count uke|:count uker',
+    'day' => ':count dag|:count dager',
+    'd' => ':count dag|:count dager',
+    'hour' => ':count time|:count timer',
+    'h' => ':count time|:count timer',
+    'minute' => ':count minutt|:count minutter',
+    'min' => ':count minutt|:count minutter',
+    'second' => ':count sekund|:count sekunder',
+    's' => ':count sekund|:count sekunder',
     'ago' => ':time siden',
     'from_now' => 'om :time',
     'after' => ':time etter',
     'before' => ':time før',
+    'diff_now' => 'akkurat nå',
+    'diff_yesterday' => 'i går',
+    'diff_tomorrow' => 'i morgen',
+    'diff_before_yesterday' => 'i forgårs',
+    'diff_after_tomorrow' => 'i overmorgen',
 );
->>>>>>> dev

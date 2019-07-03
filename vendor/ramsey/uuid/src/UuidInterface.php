@@ -123,11 +123,8 @@ interface UuidInterface extends \JsonSerializable, \Serializable
      *
      * @return \DateTime A PHP DateTime representation of the date
      * @throws UnsupportedOperationException If this UUID is not a version 1 UUID
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\UnsatisfiedDependencyException if called in a 32-bit system and
      *     `Moontoast\Math\BigNumber` is not present
-=======
->>>>>>> dev
      */
     public function getDateTime();
 
@@ -136,10 +133,7 @@ interface UuidInterface extends \JsonSerializable, \Serializable
      * representation.
      *
      * @return mixed Converted representation of the unsigned 128-bit integer value
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\UnsatisfiedDependencyException if `Moontoast\Math\BigNumber` is not present
-=======
->>>>>>> dev
      */
     public function getInteger();
 

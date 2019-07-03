@@ -60,10 +60,7 @@ class TimestampFirstCombCodec extends StringCodec
      * @param string $encodedUuid
      *
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
-=======
->>>>>>> dev
      */
     public function decode($encodedUuid)
     {
@@ -80,10 +77,7 @@ class TimestampFirstCombCodec extends StringCodec
      * @param string $bytes
      *
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
-=======
->>>>>>> dev
      */
     public function decodeBytes($bytes)
     {

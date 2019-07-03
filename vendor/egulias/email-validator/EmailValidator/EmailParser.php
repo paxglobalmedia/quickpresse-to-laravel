@@ -33,11 +33,7 @@ class EmailParser
     }
 
     /**
-<<<<<<< HEAD
-     * @param string $str
-=======
      * @param $str
->>>>>>> dev
      * @return array
      */
     public function parse($str)

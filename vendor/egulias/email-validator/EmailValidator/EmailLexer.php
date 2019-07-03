@@ -89,11 +89,7 @@ class EmailLexer extends AbstractLexer
     }
 
     /**
-<<<<<<< HEAD
-     * @param string $type
-=======
      * @param $type
->>>>>>> dev
      * @throws \UnexpectedValueException
      * @return boolean
      */
@@ -193,11 +189,7 @@ class EmailLexer extends AbstractLexer
     }
 
     /**
-<<<<<<< HEAD
-     * @param string $value
-=======
      * @param $value
->>>>>>> dev
      * @return bool
      */
     protected function isNullType($value)
@@ -210,11 +202,7 @@ class EmailLexer extends AbstractLexer
     }
 
     /**
-<<<<<<< HEAD
-     * @param string $value
-=======
      * @param $value
->>>>>>> dev
      * @return bool
      */
     protected function isUTF8Invalid($value)

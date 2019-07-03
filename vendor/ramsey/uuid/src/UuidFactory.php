@@ -180,35 +180,26 @@ class UuidFactory implements UuidFactoryInterface
         $this->uuidBuilder = $builder;
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function fromBytes($bytes)
     {
         return $this->codec->decodeBytes($bytes);
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function fromString($uuid)
     {
         $uuid = strtolower($uuid);
         return $this->codec->decode($uuid);
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function fromInteger($integer)
     {
         $hex = $this->numberConverter->toHex($integer);
@@ -217,12 +208,9 @@ class UuidFactory implements UuidFactoryInterface
         return $this->fromString($hex);
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function uuid1($node = null, $clockSeq = null)
     {
         $bytes = $this->timeGenerator->generate($node, $clockSeq);
@@ -231,23 +219,17 @@ class UuidFactory implements UuidFactoryInterface
         return $this->uuidFromHashedName($hex, 1);
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function uuid3($ns, $name)
     {
         return $this->uuidFromNsAndName($ns, $name, 3, 'md5');
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function uuid4()
     {
         $bytes = $this->randomGenerator->generate(16);
@@ -260,12 +242,9 @@ class UuidFactory implements UuidFactoryInterface
         return $this->uuidFromHashedName($hex, 4);
     }
 
-<<<<<<< HEAD
     /**
      * @inheritdoc
      */
-=======
->>>>>>> dev
     public function uuid5($ns, $name)
     {
         return $this->uuidFromNsAndName($ns, $name, 5, 'sha1');
@@ -295,10 +274,7 @@ class UuidFactory implements UuidFactoryInterface
      * @param string $hashFunction The hash function to use when hashing together
      *     the namespace and name
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
-=======
->>>>>>> dev
      */
     protected function uuidFromNsAndName($ns, $name, $version, $hashFunction)
     {

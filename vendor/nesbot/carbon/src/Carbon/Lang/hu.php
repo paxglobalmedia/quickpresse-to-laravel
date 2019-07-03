@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-/**
-=======
 /*
->>>>>>> dev
  * This file is part of the Carbon package.
  *
  * (c) Brian Nesbitt <brian@nesbot.com>
@@ -13,19 +9,7 @@
  * file that was distributed with this source code.
  */
 
-<<<<<<< HEAD
-/*
- * Authors:
- * - Adam Brunner
- * - Brett Johnson
- * - balping
- */
-$huWeekEndings = ['vasárnap', 'hétfőn', 'kedden', 'szerdán', 'csütörtökön', 'pénteken', 'szombaton'];
-
-return [
-=======
 return array(
->>>>>>> dev
     'year' => ':count év',
     'y' => ':count év',
     'month' => ':count hónap',
@@ -65,38 +49,4 @@ return array(
     'hour_before' => ':count órával',
     'minute_before' => ':count perccel',
     'second_before' => ':count másodperccel',
-<<<<<<< HEAD
-    'months' => ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'],
-    'months_short' => ['jan.', 'feb.', 'márc.', 'ápr.', 'máj.', 'jún.', 'júl.', 'aug.', 'szept.', 'okt.', 'nov.', 'dec.'],
-    'weekdays' => ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'],
-    'weekdays_short' => ['vas', 'hét', 'kedd', 'sze', 'csüt', 'pén', 'szo'],
-    'weekdays_min' => ['v', 'h', 'k', 'sze', 'cs', 'p', 'sz'],
-    'ordinal' => ':number.',
-    'formats' => [
-        'LT' => 'H:mm',
-        'LTS' => 'H:mm:ss',
-        'L' => 'YYYY.MM.DD.',
-        'LL' => 'YYYY. MMMM D.',
-        'LLL' => 'YYYY. MMMM D. H:mm',
-        'LLLL' => 'YYYY. MMMM D., dddd H:mm',
-    ],
-    'calendar' => [
-        'sameDay' => '[ma] LT[-kor]',
-        'nextDay' => '[holnap] LT[-kor]',
-        'nextWeek' => function (\Carbon\CarbonInterface $date) use ($huWeekEndings) {
-            return '['.$huWeekEndings[$date->dayOfWeek].'] LT[-kor]';
-        },
-        'lastDay' => '[tegnap] LT[-kor]',
-        'lastWeek' => function (\Carbon\CarbonInterface $date) use ($huWeekEndings) {
-            return '[múlt '.$huWeekEndings[$date->dayOfWeek].'] LT[-kor]';
-        },
-        'sameElse' => 'L',
-    ],
-    'meridiem' => ['DE', 'DU'],
-    'first_day_of_week' => 1,
-    'day_of_first_week_of_year' => 4,
-    'list' => [', ', ' és '],
-];
-=======
 );
->>>>>>> dev

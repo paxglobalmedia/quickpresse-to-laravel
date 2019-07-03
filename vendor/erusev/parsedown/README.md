@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 > I also make [Caret](https://caret.io?ref=parsedown) - a Markdown editor for Mac and PC.
-=======
-> You might also like [Caret](https://caret.io?ref=parsedown) - our Markdown editor for Mac / Windows / Linux.
->>>>>>> dev
 
 ## Parsedown
 
@@ -42,7 +38,6 @@ More examples in [the wiki](https://github.com/erusev/parsedown/wiki/) and in [t
 
 ### Security
 
-<<<<<<< HEAD
 Parsedown is capable of escaping user-input within the HTML that it generates. Additionally Parsedown will apply sanitisation to additional scripting vectors (such as scripting link destinations) that are introduced by the markdown syntax itself.
 
 To tell Parsedown that it is processing untrusted user-input, use the following:
@@ -69,9 +64,6 @@ $parsedown->setMarkupEscaped(true);
 ```
 
 Beware that this still allows users to insert unsafe scripting vectors, such as links like `[xss](javascript:alert%281%29)`.
-=======
-Parsedown does not sanitize the HTML that it generates. When you deal with untrusted content (ex: user commnets) you should also use a HTML sanitizer like [HTML Purifier](http://htmlpurifier.org/).
->>>>>>> dev
 
 ### Questions
 
@@ -87,11 +79,7 @@ It passes most of the CommonMark tests. Most of the tests that don't pass deal w
 
 **Who uses it?**
 
-<<<<<<< HEAD
 [Laravel Framework](https://laravel.com/), [Bolt CMS](http://bolt.cm/), [Grav CMS](http://getgrav.org/), [Herbie CMS](http://www.getherbie.org/), [Kirby CMS](http://getkirby.com/), [October CMS](http://octobercms.com/), [Pico CMS](http://picocms.org), [Statamic CMS](http://www.statamic.com/), [phpDocumentor](http://www.phpdoc.org/), [RaspberryPi.org](http://www.raspberrypi.org/), [Symfony demo](https://github.com/symfony/symfony-demo) and [more](https://packagist.org/packages/erusev/parsedown/dependents).
-=======
-[phpDocumentor](http://www.phpdoc.org/), [October CMS](http://octobercms.com/), [Bolt CMS](http://bolt.cm/), [Kirby CMS](http://getkirby.com/), [Grav CMS](http://getgrav.org/), [Statamic CMS](http://www.statamic.com/), [Herbie CMS](http://www.getherbie.org/), [RaspberryPi.org](http://www.raspberrypi.org/), [Symfony demo](https://github.com/symfony/symfony-demo) and [more](https://packagist.org/packages/erusev/parsedown/dependents).
->>>>>>> dev
 
 **How can I help?**
 

@@ -8,18 +8,12 @@
         <directory name="lib" />
     </projectFiles>
     <issueHandlers>
-<<<<<<< HEAD
         <RedundantConditionGivenDocblockType errorLevel="info" />
         <UnresolvableInclude errorLevel="info" />
-=======
->>>>>>> dev
         <DuplicateClass errorLevel="info" />
         <InvalidOperand errorLevel="info" />
         <UndefinedConstant errorLevel="info" />
         <MissingReturnType errorLevel="info" />
-<<<<<<< HEAD
         <InvalidReturnType errorLevel="info" />
-=======
->>>>>>> dev
     </issueHandlers>
 </psalm>

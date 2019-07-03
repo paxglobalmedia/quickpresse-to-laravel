@@ -30,11 +30,7 @@ class DegradedTimeConverter implements TimeConverterInterface
      * @param string $seconds
      * @param string $microSeconds
      * @return void
-<<<<<<< HEAD
      * @throws UnsatisfiedDependencyException if called on a 32-bit system and `Moontoast\Math\BigNumber` is not present
-=======
-     * @throws UnsatisfiedDependencyException
->>>>>>> dev
      */
     public function calculateTime($seconds, $microSeconds)
     {

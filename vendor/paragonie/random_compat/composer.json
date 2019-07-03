@@ -4,10 +4,7 @@
   "keywords": [
     "csprng",
     "random",
-<<<<<<< HEAD
     "polyfill",
-=======
->>>>>>> dev
     "pseudorandom"
   ],
   "license":      "MIT",
@@ -25,27 +22,13 @@
     "source":     "https://github.com/paragonie/random_compat"
   },
   "require": {
-<<<<<<< HEAD
     "php": "^7"
   },
   "require-dev": {
     "vimeo/psalm": "^1",
-=======
-    "php": ">=5.2.0"
-  },
-  "require-dev": {
->>>>>>> dev
     "phpunit/phpunit": "4.*|5.*"
   },
   "suggest": {
     "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-<<<<<<< HEAD
-=======
-  },
-  "autoload": {
-    "files": [
-      "lib/random.php"
-    ]
->>>>>>> dev
   }
 }

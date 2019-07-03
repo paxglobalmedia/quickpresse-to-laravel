@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-/**
-=======
 /*
->>>>>>> dev
  * This file is part of the Carbon package.
  *
  * (c) Brian Nesbitt <brian@nesbot.com>
@@ -13,108 +9,23 @@
  * file that was distributed with this source code.
  */
 
-<<<<<<< HEAD
-/*
- * Authors:
- * - mhamlet
- */
-return [
+return array(
     'year' => ':count տարի',
-    'a_year' => 'տարի|:count տարի',
     'y' => ':countտ',
     'month' => ':count ամիս',
-    'a_month' => 'ամիս|:count ամիս',
     'm' => ':countամ',
     'week' => ':count շաբաթ',
-    'a_week' => 'շաբաթ|:count շաբաթ',
     'w' => ':countշ',
     'day' => ':count օր',
-    'a_day' => 'օր|:count օր',
     'd' => ':countօր',
     'hour' => ':count ժամ',
-    'a_hour' => 'ժամ|:count ժամ',
     'h' => ':countժ',
     'minute' => ':count րոպե',
-    'a_minute' => 'րոպե|:count րոպե',
     'min' => ':countր',
-    'second' => ':count վայրկյան',
-    'a_second' => 'մի քանի վայրկյան|:count վայրկյան',
+    'second' => ':count վարկյան',
     's' => ':countվրկ',
     'ago' => ':time առաջ',
     'from_now' => ':time ներկա պահից',
     'after' => ':time հետո',
     'before' => ':time առաջ',
-    'diff_yesterday' => 'երեկ',
-    'diff_tomorrow' => 'վաղը',
-    'formats' => [
-        'LT' => 'HH:mm',
-        'LTS' => 'HH:mm:ss',
-        'L' => 'DD.MM.YYYY',
-        'LL' => 'D MMMM YYYY թ.',
-        'LLL' => 'D MMMM YYYY թ., HH:mm',
-        'LLLL' => 'dddd, D MMMM YYYY թ., HH:mm',
-    ],
-    'calendar' => [
-        'sameDay' => '[այսօր] LT',
-        'nextDay' => '[վաղը] LT',
-        'nextWeek' => 'dddd [օրը ժամը] LT',
-        'lastDay' => '[երեկ] LT',
-        'lastWeek' => '[անցած] dddd [օրը ժամը] LT',
-        'sameElse' => 'L',
-    ],
-    'ordinal' => function ($number, $period) {
-        switch ($period) {
-            case 'DDD':
-            case 'w':
-            case 'W':
-            case 'DDDo':
-                return $number.($number === 1 ? '-ին' : '-րդ');
-            default:
-                return $number;
-        }
-    },
-    'meridiem' => function ($hour) {
-        if ($hour < 4) {
-            return 'գիշերվա';
-        }
-        if ($hour < 12) {
-            return 'առավոտվա';
-        }
-        if ($hour < 17) {
-            return 'ցերեկվա';
-        }
-
-        return 'երեկոյան';
-    },
-    'months' => ['հունվարի', 'փետրվարի', 'մարտի', 'ապրիլի', 'մայիսի', 'հունիսի', 'հուլիսի', 'օգոստոսի', 'սեպտեմբերի', 'հոկտեմբերի', 'նոյեմբերի', 'դեկտեմբերի'],
-    'months_standalone' => ['հունվար', 'փետրվար', 'մարտ', 'ապրիլ', 'մայիս', 'հունիս', 'հուլիս', 'օգոստոս', 'սեպտեմբեր', 'հոկտեմբեր', 'նոյեմբեր', 'դեկտեմբեր'],
-    'months_short' => ['հնվ', 'փտր', 'մրտ', 'ապր', 'մյս', 'հնս', 'հլս', 'օգս', 'սպտ', 'հկտ', 'նմբ', 'դկտ'],
-    'months_regexp' => '/D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/',
-    'weekdays' => ['կիրակի', 'երկուշաբթի', 'երեքշաբթի', 'չորեքշաբթի', 'հինգշաբթի', 'ուրբաթ', 'շաբաթ'],
-    'weekdays_short' => ['կրկ', 'երկ', 'երք', 'չրք', 'հնգ', 'ուրբ', 'շբթ'],
-    'weekdays_min' => ['կրկ', 'երկ', 'երք', 'չրք', 'հնգ', 'ուրբ', 'շբթ'],
-    'list' => [', ', ' եւ '],
-    'first_day_of_week' => 1,
-];
-=======
-return array(
-    'year' => ':count տարի',
-    'y' => ':count տարի',
-    'month' => ':count ամիս',
-    'm' => ':count ամիս',
-    'week' => ':count շաբաթ',
-    'w' => ':count շաբաթ',
-    'day' => ':count օր',
-    'd' => ':count օր',
-    'hour' => ':count ժամ',
-    'h' => ':count ժամ',
-    'minute' => ':count րոպե',
-    'min' => ':count րոպե',
-    'second' => ':count վայրկյան',
-    's' => ':count վայրկյան',
-    'ago' => ':time առաջ',
-    'from_now' => ':time հետո',
-    'after' => ':time հետո',
-    'before' => ':time առաջ',
 );
->>>>>>> dev

@@ -62,13 +62,10 @@ class SystemNodeProvider implements NodeProviderInterface
      */
     protected function getIfconfig()
     {
-<<<<<<< HEAD
         if (strpos(strtolower(ini_get('disable_functions')), 'passthru') !== false) {
             return '';
         }
 
-=======
->>>>>>> dev
         ob_start();
         switch (strtoupper(substr(php_uname('a'), 0, 3))) {
             case 'WIN':
@@ -77,12 +74,9 @@ class SystemNodeProvider implements NodeProviderInterface
             case 'DAR':
                 passthru('ifconfig 2>&1');
                 break;
-<<<<<<< HEAD
             case 'FRE':
                 passthru('netstat -i -f link 2>&1');
                 break;
-=======
->>>>>>> dev
             case 'LIN':
             default:
                 passthru('netstat -ie 2>&1');
@@ -101,27 +95,16 @@ class SystemNodeProvider implements NodeProviderInterface
     {
         $mac = false;
 
-<<<<<<< HEAD
         if (strtoupper(php_uname('s')) === 'LINUX') {
-=======
-        if (strtoupper(php_uname('s')) === "LINUX") {
->>>>>>> dev
             $addressPaths = glob('/sys/class/net/*/address', GLOB_NOSORT);
 
             if (empty($addressPaths)) {
                 return false;
             }
 
-<<<<<<< HEAD
             array_walk($addressPaths, function ($addressPath) use (&$macs) {
                 $macs[] = file_get_contents($addressPath);
             });
-=======
-            $macs = array_map(
-                'file_get_contents',
-                $addressPaths
-            );
->>>>>>> dev
 
             $macs = array_map('trim', $macs);
 

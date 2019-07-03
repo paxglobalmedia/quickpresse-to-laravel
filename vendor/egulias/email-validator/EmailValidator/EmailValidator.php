@@ -28,11 +28,7 @@ class EmailValidator
     }
 
     /**
-<<<<<<< HEAD
-     * @param string          $email
-=======
      * @param                 $email
->>>>>>> dev
      * @param EmailValidation $emailValidation
      * @return bool
      */

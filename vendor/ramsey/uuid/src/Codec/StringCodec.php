@@ -74,10 +74,7 @@ class StringCodec implements CodecInterface
      *
      * @param string $encodedUuid
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
-=======
->>>>>>> dev
      */
     public function decode($encodedUuid)
     {
@@ -92,10 +89,7 @@ class StringCodec implements CodecInterface
      *
      * @param string $bytes
      * @return UuidInterface
-<<<<<<< HEAD
      * @throws \InvalidArgumentException if string has not 16 characters
-=======
->>>>>>> dev
      */
     public function decodeBytes($bytes)
     {
@@ -123,10 +117,7 @@ class StringCodec implements CodecInterface
      *
      * @param string $encodedUuid
      * @return array
-<<<<<<< HEAD
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
-=======
->>>>>>> dev
      */
     protected function extractComponents($encodedUuid)
     {
