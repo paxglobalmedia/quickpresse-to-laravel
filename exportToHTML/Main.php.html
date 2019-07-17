@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Main.php</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #a9b7c6;}
+.s3 { color: #629755; font-style: italic;}
+.s4 { color: #629755; font-weight: bold; font-style: italic;}
+.s5 { color: #a9b7c6;}
+.s6 { color: #9876aa;}
+.s7 { color: #808080;}
+.s8 { color: #6a8759;}
+.ls0 { height: 1px; border-width: 0; color: #4d4d4d; background-color:#4d4d4d}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.php</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?php</span>
+
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">CheckIfFolderExist</span><span class="s0">;</span>
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">detectIfileExist</span><span class="s0">;</span>
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">getCurrentPath</span><span class="s0">;</span>
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">getLineNumber</span>
+<span class="s0">use </span><span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">renameClass </span><span class="s0">;</span>
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">searchClassDeclaration</span><span class="s0">;</span>
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">toMoveFileClass</span><span class="s0">;</span>
+use <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s1">\</span><span class="s2">toRenameNameSpace</span><span class="s0">;</span>
+
+<hr class="ls0">namespace <span class="s2">App</span><span class="s1">\</span><span class="s2">scriptPHPautomation</span><span class="s0">;</span>
+
+<hr class="ls0"><span class="s3">/**</span>
+ * Class Main to automate move dependecy class use by plugin from OctoberCMS to Laravel
+ * <span class="s4">@package </span><span class="s3">App\scriptPHPautomation</span>
+ */
+<span class="s0">class </span><span class="s2">Main</span>
+<span class="s5">{</span>
+    <span class="s3">/**</span>
+     * Main constructor.
+     */
+    <span class="s0">public function </span><span class="s2">__construct</span><span class="s5">(</span><span class="s6">$pluginDirectoryName</span><span class="s0">, </span><span class="s6">$pluginName</span><span class="s5">)</span>
+    {
+        <span class="s7">// The developer insert the plugin directory name in popup form</span>
+        <span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">pluginDirectoryName </span><span class="s5">= </span><span class="s6">$pluginDirectoryName</span><span class="s0">;</span>
+
+        <span class="s7">// The developer insert the plugin name in popup form</span>
+        <span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">pluginName </span><span class="s5">= </span><span class="s6">$pluginName</span><span class="s0">;</span>
+
+        <span class="s7">// standard october path;</span>
+        <span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">OctoberpluginPath </span><span class="s5">= </span><span class="s8">'/plugins'</span><span class="s0">;</span>
+
+        <span class="s7">// The full current plugin to convert to laravel</span>
+        <span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">pluginFullPath </span><span class="s5">= </span><span class="s6">$octoberpluginPath</span><span class="s5">.</span><span class="s8">'/'</span><span class="s5">.</span><span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">pluginName</span><span class="s0">;</span>
+    <span class="s5">}</span>
+
+    <span class="s3">/**</span>
+     * <span class="s4">@param </span><span class="s3">$pluginDirectoryName</span>
+     * <span class="s4">@param </span><span class="s3">$pluginName</span>
+     */
+    <span class="s0">public function </span><span class="s2">automation</span><span class="s5">(){</span>
+
+        <span class="s7">//Create Folder Class in App/$PluginName/</span>
+        <span class="s0">new </span><span class="s2">CheckIfFolderExist</span><span class="s5">(</span><span class="s8">'app/'</span><span class="s5">.</span><span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">pluginName</span><span class="s5">.</span><span class="s8">'/class'</span><span class="s5">)</span><span class="s0">;</span>
+
+        <span class="s7">//Create The Folder of the plugin in Laravel if not exist</span>
+       <span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">checkFolderExistence</span><span class="s5">(</span><span class="s6">$pluginFullPath</span><span class="s5">)</span><span class="s0">;</span>
+
+       <span class="s7">// Search Class Declaration and move it to App/$pluginNAme/Class</span>
+
+        //Get The full dependency class
+        <span class="s6">$this</span><span class="s5">-&gt;</span><span class="s2">findDepencyClass</span><span class="s5">()</span><span class="s0">;</span>
+
+    <span class="s5">}</span>
+
+    <span class="s3">/**</span>
+     * <span class="s4">@param </span><span class="s3">$pluginFullPath</span>
+     * <span class="s4">@return </span><span class="s3">CheckIfFolderExist</span>
+     */
+    <span class="s0">public function </span><span class="s2">checkFolderExistence</span><span class="s5">(</span><span class="s6">$pluginFullPath</span><span class="s5">){</span>
+
+        <span class="s6">$checkFolder </span><span class="s5">= </span><span class="s0">new </span><span class="s2">CheckIfFolderExist</span><span class="s5">(</span><span class="s6">$pluginFullPath</span><span class="s5">)</span><span class="s0">;</span>
+        return <span class="s6">$checkFolder </span><span class="s0">;</span>
+    <span class="s5">}</span>
+
+    <span class="s3">/**</span>
+     *
+     */
+    <span class="s0">public function </span><span class="s2">findDepencyClass</span><span class="s5">() {</span>
+
+        <span class="s6">$dependency </span><span class="s5">= </span><span class="s0">new </span><span class="s2">searchClassDeclaration</span><span class="s5">(</span><span class="s6">$className</span><span class="s5">)</span><span class="s0">;</span>
+
+
+
+        return <span class="s6">$dependency</span><span class="s0">;</span>
+
+    <span class="s5">}</span>
+
+}</pre>
+</body>
+</html>
